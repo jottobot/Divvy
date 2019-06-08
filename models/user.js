@@ -18,6 +18,7 @@ module.exports = function (sequelize, DataTypes) {
       email: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true,
         validate: {
           isEmail: true,
           len: [1, 140],
@@ -32,20 +33,13 @@ module.exports = function (sequelize, DataTypes) {
       }
     },
   );
-  
-  User.associate = function (models) {
-    User.belongsTo(models.House, {
-      foreignKey: {
-        allowNull: false
-      }
-    })
-  }
 
   User.associate = function (models) {
-    User.hasMany(models.Bill, {
-      onDelete: "cascade"
+    User.belongsToMany(models.Bill, {
+      as: 'Bill',
+      through: 'User_Bill',
     });
-  };
+  }
 
   return User;
 };
