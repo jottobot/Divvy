@@ -10,5 +10,11 @@ router.get('/bills', billController.getAllBills);
 
 
 
+router.get('/users', userController.getAllUsers)
+
+router.get('/users/email/:email', userController.getUserByEmail)
+
+router.post('/users', userController.createUser)
+
 
 module.exports = router;
