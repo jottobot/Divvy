@@ -18,7 +18,7 @@ exports.getAllUsers = function (req, res) {
   })
 }
 
-exports.getUserByEmail = function (res, res) {
+exports.getUserByEmail = function (req, res) {
   db.User.findAll({
     where: {
       email: req.params.email
@@ -27,3 +27,24 @@ exports.getUserByEmail = function (res, res) {
     return res.json(result)
   })
 }
+
+
+db.User.findAll({
+  where: {
+    id: 2
+  }
+})
+  .then(
+    (user) => 
+    {
+    db.Bill.findAll({ where: { id: 1 } })
+      .then((bill) => {
+        // console.log(user[0])
+        // console.log(bill[0])
+        // user[0].addBill(bill)
+        bill[0].getUser().then(bills => { // Need to check for empty array
+          console.log(bills)
+        })
+         
+      });
+  });
