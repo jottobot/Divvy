@@ -59,7 +59,4 @@ function seedDB() {
       }))
 }
 
-// seedDB()
-
-
-
+seedDB()
