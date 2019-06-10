@@ -18,14 +18,14 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.DECIMAL,
       allowNull: false,
       validate: {
-        len: [1, 140]
+        // len: [1, 140]
       },
     },
     BillDue: {
       type: DataTypes.DATE,
       allowNull: false,
       validate: {
-        len: [1, 140]
+        // len: [1, 140]
       },
     },
     BillPaid: {
