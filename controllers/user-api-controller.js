@@ -9,12 +9,16 @@ exports.createUser = function (req, res) {
     phoneNumber: body.phoneNumber,
   }).then(result => {
     return res.json(result)
+  }).catch(err => {
+    res.json(err);
   })
 }
 
 exports.getAllUsers = function (req, res) {
   db.User.findAll({}).then(result => {
     return res.json(result)
+  }).catch(err => {
+    res.json(err);
   })
 }
 
@@ -25,6 +29,8 @@ exports.getUserByEmail = function (req, res) {
     }
   }).then(result => {
     return res.json(result)
+  }).catch(err => {
+    res.json(err);
   })
 }
 

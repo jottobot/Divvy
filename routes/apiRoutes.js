@@ -8,6 +8,7 @@ const router = express.Router();
 
 router.get('/bills', billController.getAllBills);
 
+router.get('/bills/:billId', billController.getUsersForBill)
 
 
 router.get('/users', userController.getAllUsers)
