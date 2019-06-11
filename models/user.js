@@ -28,7 +28,7 @@ module.exports = function (sequelize, DataTypes) {
         type: DataTypes.STRING,
         allowNull: true,
         validate: {
- 
+          // TODO validate phone number
         }
       }
     },
@@ -36,7 +36,7 @@ module.exports = function (sequelize, DataTypes) {
   User.associate = function (models) {
     User.belongsToMany(models.Bill, {
       as: 'Bill',
-      through: 'User_Bill',
+      through: models.UserBill,
     });
   }
 

@@ -8,8 +8,24 @@ const router = express.Router();
 
 router.get('/bills', billController.getAllBills);
 
-router.post("/routes/apiRoutes", billcontroller.postNewBill)
+router.get('/bills/:billId', billController.getUsersForBill)
 
-router.delete("/routes/apiRoutes:id", billController.BillDelete)
-router.put("/routes/apiRoutes", billController.put)
+router.post("/bills/create", billController.postNewBill)
+
+router.delete("/bills/delete/:id", billController.billDelete)
+
+router.put("/bills/update", billController.update)
+
+
+router.get('/users', userController.getAllUsers)
+
+router.get('/users/bills/', userController.getBillsForUser);
+
+router.get('/users/email/', userController.getUserByEmail)
+
+router.post('/users', userController.createUser)
+
+router.post('/users/addbill', userController.addBillToUser)
+
+
 module.exports = router;

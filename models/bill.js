@@ -18,14 +18,14 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.DECIMAL,
       allowNull: false,
       validate: {
-        len: [1, 140]
+        // len: [1, 140]
       },
     },
     BillDue: {
       type: DataTypes.DATE,
       allowNull: false,
       validate: {
-        len: [1, 140]
+        // len: [1, 140]
       },
     },
     BillPaid: {
@@ -38,8 +38,8 @@ module.exports = function (sequelize, DataTypes) {
 
   Bill.associate = function (models) {
     Bill.belongsToMany(models.User, {
-      as: 'User',
-      through: 'User_Bill',
+      // as: 'User',
+      through: models.UserBill,
     });
   }
 
