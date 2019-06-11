@@ -20,3 +20,6 @@ exports.example = function(req, res) {
 exports.notARoute = function(req, res) {
   res.render("404");
 }
+
+
+//instead of app.get use router.get
