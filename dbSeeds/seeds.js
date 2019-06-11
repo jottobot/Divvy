@@ -1,5 +1,12 @@
 // Seed the database with test data
 
+// How to use:
+// 1. Create divvy_db in mySql Workbench
+// 2. Start server
+// 3. In another shell run this file, wait a few seconds, then kill it. (File doesn't end db connection automatically,
+// so it has to be ended manually)
+
+
 const db = require('../models')
 
 const users = [
@@ -36,8 +43,9 @@ const bills = [
 
 function seedDB() {
   db.User
-    .destroy({ where: {} })
-    .then(db.Bill.destroy({ where: {} }))
+    .destroy({ where: {} }) // delete all users
+    .then(db.Bill.destroy({ where: {} }) // delete all bills
+    )
     .then(
       users.forEach(user => {
         db.User.create({
