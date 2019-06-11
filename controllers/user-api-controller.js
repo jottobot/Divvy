@@ -55,6 +55,7 @@ exports.getBillsForUser = function (req, res) {
 exports.addBillToUser = function (req, res) {
   const userEmail = req.body.email;
   const billId = req.body.billId;
+  const percentOwed = req.body.percentOwed;
   db.User.findAll(
     {
       where: {
@@ -62,13 +63,19 @@ exports.addBillToUser = function (req, res) {
       }
     }
   ).then(user => {
-    db.Bill.findAll({ where: { id: billId } })
-      .then((bill) => {
-        user[0].addBill(bill).then(result => {
+    db.Bill
+      .findAll({ where: { id: billId } })
+      .then(bill => {
+
+        user[0].addBill(bill[0], { through: { percentOwed: percentOwed }}).then(result => {
           res.json(result)
         });
-      }).catch(res.json(err))
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }).catch(err => {
+    console.log(err)
     res.json(err);
   });
 }

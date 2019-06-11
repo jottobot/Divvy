@@ -38,8 +38,8 @@ module.exports = function (sequelize, DataTypes) {
 
   Bill.associate = function (models) {
     Bill.belongsToMany(models.User, {
-      as: 'User',
-      through: 'User_Bill',
+      // as: 'User',
+      through: models.UserBill,
     });
   }
 

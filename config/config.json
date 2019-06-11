@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "use_env_password": "password",
+    "password": "1234",
     "database": "divvy_db",
     "host": "localhost",
     "dialect": "mysql"
