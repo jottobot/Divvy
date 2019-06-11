@@ -28,12 +28,11 @@ module.exports = function (sequelize, DataTypes) {
         type: DataTypes.STRING,
         allowNull: true,
         validate: {
-          // TODO add phone number validation
+ 
         }
       }
     },
   );
-
   User.associate = function (models) {
     User.belongsToMany(models.Bill, {
       as: 'Bill',
