@@ -6,15 +6,15 @@ const billController = require('../controllers/bill-api-controller')
 const router = express.Router();
 
 
-// router.get('/bills', billController.getAllBills);
+router.get('/bills', billController.getAllBills);
 
-// router.get('/bills/:billId', billController.getUsersForBill)
+router.get('/bills/:billId', billController.getUsersForBill)
 
-// router.post("/routes/apiRoutes", billcontroller.postNewBill)
+router.post("/bills/create", billController.postNewBill)
 
-// router.delete("/routes/apiRoutes:id", billController.BillDelete)
+router.delete("/bills/delete/:id", billController.billDelete)
 
-// router.put("/routes/apiRoutes", billController.put)
+router.put("/bills/update", billController.update)
 
 
 router.get('/users', userController.getAllUsers)

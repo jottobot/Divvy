@@ -1,7 +1,6 @@
 const db = require("../models");
 
 
-
 // GET route for getting all of the bills
 exports.getAllBills = function (req, res) {
   // findAll returns all entries for a table when used with no options
@@ -11,10 +10,10 @@ exports.getAllBills = function (req, res) {
   });
 }
 
-// Get all users for a bill id
+// Get all users for a bill id. Populates UserBill property for each user
 exports.getUsersForBill = function (req, res) {
   billId = req.params.billId // billId: integer
-  
+
   db.Bill.findAll(
     {
       where: {
@@ -22,11 +21,14 @@ exports.getUsersForBill = function (req, res) {
       }
     }
   ).then(bill => {
-    bill[0].getUser().then(users => {
+    bill[0].getUsers().then(users => {
       res.json(users)
+    }).catch(err => {
+      console.log(err)
     })
   }
   ).catch(err => {
+    console.log(err)
     res.json(err)
   })
 }
@@ -47,6 +49,8 @@ exports.postNewBill = function (req, res) {
   ).then(function (divvy_db) {
     // We have access to the new bill as an argument inside of the callback function
     res.json(divvy_db);
+  }).catch(function (err) {
+    res.json(err);
   });
 };
 
@@ -60,14 +64,16 @@ exports.billDelete = function (req, res) {
     }
   }).then(function (divvy_db) {
     res.json(divvy_db);
-  });
+  }).catch(function (err) {
+    res.json(err);
+  })
 };
 
 // PUT route for updating todos. We can get the updated todo data from req.body
-exports.put = function (req, res) {
+exports.update = function (req, res) {
   // Update takes in an object describing the properties we want to update, and
   // we use where to describe which objects we want to update
-  db.bill.update(
+  db.Bill.update(
     {
       title: req.body.title,
       Company: req.body.Company,
@@ -79,8 +85,11 @@ exports.put = function (req, res) {
       where: {
         id: req.body.id
       }
-    }).then(function (divvy_db) {
-      res.json(divvy_db);
-    });
+    }
+  ).then(function (divvy_db) {
+    res.json(divvy_db);
+  }).catch(function (err) {
+    res.json(err);
+  })
 };
 
