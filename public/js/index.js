@@ -1,99 +1,59 @@
-// Get references to page elements
-var $exampleText = $("#example-text");
-var $exampleDescription = $("#example-description");
-var $submitBtn = $("#submit");
-var $exampleList = $("#example-list");
+$(document).ready(function(){
 
-// The API object contains methods for each kind of request we'll make
-var API = {
-  saveExample: function(example) {
-    return $.ajax({
-      headers: {
-        "Content-Type": "application/json"
-      },
-      type: "POST",
-      url: "api/examples",
-      data: JSON.stringify(example)
-    });
-  },
-  getExamples: function() {
-    return $.ajax({
-      url: "api/examples",
-      type: "GET"
-    });
-  },
-  deleteExample: function(id) {
-    return $.ajax({
-      url: "api/examples/" + id,
-      type: "DELETE"
-    });
-  }
-};
+  // Opening modal
+  var modal = document.getElementById("myModal");
 
-// refreshExamples gets new examples from the db and repopulates the list
-var refreshExamples = function() {
-  API.getExamples().then(function(data) {
-    var $examples = data.map(function(example) {
-      var $a = $("<a>")
-        .text(example.text)
-        .attr("href", "/example/" + example.id);
+  // Get the button that opens the opening modal
+  var btn = document.getElementById("myBtn");
 
-      var $li = $("<li>")
-        .attr({
-          class: "list-group-item",
-          "data-id": example.id
-        })
-        .append($a);
+  // Get the <span> element that closes the modal
+  var span = document.getElementsByClassName("close")[0];
 
-      var $button = $("<button>")
-        .addClass("btn btn-danger float-right delete")
-        .text("ｘ");
+  // Get add bill button
+  // var delModalBill = document.getElementById("addBill");
 
-      $li.append($button);
+  // Get view bill button
+  // var delModalBill2 = document.getElementById("viewBill");
 
-      return $li;
-    });
-
-    $exampleList.empty();
-    $exampleList.append($examples);
-  });
-};
-
-// handleFormSubmit is called whenever we submit a new example
-// Save the new example to the db and refresh the list
-var handleFormSubmit = function(event) {
-  event.preventDefault();
-
-  var example = {
-    text: $exampleText.val().trim(),
-    description: $exampleDescription.val().trim()
+  // When the user clicks on the button, open the modal
+  btn.onclick = function() {
+    modal.style.display = "block";
+    $("#signupform").hide();
+    $("#signinform").hide();
   };
 
-  if (!(example.text && example.description)) {
-    alert("You must enter an example text and description!");
-    return;
-  }
+  // When the user clicks on <span> (x), add bill and view bill close the modal
+  span.onclick = function() {
+    modal.style.display = "none";
+  };
+  // delModalBill.onclick = function() {
+  //   modal.style.display = "none";
+  // };
+  // delModalBill2.onclick = function() {
+  //   modal.style.display = "none";
+  // };
 
-  API.saveExample(example).then(function() {
-    refreshExamples();
-  });
+    $("#signin").click(function(){
+      $("#signinform").show();
+      $("#signupform").hide();
+    });
+    $("#signup").click(function(){
+      $("#signupform").show();
+      $("#signinform").hide();
+    });
+ 
 
-  $exampleText.val("");
-  $exampleDescription.val("");
-};
+  // Add smooth scrolling after modal
+    $("#signupbtn").on('click', function (event) {
+      $('html, body').animate({
+        scrollTop: ($(".card").offset().top)
+      }, 200);
+    });
 
-// handleDeleteBtnClick is called when an example's delete button is clicked
-// Remove the example from the db and refresh the list
-var handleDeleteBtnClick = function() {
-  var idToDelete = $(this)
-    .parent()
-    .attr("data-id");
-
-  API.deleteExample(idToDelete).then(function() {
-    refreshExamples();
-  });
-};
-
-// Add event listeners to the submit and delete buttons
-$submitBtn.on("click", handleFormSubmit);
-$exampleList.on("click", ".delete", handleDeleteBtnClick);
+    $("#login").on('click', function (event) {
+      $('html, body').animate({
+        scrollTop: ($(".card").offset().top)
+      }, 200);
+    });
+   
+});
