@@ -4,10 +4,10 @@ exports.createUser = function (req, res) {
   const body = req.body;
   db.User.create(
     {
-      firstName: body.firstName,
-      lastName: body.lastName,
-      email: body.email,
-      phoneNumber: body.phoneNumber,
+      firstName: body.firstName, // str
+      lastName: body.lastName, // str
+      email: body.email, // str
+      phoneNumber: body.phoneNumber, // str
     }
   ).then(result => {
     return res.json(result)
@@ -28,7 +28,7 @@ exports.getUserByEmail = function (req, res) {
   db.User.findAll(
     {
       where: {
-        email: req.body.email
+        email: req.body.email // str
       }
     }
   ).then(result => {
@@ -38,8 +38,9 @@ exports.getUserByEmail = function (req, res) {
   })
 }
 
+// Get all bills associated with a user email
 exports.getBillsForUser = function (req, res) {
-  userEmail = req.body.email
+  userEmail = req.body.email // str
   db.User.findAll(
     {
       where: {
@@ -56,10 +57,14 @@ exports.getBillsForUser = function (req, res) {
   })
 }
 
+// Connects a User to a Bill. Adds a row in the UserBill table. 
+// On success returns json of new entry in UserBill table 
+// On failure (bill or user does not exist) return empty object {}
+// If entry in UserBill already exists returns void 
 exports.addBillToUser = function (req, res) {
-  const userEmail = req.body.email;
-  const billId = req.body.billId;
-  const percentOwed = req.body.percentOwed;
+  const userEmail = req.body.email; // str
+  const billId = req.body.billId; // int
+  const percentOwed = req.body.percentOwed; // int
   db.User.findAll(
     {
       where: {
