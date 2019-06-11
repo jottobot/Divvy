@@ -11,8 +11,10 @@ exports.getAllBills = function (req, res) {
   });
 }
 
+// Get all users for a bill id
 exports.getUsersForBill = function (req, res) {
-  billId = req.params.billId
+  billId = req.params.billId // billId: integer
+  
   db.Bill.findAll(
     {
       where: {
@@ -34,10 +36,15 @@ exports.postNewBill = function (req, res) {
   // create takes an argument of an object describing the item we want to
   // insert into our table. In this case we just we pass in an object with a text
   // and complete property
-  db.Bill.create({
-    text: req.body.text,
-    complete: req.body.complete
-  }).then(function (divvy_db) {
+  db.Bill.create(
+    {
+      title: req.body.title,
+      Company: req.body.Company,
+      Amount: req.body.Amount,
+      BillDue: req.body.BillDue,
+      BillPaid: req.body.BillPaid,
+    }
+  ).then(function (divvy_db) {
     // We have access to the new bill as an argument inside of the callback function
     res.json(divvy_db);
   });
@@ -56,17 +63,19 @@ exports.billDelete = function (req, res) {
   });
 };
 
-
-
-
 // PUT route for updating todos. We can get the updated todo data from req.body
 exports.put = function (req, res) {
   // Update takes in an object describing the properties we want to update, and
   // we use where to describe which objects we want to update
-  db.bill.update({
-    text: req.body.text,
-    complete: req.body.complete
-  }, {
+  db.bill.update(
+    {
+      title: req.body.title,
+      Company: req.body.Company,
+      Amount: req.body.Amount,
+      BillDue: req.body.BillDue,
+      BillPaid: req.body.BillPaid,
+    },
+    {
       where: {
         id: req.body.id
       }
