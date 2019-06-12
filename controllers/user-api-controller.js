@@ -62,13 +62,13 @@ exports.getBillsForUser = function (req, res) {
 // On failure (bill or user does not exist) return empty object {}
 // If entry in UserBill already exists returns void 
 exports.addBillToUser = function (req, res) {
-  const userEmail = req.body.email; // str
+  const email = req.body.email; // str
   const billId = req.body.billId; // int
   const percentOwed = req.body.percentOwed; // int
   db.User.findAll(
     {
       where: {
-        email: userEmail
+        email: email
       }
     }
   ).then(user => {
@@ -81,7 +81,10 @@ exports.addBillToUser = function (req, res) {
         }
         ).then(result => {
           res.json(result)
-        });
+        }).catch(err => {
+          console.log(err);
+          return res.json(err)
+        })
       })
       .catch(err => {
         console.log(err)
