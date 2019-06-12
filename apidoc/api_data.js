@@ -215,7 +215,7 @@ define({ "api": [
     "examples": [
       {
         "title": "Request body update bill object example usage:",
-        "content": "  {\n  id: 1\n title: \"water\",\n Company: \"PSE\",\n Amount: 300.5,\n BillDue: Date.now(),\n BillPaid: false,\n}",
+        "content": "{    \n id: 1\n title: \"water\",\n Company: \"PSE\",\n Amount: 300.5,\n BillDue: Date.now(),\n BillPaid: false,\n}",
         "type": "json"
       }
     ],
@@ -308,7 +308,7 @@ define({ "api": [
     "success": {
       "examples": [
         {
-          "title": "Success-Response -> Returns newly created bill object in array",
+          "title": "Success-Response -> Returns newly created UserBill object in array",
           "content": "[\n  {\n      \"percentOwed\": 34,\n      \"createdAt\": \"2019-06-12T18:06:53.249Z\",\n      \"updatedAt\": \"2019-06-12T18:06:53.249Z\",\n      \"BillId\": 1,\n      \"UserId\": 4\n  }\n]",
           "type": "json"
         }
@@ -427,6 +427,45 @@ define({ "api": [
         {
           "title": "Success-Response -> return array of all bills for user. Return empty array if no bills for user exist. Populates 'UserBill' property",
           "content": "    HTTP/1.1 200 OK\n  [\n    {\n        \"id\": 1,\n        \"title\": \"water\",\n        \"Company\": \"PSE\",\n        \"Amount\": \"301\",\n        \"BillDue\": \"2019-06-11T04:11:06.000Z\",\n        \"BillPaid\": false,\n        \"createdAt\": \"2019-06-11T04:11:06.000Z\",\n        \"updatedAt\": \"2019-06-11T04:11:06.000Z\",\n        \"UserBill\": {\n            \"percentOwed\": 67,\n            \"createdAt\": \"2019-06-11T04:13:57.000Z\",\n            \"updatedAt\": \"2019-06-11T04:13:57.000Z\",\n            \"BillId\": 1,\n            \"UserId\": 1\n        }\n    }\n]",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "routes/apiRoutes.js",
+    "groupTitle": "User"
+  },
+  {
+    "type": "get",
+    "url": "/users/bills/populate",
+    "title": "Get all bills associated with a user's email and populate each bill with every user associated with that bill",
+    "name": "getBillsForUserPopulateUsers",
+    "group": "User",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>Users email as a string</p>"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Request body example:",
+        "content": " {\n\"email\": \"Sally@gmail.com\"\n}",
+        "type": "json"
+      }
+    ],
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response -> return array of all user populated bills for user. Return empty array if no bills for user exist. Populates 'UserBill' property",
+          "content": "    HTTP/1.1 200 OK\n [\n    [\n        {\n            \"id\": 1,\n            \"firstName\": \"Bobby\",\n            \"lastName\": \"Jones\",\n            \"email\": \"Bobby@email.com\",\n            \"phoneNumber\": \"206999999\",\n            \"createdAt\": \"2019-06-11T04:11:06.000Z\",\n            \"updatedAt\": \"2019-06-11T04:11:06.000Z\",\n            \"UserBill\": {\n                \"percentOwed\": 67,\n                \"createdAt\": \"2019-06-11T04:13:57.000Z\",\n                \"updatedAt\": \"2019-06-11T04:13:57.000Z\",\n                \"BillId\": 1,\n                \"UserId\": 1\n            }\n        },\n        {\n            \"id\": 2,\n            \"firstName\": \"Sally\",\n            \"lastName\": \"Smite\",\n            \"email\": \"Sally@email.com\",\n            \"phoneNumber\": \"4253828183\",\n            \"createdAt\": \"2019-06-11T04:11:06.000Z\",\n            \"updatedAt\": \"2019-06-11T04:11:06.000Z\",\n            \"UserBill\": {\n                \"percentOwed\": 30,\n                \"createdAt\": \"2019-06-11T04:11:22.000Z\",\n                \"updatedAt\": \"2019-06-11T04:11:22.000Z\",\n                \"BillId\": 1,\n                \"UserId\": 2\n            }\n        }\n    ],\n    [\n        {\n            \"id\": 1,\n            \"firstName\": \"Bobby\",\n            \"lastName\": \"Jones\",\n            \"email\": \"Bobby@email.com\",\n            \"phoneNumber\": \"206999999\",\n            \"createdAt\": \"2019-06-11T04:11:06.000Z\",\n            \"updatedAt\": \"2019-06-11T04:11:06.000Z\",\n            \"UserBill\": {\n                \"percentOwed\": 67,\n                \"createdAt\": \"2019-06-11T04:14:17.000Z\",\n                \"updatedAt\": \"2019-06-11T04:14:17.000Z\",\n                \"BillId\": 2,\n                \"UserId\": 1\n            }\n        }\n    ]\n]",
           "type": "json"
         }
       ]

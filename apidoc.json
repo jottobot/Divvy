@@ -2,6 +2,6 @@
   "name": "Divvy",
   "version": "0.1.0",
   "description": "Divvy apiDoc",
-  "title": "Custom apiDoc browser title",
+  "title": "Custom apiDoc browser documentation",
   "url" : "http://localhost:3000/api"
 }

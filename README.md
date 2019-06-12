@@ -4,3 +4,9 @@
 ```
 npm run watch
 ```
+
+# View API Docs
+Open:
+```
+./apidoc/index.html
+```

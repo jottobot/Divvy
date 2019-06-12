@@ -148,8 +148,8 @@ router.put("/bills/update", billController.update)
  * @apiParam {Boolean} BillPaid Bill has been fully paid
  * 
  * @apiExample Request body update bill object example usage:
-  *   {
-  *   id: 1
+  * {    
+  *  id: 1
   *  title: "water",
   *  Company: "PSE",
   *  Amount: 300.5,
@@ -213,6 +213,77 @@ router.get('/users', userController.getAllUsers)
         "createdAt": "2019-06-11T04:11:06.000Z",
         "updatedAt": "2019-06-11T04:11:06.000Z"
     },
+]
+ */
+
+router.get('/users/bills/populate', userController.getBillsForUserPopulateUsers);
+/**
+ * @api {get} /users/bills/populate Get all bills associated with a user's email and populate each bill with every user associated with that bill
+ * @apiName getBillsForUserPopulateUsers
+ * @apiGroup User
+ *
+ * @apiParam {String} email Users email as a string
+ * 
+ * @apiExample Request body example:
+  *  {
+* "email": "Sally@gmail.com"
+* }
+  * 
+ * @apiSuccessExample Success-Response -> return array of all user populated bills for user. Return empty array if no bills for user exist. Populates 'UserBill' property
+ *     HTTP/1.1 200 OK
+ *  [
+    [
+        {
+            "id": 1,
+            "firstName": "Bobby",
+            "lastName": "Jones",
+            "email": "Bobby@email.com",
+            "phoneNumber": "206999999",
+            "createdAt": "2019-06-11T04:11:06.000Z",
+            "updatedAt": "2019-06-11T04:11:06.000Z",
+            "UserBill": {
+                "percentOwed": 67,
+                "createdAt": "2019-06-11T04:13:57.000Z",
+                "updatedAt": "2019-06-11T04:13:57.000Z",
+                "BillId": 1,
+                "UserId": 1
+            }
+        },
+        {
+            "id": 2,
+            "firstName": "Sally",
+            "lastName": "Smite",
+            "email": "Sally@email.com",
+            "phoneNumber": "4253828183",
+            "createdAt": "2019-06-11T04:11:06.000Z",
+            "updatedAt": "2019-06-11T04:11:06.000Z",
+            "UserBill": {
+                "percentOwed": 30,
+                "createdAt": "2019-06-11T04:11:22.000Z",
+                "updatedAt": "2019-06-11T04:11:22.000Z",
+                "BillId": 1,
+                "UserId": 2
+            }
+        }
+    ],
+    [
+        {
+            "id": 1,
+            "firstName": "Bobby",
+            "lastName": "Jones",
+            "email": "Bobby@email.com",
+            "phoneNumber": "206999999",
+            "createdAt": "2019-06-11T04:11:06.000Z",
+            "updatedAt": "2019-06-11T04:11:06.000Z",
+            "UserBill": {
+                "percentOwed": 67,
+                "createdAt": "2019-06-11T04:14:17.000Z",
+                "updatedAt": "2019-06-11T04:14:17.000Z",
+                "BillId": 2,
+                "UserId": 1
+            }
+        }
+    ]
 ]
  */
 
@@ -377,7 +448,7 @@ router.post('/users/addbill', userController.addBillToUser)
   *   "percentOwed": 34    
   *}
   *
-  * @apiSuccessExample Success-Response -> Returns newly created bill object in array
+  * @apiSuccessExample Success-Response -> Returns newly created UserBill object in array
  * [
  *   {
  *       "percentOwed": 34,
