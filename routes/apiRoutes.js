@@ -226,7 +226,7 @@ router.get('/users/bills/populate', userController.getBillsForUserPopulateUsers)
  * 
  * @apiExample Request body example:
   *  {
-* "email": "Sally@gmail.com"
+* "email": "Bobby@email.com"
 * }
   * 
  * @apiSuccessExample Success-Response -> return array of all user populated bills for user. Return empty array if no bills for user exist. Populates 'UserBill' property

@@ -457,7 +457,7 @@
     "examples": [
       {
         "title": "Request body example:",
-        "content": " {\n\"email\": \"Sally@gmail.com\"\n}",
+        "content": " {\n\"email\": \"Bobby@email.com\"\n}",
         "type": "json"
       }
     ],
