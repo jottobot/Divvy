@@ -5,6 +5,16 @@ const billController = require('../controllers/bill-api-controller')
 
 const router = express.Router();
 
+
+// ***********************************************************
+// API Documentation ROUTES 
+// ***********************************************************
+
+// Get request for api documentation
+router.use('/', express.static(__dirname + '../../apidoc'));
+
+
+
 // ***********************************************************
 // BILL ROUTES 
 // ***********************************************************
@@ -216,6 +226,7 @@ router.get('/users', userController.getAllUsers)
 ]
  */
 
+ 
 router.get('/users/bills/populate', userController.getBillsForUserPopulateUsers);
 /**
  * @api {get} /users/bills/populate Get all bills associated with a user's email and populate each bill with every user associated with that bill
@@ -229,7 +240,7 @@ router.get('/users/bills/populate', userController.getBillsForUserPopulateUsers)
 * "email": "Bobby@email.com"
 * }
   * 
- * @apiSuccessExample Success-Response -> return array of all user populated bills for user. Return empty array if no bills for user exist. Populates 'UserBill' property
+ * @apiSuccessExample Success-Response -> return array of nested arrays of all user populated bills for user. Each nested array represents a bill. Return empty array if no bills for user exist. Populates 'UserBill' property of each user
  *     HTTP/1.1 200 OK
  *  [
     [
