@@ -83,7 +83,7 @@ exports.update = function (req, res) {
     },
     {
       where: {
-        id: req.body.id
+        id: req.body.id // int
       }
     }
   ).then(function (divvy_db) {
