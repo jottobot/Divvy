@@ -9,6 +9,8 @@ const router = express.Router();
 // BILL ROUTES 
 // ***********************************************************
 
+
+router.get('/bills', billController.getAllBills);
 /**
  * @api {get} /bills/ Get all bills as array
  * @apiName GetAllBills
@@ -29,9 +31,9 @@ const router = express.Router();
     }
 ]
  */
-router.get('/bills', billController.getAllBills);
 
 
+router.get('/bills/:billId', billController.getUsersForBill)
 /**
  * @api {get} /bills/:billId Get all users for bill id
  * @apiName getUsersForBill
@@ -61,9 +63,9 @@ router.get('/bills', billController.getAllBills);
 *]
 *
 */
-router.get('/bills/:billId', billController.getUsersForBill)
 
 
+router.post("/bills", billController.postNewBill);
 /**
  * @api {post} /bills/ Create new bill
  * @apiName postNewBill
@@ -116,9 +118,9 @@ router.get('/bills/:billId', billController.getUsersForBill)
     "sql": "UPDATE `Bills` SET `title`=?,`Company`=?,`Amount`=?,`BillDue`=?,`BillPaid`=?,`updatedAt`=? WHERE `id` = ?"
 }
  */
-router.post("/bills", billController.postNewBill);
 
 
+router.delete("/bills/delete/:id", billController.billDelete)
 /**
  * @api {delete} /bills/delete/:billId Delete bill with bill id
  * @apiName billDelete
@@ -130,9 +132,9 @@ router.post("/bills", billController.postNewBill);
  *     HTTP/1.1 200 OK
         1
 */
-router.delete("/bills/delete/:id", billController.billDelete)
 
 
+router.put("/bills/update", billController.update)
 /**
  * @api {put} /bills/update Update existing bill
  * @apiName update
@@ -185,7 +187,7 @@ router.delete("/bills/delete/:id", billController.billDelete)
 *     "sql": "INSERT INTO `Bills` (`id`,`title`,`Company`,`Amount`,`BillDue`,`BillPaid`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?,?,?);"
 * }
  */
-router.put("/bills/update", billController.update)
+
 
 
 // ***********************************************************
@@ -193,6 +195,7 @@ router.put("/bills/update", billController.update)
 // ***********************************************************
 
 
+router.get('/users', userController.getAllUsers)
 /**
  * @api {get} /users/ Get all users as array
  * @apiName GetAllUsers
@@ -212,9 +215,9 @@ router.put("/bills/update", billController.update)
     },
 ]
  */
-router.get('/users', userController.getAllUsers)
 
 
+router.get('/users/bills/', userController.getBillsForUser);
 /**
  * @api {get} /users/bills Get all bills associated with a user's email
  * @apiName getBillsForUser
@@ -249,9 +252,9 @@ router.get('/users', userController.getAllUsers)
     }
 ]
  */
-router.get('/users/bills/', userController.getBillsForUser);
 
 
+router.get('/users/email/', userController.getUserByEmail)
 /**
  * @api {get} /users/email Get user by email
  * @apiName getUserByEmail
@@ -278,10 +281,10 @@ router.get('/users/bills/', userController.getBillsForUser);
     }
 ]
  */
-router.get('/users/email/', userController.getUserByEmail)
 
 
 
+router.post('/users', userController.createUser)
 /**
  * @api {post} /users/ Create new user
  * @apiName createUser
@@ -355,9 +358,9 @@ router.get('/users/email/', userController.getUserByEmail)
     ]
 }
  */
-router.post('/users', userController.createUser)
 
 
+router.post('/users/addbill', userController.addBillToUser)
 /**
  * @api {post} /users/addbill/ Add bill to user
  * @apiName addBillToUser
@@ -374,7 +377,7 @@ router.post('/users', userController.createUser)
   *   "percentOwed": 34    
   *}
   *
-  * @apiSuccessExample Success-Response -> Returns newly created bill object
+  * @apiSuccessExample Success-Response -> Returns newly created bill object in array
  * [
  *   {
  *       "percentOwed": 34,
@@ -416,7 +419,7 @@ router.post('/users', userController.createUser)
     ]
 }
  */
-router.post('/users/addbill', userController.addBillToUser)
+
 
 
 module.exports = router;

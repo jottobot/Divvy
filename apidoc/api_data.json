@@ -308,7 +308,7 @@
     "success": {
       "examples": [
         {
-          "title": "Success-Response -> Returns newly created bill object",
+          "title": "Success-Response -> Returns newly created bill object in array",
           "content": "[\n  {\n      \"percentOwed\": 34,\n      \"createdAt\": \"2019-06-12T18:06:53.249Z\",\n      \"updatedAt\": \"2019-06-12T18:06:53.249Z\",\n      \"BillId\": 1,\n      \"UserId\": 4\n  }\n]",
           "type": "json"
         }
@@ -318,7 +318,7 @@
       "examples": [
         {
           "title": "Error-Response Example: If bill does not exist -> return void. If email does not exist -> return {}. If email already connected to bill -> return void. ",
-          "content": "    {\n    \"name\": \"SequelizeDatabaseError\",\n    \"parent\": {\n        \"code\": \"ER_TRUNCATED_WRONG_VALUE\",\n        \"errno\": 1292,\n        \"sqlState\": \"22007\",\n        \"sqlMessage\": \"Incorrect datetime value: 'Invalid date' for column 'BillDue' at row 1\",\n        \"sql\": \"UPDATE `Bills` SET `title`=?,`Company`=?,`Amount`=?,`BillDue`=?,`BillPaid`=?,`updatedAt`=? WHERE `id` = ?\"\n    },\n    \"original\": {\n        \"code\": \"ER_TRUNCATED_WRONG_VALUE\",\n        \"errno\": 1292,\n        \"sqlState\": \"22007\",\n        \"sqlMessage\": \"Incorrect datetime value: 'Invalid date' for column 'BillDue' at row 1\",\n        \"sql\": \"UPDATE `Bills` SET `title`=?,`Company`=?,`Amount`=?,`BillDue`=?,`BillPaid`=?,`updatedAt`=? WHERE `id` = ?\"\n    },\n    \"sql\": \"UPDATE `Bills` SET `title`=?,`Company`=?,`Amount`=?,`BillDue`=?,`BillPaid`=?,`updatedAt`=? WHERE `id` = ?\"\n}",
+          "content": " {\n    \"name\": \"SequelizeValidationError\",\n    \"errors\": [\n        {\n            \"message\": \"Validation max on percentOwed failed\",\n            \"type\": \"Validation error\",\n            \"path\": \"percentOwed\",\n            \"value\": 101,\n            \"origin\": \"FUNCTION\",\n            \"instance\": {\n                \"BillId\": null,\n                \"UserId\": null,\n                \"percentOwed\": 101,\n                \"updatedAt\": \"2019-06-12T18:13:17.177Z\"\n            },\n            \"validatorKey\": \"max\",\n            \"validatorName\": \"max\",\n            \"validatorArgs\": [\n                100\n            ],\n            \"original\": {\n                \"validatorName\": \"max\",\n                \"validatorArgs\": [\n                    100\n                ]\n            }\n        }\n    ]\n}",
           "type": "json"
         }
       ]
