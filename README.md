@@ -1,1 +1,6 @@
-# Project2
+# Divvy
+
+## Run Development server
+```
+npm run watch
+```

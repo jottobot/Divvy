@@ -5,7 +5,7 @@ const billController = require('../controllers/bill-api-controller')
 
 const router = express.Router();
 
-
+// Bill routes
 router.get('/bills', billController.getAllBills);
 
 router.get('/bills/:billId', billController.getUsersForBill)
@@ -17,6 +17,7 @@ router.delete("/bills/delete/:id", billController.billDelete)
 router.put("/bills/update", billController.update)
 
 
+// User routes
 router.get('/users', userController.getAllUsers)
 
 router.get('/users/bills/', userController.getBillsForUser);

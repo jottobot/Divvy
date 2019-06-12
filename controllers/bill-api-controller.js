@@ -12,7 +12,7 @@ exports.getAllBills = function (req, res) {
 
 // Get all users for a bill id. Populates UserBill property for each user
 exports.getUsersForBill = function (req, res) {
-  billId = req.params.billId // billId: integer
+  const billId = req.params.billId // billId: integer
 
   db.Bill.findAll(
     {
@@ -40,11 +40,11 @@ exports.postNewBill = function (req, res) {
   // and complete property
   db.Bill.create(
     {
-      title: req.body.title,
-      Company: req.body.Company,
-      Amount: req.body.Amount,
-      BillDue: req.body.BillDue,
-      BillPaid: req.body.BillPaid,
+      title: req.body.title, // str
+      Company: req.body.Company, // str
+      Amount: req.body.Amount, // float
+      BillDue: req.body.BillDue, // date
+      BillPaid: req.body.BillPaid, // bool
     }
   ).then(function (divvy_db) {
     // We have access to the new bill as an argument inside of the callback function
@@ -75,11 +75,11 @@ exports.update = function (req, res) {
   // we use where to describe which objects we want to update
   db.Bill.update(
     {
-      title: req.body.title,
-      Company: req.body.Company,
-      Amount: req.body.Amount,
-      BillDue: req.body.BillDue,
-      BillPaid: req.body.BillPaid,
+      title: req.body.title, // str
+      Company: req.body.Company, // str
+      Amount: req.body.Amount, // float
+      BillDue: req.body.BillDue, // date
+      BillPaid: req.body.BillPaid, // bool
     },
     {
       where: {

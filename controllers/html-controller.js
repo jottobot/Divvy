@@ -7,6 +7,7 @@ exports.index =  function(req, res) {
   //     examples: dbExamples
   //   });
   // });
+  res.render('index')
 }
 
 exports.example = function(req, res) {
