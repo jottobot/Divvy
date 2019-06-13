@@ -1,5 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
-  var Bill = sequelize.define("Bill", {
+  var Bill = sequelize.define('Bill', {
     title: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -33,14 +33,14 @@ module.exports = function (sequelize, DataTypes) {
       defaultValue: false,
       allowNull: false
     },
-  })
+  });
 
   Bill.associate = function (models) {
     Bill.belongsToMany(models.User, {
       // as: 'User',
       through: models.UserBill,
     });
-  }
+  };
 
   return Bill;
 };

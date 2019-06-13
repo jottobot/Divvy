@@ -1,13 +1,13 @@
 const express = require('express');
 
 const userController = require('../controllers/user-api-controller');
-const billController = require('../controllers/bill-api-controller')
+const billController = require('../controllers/bill-api-controller');
 
 const router = express.Router();
 
 
 // ***********************************************************
-// API Documentation ROUTES 
+// API Documentation ROUTES
 // ***********************************************************
 
 // Get request for api documentation
@@ -16,7 +16,7 @@ router.use('/', express.static(__dirname + '../../apidoc'));
 
 
 // ***********************************************************
-// BILL ROUTES 
+// BILL ROUTES
 // ***********************************************************
 
 
@@ -43,7 +43,7 @@ router.get('/bills', billController.getAllBills);
  */
 
 
-router.get('/bills/:billId', billController.getUsersForBill)
+router.get('/bills/:billId', billController.getUsersForBill);
 /**
  * @api {get} /bills/:billId Get all users for bill id
  * @apiName getUsersForBill
@@ -75,7 +75,7 @@ router.get('/bills/:billId', billController.getUsersForBill)
 */
 
 
-router.post("/bills", billController.postNewBill);
+router.post('/bills', billController.postNewBill);
 /**
  * @api {post} /bills/ Create new bill
  * @apiName postNewBill
@@ -86,7 +86,7 @@ router.post("/bills", billController.postNewBill);
  * @apiParam {Number} Amount Bill amount as number
  * @apiParam {Date} BillDue Bill due date must be Date object
  * @apiParam {Boolean} BillPaid Bill has been fully paid
- * 
+ *
  * @apiExample Request body new bill object example usage:
   *   {
   *  title: "water",
@@ -130,7 +130,7 @@ router.post("/bills", billController.postNewBill);
  */
 
 
-router.delete("/bills/delete/:id", billController.billDelete)
+router.delete('/bills/delete/:id', billController.billDelete);
 /**
  * @api {delete} /bills/delete/:billId Delete bill with bill id
  * @apiName billDelete
@@ -144,7 +144,7 @@ router.delete("/bills/delete/:id", billController.billDelete)
 */
 
 
-router.put("/bills/update", billController.update)
+router.put('/bills/update', billController.update);
 /**
  * @api {put} /bills/update Update existing bill
  * @apiName update
@@ -156,9 +156,9 @@ router.put("/bills/update", billController.update)
  * @apiParam {Number} Amount Bill amount as number
  * @apiParam {Date} BillDue Bill due date must be Date object
  * @apiParam {Boolean} BillPaid Bill has been fully paid
- * 
+ *
  * @apiExample Request body update bill object example usage:
-  * {    
+  * {
   *  id: 1
   *  title: "water",
   *  Company: "PSE",
@@ -201,11 +201,11 @@ router.put("/bills/update", billController.update)
 
 
 // ***********************************************************
-// CONTROLLER ROUTES 
+// CONTROLLER ROUTES
 // ***********************************************************
 
 
-router.get('/users', userController.getAllUsers)
+router.get('/users', userController.getAllUsers);
 /**
  * @api {get} /users/ Get all users as array
  * @apiName GetAllUsers
@@ -226,7 +226,7 @@ router.get('/users', userController.getAllUsers)
 ]
  */
 
- 
+
 router.get('/users/bills/populate', userController.getBillsForUserPopulateUsers);
 /**
  * @api {get} /users/bills/populate Get all bills associated with a user's email and populate each bill with every user associated with that bill
@@ -234,12 +234,12 @@ router.get('/users/bills/populate', userController.getBillsForUserPopulateUsers)
  * @apiGroup User
  *
  * @apiParam {String} email Users email as a string
- * 
+ *
  * @apiExample Request body example:
   *  {
 * "email": "Bobby@email.com"
 * }
-  * 
+  *
  * @apiSuccessExample Success-Response -> return array of nested arrays of all user populated bills for user. Each nested array represents a bill. Return empty array if no bills for user exist. Populates 'UserBill' property of each user
  *     HTTP/1.1 200 OK
  *  [
@@ -306,12 +306,12 @@ router.get('/users/bills/', userController.getBillsForUser);
  * @apiGroup User
  *
  * @apiParam {String} email Users email as a string
- * 
+ *
  * @apiExample Request body example:
   *  {
 * "email": "Bobby@email.com"
 * }
-  * 
+  *
  * @apiSuccessExample Success-Response -> return array of all bills for user. Return empty array if no bills for user exist. Populates 'UserBill' property
  *     HTTP/1.1 200 OK
  *   [
@@ -336,19 +336,19 @@ router.get('/users/bills/', userController.getBillsForUser);
  */
 
 
-router.get('/users/email/', userController.getUserByEmail)
+router.get('/users/email/', userController.getUserByEmail);
 /**
  * @api {get} /users/email Get user by email
  * @apiName getUserByEmail
  * @apiGroup User
  *
  * @apiParam {String} email Users email as a string
- * 
+ *
  * @apiExample Request body example:
   *  {
 * "email": "Bobby@email.com"
 * }
-  * 
+  *
  * @apiSuccessExample Success-Response -> return array with user object. Return empty array if user does not exist.
  *     HTTP/1.1 200 OK
  *  [
@@ -366,7 +366,7 @@ router.get('/users/email/', userController.getUserByEmail)
 
 
 
-router.post('/users', userController.createUser)
+router.post('/users', userController.createUser);
 /**
  * @api {post} /users/ Create new user
  * @apiName createUser
@@ -376,7 +376,7 @@ router.post('/users', userController.createUser)
  * @apiParam {String} lastName Last name of user
  * @apiParam {String} email User email as string
  * @apiParam {phoneNumber} User phone number as string
- * 
+ *
  * @apiExample Request body new user object example usage:
   *   {
     * firstName: 'Sally',
@@ -442,7 +442,7 @@ router.post('/users', userController.createUser)
  */
 
 
-router.post('/users/addbill', userController.addBillToUser)
+router.post('/users/addbill', userController.addBillToUser);
 /**
  * @api {post} /users/addbill/ Add bill to user
  * @apiName addBillToUser
@@ -451,12 +451,12 @@ router.post('/users/addbill', userController.addBillToUser)
  * @apiParam {String} email User email
  * @apiParam {Number} billId Bill id unique integer
  * @apiParam {Number} percentOwed Percentage owed as integer by user for bill
- * 
+ *
  * @apiExample Request body example usage:
   * {
   *   "email": "Sally@gmail.com",
   *   "billId": 1,
-  *   "percentOwed": 34    
+  *   "percentOwed": 34
   *}
   *
   * @apiSuccessExample Success-Response -> Returns newly created UserBill object in array
@@ -470,7 +470,7 @@ router.post('/users/addbill', userController.addBillToUser)
  *   }
 * ]
   *
-  * @apiErrorExample Error-Response Example: If bill does not exist -> return void. If email does not exist -> return {}. If email already connected to bill -> return void. 
+  * @apiErrorExample Error-Response Example: If bill does not exist -> return void. If email does not exist -> return {}. If email already connected to bill -> return void.
  {
     "name": "SequelizeValidationError",
     "errors": [

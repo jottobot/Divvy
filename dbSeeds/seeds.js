@@ -7,7 +7,7 @@
 // so it has to be ended manually)
 
 
-const db = require('../models')
+const db = require('../models');
 
 const users = [
   {
@@ -22,24 +22,24 @@ const users = [
     email: 'Sally@email.com',
     phoneNumber: '4253828183'
   }
-]
+];
 
 const bills = [
   {
-    title: "water",
-    Company: "PSE",
+    title: 'water',
+    Company: 'PSE',
     Amount: 300.5,
     BillDue: Date.now(),
     BillPaid: false,
   },
   {
-    title: "internet",
-    Company: "Comcast",
+    title: 'internet',
+    Company: 'Comcast',
     Amount: 40.83,
     BillDue: Date.now(),
     BillPaid: false,
   }
-]
+];
 
 function seedDB() {
   db.User
@@ -53,7 +53,7 @@ function seedDB() {
           lastName: user.lastName,
           email: user.email,
           phoneNumber: user.phoneNumber,
-        })
+        });
       }))
     .then(
       bills.forEach(bill => {
@@ -63,8 +63,8 @@ function seedDB() {
           Amount: bill.Amount,
           BillDue: bill.BillDue,
           BillPaid: bill.BillPaid,
-        })
-      }))
+        });
+      }));
 }
 
-seedDB()
+seedDB();

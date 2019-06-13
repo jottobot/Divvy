@@ -1,4 +1,4 @@
-const db = require("../models");
+const db = require('../models');
 
 
 // GET route for getting all of the bills
@@ -8,11 +8,11 @@ exports.getAllBills = function (req, res) {
     // We have access to the todos as an argument inside of the callback function
     res.json(divvy_db);
   });
-}
+};
 
 // Get all users for a bill id. Populates UserBill property for each user
 exports.getUsersForBill = function (req, res) {
-  const billId = req.params.billId // billId: integer
+  const billId = req.params.billId; // billId: integer
 
   db.Bill.findAll(
     {
@@ -22,16 +22,16 @@ exports.getUsersForBill = function (req, res) {
     }
   ).then(bill => {
     bill[0].getUsers().then(users => {
-      res.json(users)
+      res.json(users);
     }).catch(err => {
-      console.log(err)
-    })
+      console.log(err);
+    });
   }
   ).catch(err => {
-    console.log(err)
-    res.json(err)
-  })
-}
+    console.log(err);
+    res.json(err);
+  });
+};
 
 // POST route for saving a new bill
 exports.postNewBill = function (req, res) {
@@ -66,7 +66,7 @@ exports.billDelete = function (req, res) {
     res.json(divvy_db);
   }).catch(function (err) {
     res.json(err);
-  })
+  });
 };
 
 // PUT route for updating todos. We can get the updated todo data from req.body
@@ -90,6 +90,6 @@ exports.update = function (req, res) {
     res.json(divvy_db);
   }).catch(function (err) {
     res.json(err);
-  })
+  });
 };
 
