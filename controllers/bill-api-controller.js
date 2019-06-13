@@ -4,9 +4,9 @@ const db = require('../models');
 // GET route for getting all of the bills
 exports.getAllBills = function (req, res) {
   // findAll returns all entries for a table when used with no options
-  db.Bill.findAll({}).then(function (divvy_db) {
+  db.Bill.findAll({}).then(function (bills) {
     // We have access to the todos as an argument inside of the callback function
-    res.json(divvy_db);
+    res.json(bills);
   });
 };
 
@@ -46,9 +46,9 @@ exports.postNewBill = function (req, res) {
       BillDue: req.body.BillDue, // date
       BillPaid: req.body.BillPaid, // bool
     }
-  ).then(function (divvy_db) {
+  ).then(function (newBill) {
     // We have access to the new bill as an argument inside of the callback function
-    res.json(divvy_db);
+    res.json(newBill);
   }).catch(function (err) {
     res.json(err);
   });
@@ -62,8 +62,8 @@ exports.billDelete = function (req, res) {
     where: {
       id: req.params.id
     }
-  }).then(function (divvy_db) {
-    res.json(divvy_db);
+  }).then(function (result) {
+    res.json(result);
   }).catch(function (err) {
     res.json(err);
   });
@@ -86,8 +86,8 @@ exports.update = function (req, res) {
         id: req.body.id // int
       }
     }
-  ).then(function (divvy_db) {
-    res.json(divvy_db);
+  ).then(function (result) {
+    res.json(result);
   }).catch(function (err) {
     res.json(err);
   });

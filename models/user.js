@@ -1,5 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
-  const User = sequelize.define("User",
+  const User = sequelize.define('User',
     {
       firstName: {
         type: DataTypes.STRING,
@@ -33,13 +33,13 @@ module.exports = function (sequelize, DataTypes) {
       }
     },
   );
-  
+
   User.associate = function (models) {
     User.belongsToMany(models.Bill, {
       as: 'Bill',
       through: models.UserBill,
     });
-  }
+  };
 
   return User;
 };
