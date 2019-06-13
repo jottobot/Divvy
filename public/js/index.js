@@ -1,11 +1,27 @@
 $(document).ready(function () {
 
+  const submitBillElem = $('#TODO');
+  const createUserElem = $('#TODO');
+
+
+  submitBillElem.click(function() {
+    const billData = 'STUFF';
+    createBill(billData);
+  });
+
   //function create a bill
-  function createBill(billId) {
+  function createBill(billData) {
     var queryURL = 'http://localhost:3000/api/bills/';
     $.ajax({
-      url: queryURL + billId,
-      method: 'POST'
+      url: queryURL,
+      method: 'POST',
+      data: {
+        title: billData.title,
+        Company: billData.Company,
+        Amount: billData.Amount,
+        BillDue: billData.BillDue,
+        BillPaid: billData.BillPaid,
+      }
     }).then(function (response) {
       console.log(response);
     });
@@ -23,12 +39,14 @@ $(document).ready(function () {
   }
 
   //function get all bills as an array
-  $.ajax({
-    url: 'http://localhost:3000/api/bills/',
-    method: 'GET'
-  }).then(function (response) {
-    console.log(response);
-  });
+  function getAllBills() {
+    $.ajax({
+      url: 'http://localhost:3000/api/bills/',
+      method: 'GET'
+    }).then(function (response) {
+      console.log(response);
+    });
+  }
 
   //function get all users assciated will bill
   function getAllUsersForBill(billId) {
@@ -72,16 +90,16 @@ $(document).ready(function () {
   }
 
   //function add bill to user
-  function addBillToUser(userEmail, billId) {
+  function addBillToUser(data) {
     const apiUrl = 'http://localhost:3000/api/users/addbill/';
 
     $.ajax({
       url: apiUrl,
       method: 'POST',
       data: {
-        'email': 'Sally@gmail.com',
-        'billId': 1,
-        'percentOwed': 34
+        'email': data.userEmail,
+        'billId': data.billId,
+        'percentOwed': data.percentOwed
       }
     }).then(response => {
       console.log(response);
@@ -89,13 +107,13 @@ $(document).ready(function () {
   }
 
   //function create new user
-  function createUser() {
+  function createUser(userData) {
     const createUserApiUrl = 'http://localhost:3000/api/users/';
     const newUser = {
-      firstName: 'Sally',
-      lastName: 'Smite',
-      email: 'Sally@email.com',
-      phoneNumber: '4253828183'
+      firstName: userData.firstName,
+      lastName: userData.lastName,
+      email: userData.email,
+      phoneNumber: userData.phoneNumber,
     };
 
     $.ajax({
