@@ -1,5 +1,7 @@
-body, html {
+body, html, h1 {
   height: 100%;
+  font-family: 'Playfair Display', serif;
+
 } 
 
 .parallax { 
@@ -79,12 +81,52 @@ body, html {
   color:white;
 }
 
+.signintitle {
+  font-family: 'Playfair Display', serif;
+}
+.signuptitle {
+  font-family: 'Playfair Display', serif;
+}
+
+.signInsignUpBtns {
+  margin-top: 20px;
+}
+
+#inputName {
+  width: 300px;
+  margin-left: 350px;
+}
+
+#inputEmail {
+  width: 300px;
+  margin-left: 50px;
+}
+
+.name-text {
+  margin-left: 350px;
+  text-align: left;
+}
+
+.email-text {
+  text-align: left;
+  margin-left: 50px;
+  margin-top: 5px;
+}
+
+#email {
+  margin-left: 300px;
+}
+
 .signupform {
   font-family: 'Playfair Display', serif;
   text-align: center;
   padding-top: 30px;
   padding-bottom: 15px;
   font-size: 15px;
+}
+
+.clearfix {
+  margin-top: 20px;
 }
 
 #signinform {
@@ -104,8 +146,6 @@ body, html {
   padding-left: 30px;
 }
 
-
-
 /* Add a bill card */
 .card {
   padding: 50px;
@@ -120,13 +160,12 @@ body, html {
   font-size: 20px;
   margin-bottom: 30px;
 }
+#addBillForm {
+  text-align: left;
+  margin-bottom: 10px;
+}
 
 /* View bills page */
-#paybills {
-  background-color: black;
-  font: white;
-}
 #headertable1 {
   padding-bottom: 20px;
 }
-

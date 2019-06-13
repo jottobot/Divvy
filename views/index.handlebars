@@ -1,29 +1,4 @@
-<!DOCTYPE html>
-<html>
-<title>Divvy</title>
-<meta charset="UTF-8" />
-<!-- mobile -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- bootstrap -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<!-- link W3 schools -->
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
-<!-- link CSS -->
-<link rel="stylesheet" type="text/css" media="screen" href="style.css">
-<!-- link jQuery -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-<!-- google fonts -->
-<link href="https://fonts.googleapis.com/css?family=Playfair+Display&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Archivo+Black&display=swap" rel="stylesheet">
-
 <body>
-  <!-- Navbar (sit on top) -->
-  <!-- <div class="w3-top">
-    <div class="w3-bar w3-white w3-wide w3-padding w3-card">
-      <a href="#home" class="w3-bar-item w3-button"><b>Divvy</b></a>
-    </div>
-  </div> -->
   <div class="w3-top">
     <div class="w3-bar w3-white w3-wide w3-padding w3-card">
       <a><b>Divvy</b></a>
@@ -43,33 +18,35 @@
     <!-- Opening modal -->
     <div id="myModal" class="modal">
       <div class="modal-content">
-        <span class="close">&times;</span>
+        {{!-- <span class="close">&times;</span> --}}
         <div class="w3-container w3-padding-32" id="contact">
           <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16" id="divvyfont">
             Welcome to Divvy
           </h3>
           <center>
             <h4 id="divvyfont2">A household bill tracking app.</h4>
-            <button id="signin" class="btn btn-dark" type="submit">
-              <i class="fa fa-paper-plane"></i>Sign in
-            </button>
-            <button id="signup" class="btn btn-dark" type="submit">
-              <i class="fa fa-paper-plane"></i>Sign up
-            </button>
+            <div class="signInsignUpBtns">
+              <button id="signin" class="btn btn-dark" type="submit">
+                <i class="fa fa-paper-plane"></i>Sign in
+              </button>
+              <button id="signup" class="btn btn-dark" type="submit">
+                <i class="fa fa-paper-plane"></i>Sign up
+              </button>
+            </div>
           </center>
 
           <!-- Sign up form -->
           <form action="action_page.php" id="signupform">
             <div class="signupform">
-             
-              <h1 class="signuptitle">Sign Up</h1>
-            
+
+              <h1 class="signuptitle">Sign up</h1>
+
               <label for="name" class="label"><b>Name</b></label>
-              <input type="text" placeholder="Enter Name" name="name" required>
+              <input type="text" placeholder="Jane Doe" name="name" required>
 
               <label for="email" class="label2"><b>Email</b></label>
-              <input type="text" placeholder="Enter Email" name="email" required>
-         
+              <input type="text" placeholder="name@mail.com" name="email" required>
+
               <!-- <label>
                 <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
               </label> -->
@@ -77,8 +54,11 @@
               <!-- <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p> -->
 
               <div class="clearfix">
-                <button type="submit" class="btn btn-dark" id="signupbtn">Sign Up</button>
-                <button type="submit" class="btn btn-dark">Cancel</button>
+                <div id="signupBtns">
+                  <button type="submit" class="btn btn-dark">Sign up</button>
+                  <button type="submit" class="btn btn-dark">Cancel</button>
+
+                </div>
               </div>
 
             </div>
@@ -88,61 +68,97 @@
           <form id="signinform">
             <div class="form-group" id="signin">
 
-                <h1 class="signintitle">Sign In</h1>
+              <h1 class="signintitle">Sign In</h1>
+              <div class="name-text">
+                <label for="exampleInputEmail1">Name:</label>
+              </div>
+              <input type="email" class="form-control" id="inputName" aria-describedby="emailHelp"
+                placeholder="Jane Doe">
 
-              <label for="exampleInputEmail1">Name:</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Name">
-            </div>
-            <div class="form-group">
-              <label for="exampleInputPassword1">Email:</label>
-              <input type="email" class="form-control" id="exampleInputPassword1" placeholder="Enter Email">
-            </div>
-            <div class="form-group form-check">
-            </div>
-            <button type="submit" class="btn btn-dark" id="login">Log in</button>
+
+              <div id="email" class="form-group">
+                <div class="email-text">
+                  <label for="exampleInputPassword1">Email:</label>
+                </div>
+                <input type="email" class="form-control" id="inputEmail" placeholder="name@mail.com">
+              </div>
+              <div class="form-group form-check">
+              </div>
+
+              <button type="submit" class="btn btn-dark" id="login">Log in</button>
+
           </form>
 
         </div>
       </div>
     </div>
 
-
-
-
-
-    <!-- <div class="text-center">
-      <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalRegisterForm">Launch
-        Modal Register Form</a>
-    </div> -->
-
+    {{!-- add a bill --}}
     <div class="card">
       <div class="card-body-addbill">
         Add a bill.
       </div>
       <hr>
-
       <div class="row">
-        <div class="col-md-6">
+        <div id="addBillForm" class="col-md-3">
           <form>
             <div class="form-group">
               <label for="formGroupExampleInput" class="formlabel">Bill</label>
-              <input type="text" class="form-control" id="inputbill" placeholder="Enter your bill">
+              <input type="text" class="form-control" id="inputbill" placeholder="Enter bill title">
             </div>
             <div class="form-group">
-              <label for="formGroupExampleInput2" class="formlabel">Price</label>
-              <input type="text" class="form-control" id="inputprice" placeholder="Enter amount of bill">
+              <label for="formGroupExampleInput2" class="formlabel">Bill company</label>
+              <input type="text" class="form-control" id="inputcompany" placeholder="Enter bill company">
             </div>
-            <div class="form-group">
-              <label for="formGroupExampleInput2" class="formlabel">Payers</label>
-              <input type="text" class="form-control" id="inputpayers" placeholder="Enter who owes this bill">
-            </div>
+
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="formGroupExampleInput2" class="formlabel">Price</label>
+            <input type="text" class="form-control" id="inputprice" placeholder="Enter bill price">
+          </div>
+          <form action="/action_page.php">
+            Date due:
+            <input type="date" name="duedate">
+            {{!-- <input type="submit" value="Send"> --}}
+          </form>
+          <form action="/action_page.php" method="get">
+            <input type="checkbox" name="vehicle" value="Bike"> Bill is paid<br>
+            <input type="checkbox" name="vehicle" value="Car" checked> Bill is unpad<br>
+            {{!-- <input type="submit" value="Submit"> --}}
           </form>
         </div>
+        </form>
+        <div class="col-md-6">
+          <img src="images/bill-image.png" alt="bills" width="300" height="300">
+        </div>
+      </div>
+      <button type="submit" class="btn btn-dark" id="addusers">Submit</button>
+    </div>
 
-        <div class="col-md-1"></div>
+    {{!-- add users hidden search --}}
+    <div id="modal2" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="w3-container w3-padding-32" id="contact">
+          <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16" id="divvyfont">
+            Add payers
+          </h3>
+          <center>
+            <form>
+              <div class="form-group">
+                <label for="formGroupExampleInput" class="formlabel">Enter payer's email</label>
+                <input type="text" class="form-control" id="inputemail" placeholder="Enter email">
+              </div>
+            </form>
+            <table id="emails">
+              
+              <tbody></tbody>
+          
+            </table>
 
-        <div class="col-md-5">
-          <img src="images/bill-image_160.png" alt="bills" width="300" height="300">
+            <button type="submit" class="btn btn-dark" id="addemails">Submit</button>
+          </center>
         </div>
       </div>
     </div>
@@ -156,12 +172,10 @@
 
       <div class="row">
         <div class="col-6">
-          <button id="addnewbill" class="w3-button w3-black w3-section" type="submit"> Add a new bill</button>
+          <button id="addnewbill" class="btn btn-dark" type="submit">Add a new bill</button>
         </div>
-
         <div class="col-6">
-          <a href="https://venmo.com/" class="w3-button w3-black w3-section" button id="paybills" type="submit">Pay your
-            bills</a>
+          <button id="addnewbill" class="btn btn-dark" type="submit">Pay your bills</button>
         </div>
       </div>
 
@@ -220,9 +234,4 @@
 
     <!-- Container div  -->
   </div>
-
-  <!-- link JS -->
-  <script src="test.js"></script>
 </body>
-
-</html>
