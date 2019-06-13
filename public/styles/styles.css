@@ -1,7 +1,6 @@
 body, html, h1 {
   height: 100%;
   font-family: 'Playfair Display', serif;
-
 } 
 
 .parallax { 
@@ -168,4 +167,13 @@ body, html, h1 {
 /* View bills page */
 #headertable1 {
   padding-bottom: 20px;
+}
+.dashboard {
+  margin-bottom: 20px;
+  font-family: 'Playfair Display', serif;
+}
+.viewtable {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  text-transform: uppercase;
 }
