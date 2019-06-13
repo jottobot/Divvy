@@ -42,30 +42,6 @@ $(document).ready(function () {
     $("#signinform").hide();
   });
 
-<<<<<<< HEAD
-
-  // Add smooth scrolling after modal
-  $("#signupbtn").on('click', function (event) {
-    $('html, body').animate({
-      scrollTop: ($(".card").offset().top)
-    }, 200);
-  });
-
-  $("#login").on('click', function (event) {
-    $('html, body').animate({
-      scrollTop: ($(".card").offset().top)
-    }, 200);
-  });
-
-
-  function addBillToUser(userEmail, billId) {
-    const apiUrl = 'http://localhost:3000/api/users/addbill/'
-
-    $.ajax({
-      url: apiUrl,
-      method: 'POST',
-      // data: newUser,
-=======
 
   // Add smooth scrolling after modal
   $("#signupbtn").on('click', function (event) {
@@ -148,27 +124,11 @@ $(document).ready(function () {
       url: getUserapiUrl,
       method: 'GET',
       data: email,
->>>>>>> 663beb79646d40a53228da4d0593bf9581a97f25
     }).then(response => {
       console.log(response)
     });
   }
 
-<<<<<<< HEAD
-  function getUserByEmail(email) {
-    const getUserapiUrl = 'http://localhost:3000/api/users/email';
-    $.ajax({
-      url: getUserapiUrl,
-      method: 'GET',
-      data: email,
-    }).then(response => {
-      console.log(response)
-    });
-
-  }
-
-=======
-  }
   //function add bill to user
   function addBillToUser(userEmail, billId) {
     const apiUrl = 'http://localhost:3000/api/users/addbill/'
@@ -187,7 +147,6 @@ $(document).ready(function () {
   }
 
   //function create new user
->>>>>>> 663beb79646d40a53228da4d0593bf9581a97f25
   function createUser() {
     const createUserApiUrl = 'http://localhost:3000/api/users/'
     const newUser = {
@@ -206,11 +165,4 @@ $(document).ready(function () {
     });
   }
 
-<<<<<<< HEAD
-
-
-
 });
-=======
-});
->>>>>>> 663beb79646d40a53228da4d0593bf9581a97f25
