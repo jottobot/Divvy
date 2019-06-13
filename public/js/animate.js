@@ -71,6 +71,12 @@ $(document).ready(function () {
       scrollTop: ($(".card").offset().top)
     }, 200);
   });
+  $("#addnewbill").on('click', function (event) {
+    $('html, body').animate({
+      scrollTop: ($("#addBillForm").offset().top)
+    }, 200);
+  });
+
 
 
 

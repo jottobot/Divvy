@@ -136,7 +136,7 @@
       <button type="submit" class="btn btn-dark" id="addusers">Submit</button>
     </div>
 
-    {{!-- add users hidden search --}}
+    {{!-- add users hidden modal --}}
     <div id="modal2" class="modal">
       <div class="modal-content">
         <span class="close">&times;</span>
@@ -152,9 +152,9 @@
               </div>
             </form>
             <table id="emails">
-              
+
               <tbody></tbody>
-          
+
             </table>
 
             <button type="submit" class="btn btn-dark" id="addemails">Submit</button>
@@ -164,26 +164,83 @@
     </div>
 
 
-    <!-- View a bill page -->
+    <!-- View bills page -->
     <div class="card" id="viewbills">
       <div class="card-body-addbill">
-        View your bills.
+        View bills.
       </div>
 
+      {{!-- add/settle buttons --}}
       <div class="row">
         <div class="col-6">
           <button id="addnewbill" class="btn btn-dark" type="submit">Add a new bill</button>
         </div>
         <div class="col-6">
-          <button id="addnewbill" class="btn btn-dark" type="submit">Pay your bills</button>
+          <button id="settle" class="btn btn-dark" type="submit">Settle up</button>
         </div>
       </div>
 
       <hr>
 
-      <table class="headertable">
-        <h1>Dashboard</h1>
-        <thead>
+      {{!-- dashboard --}}
+      <div class="row">
+        <div class="col-8">
+          <table class="table table-hover table-dark">
+            <h3 class="dashboard">Household Bills</h3>
+            <thead>
+              <tr>
+                <th scope="col" class="viewtable">ID</th>
+                <th scope="col" class="viewtable">Bill</th>
+                <th scope="col" class="viewtable">Company</th>
+                <th scope="col" class="viewtable">Price in dollars</th>
+                <th scope="col" class="viewtable">Paid</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Internet</td>
+                <td>Comcast</td>
+                <td>100</td>
+              </tr>
+
+              <tr>
+              </tr>
+
+              <tr>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+
+      <div class="col-1"></div>
+
+        <div class="col-3">
+          <h5 class="dashboard">Personal Dashboard</h3>
+          <table class="table table-bordered" id="yourmoney">
+            <thead>
+              <tr>
+                <th scope="col">Money owed</th>
+                <th scope="col">Money due</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>3</td>
+                <td>5</td>
+              </tr>
+             
+            </tbody>
+          </table>
+        </div>
+
+        {{!-- end of view bills div --}}
+      </div>
+
+
+      {{!-- PUT INTO SIDE BAR --}}
+      {{!-- <thead>
           <tr id="headertable1">
             <th>Total Balance</th>
             <th>Total Owed</th>
@@ -195,43 +252,10 @@
             <td>$</td>
           </tr>
         </tbody>
-      </table>
+      </table> --}}
 
-      <table class="dashboardtable">
-        <thead>
-          <tr>
-            <th>What You Owe</th>
-            <th>You Are Owed</th>
-          </tr>
-        </thead>
 
-        <tbody>
-          <tr>
-            <td>Electric bill $5</td>
-            <td>Ramon owes you $4</td>
-          </tr>
-          <tr>
-            <td>Internet bill $80</td>
-            <td>Jordynn owes you $3</td>
-          </tr>
-          <tr>
-            <td></td>
-            <td>Jon owes you $1</td>
-          </tr>
-        </tbody>
-      </table>
+
+      <!-- Container div  -->
     </div>
-
-    <!-- <div class="text-center">
-        <a
-          href=""
-          class="btn btn-default btn-rounded mb-4"
-          data-toggle="modal"
-          data-target="#modalLoginForm"
-          >Launch Modal Login Form</a
-        >
-      </div> -->
-
-    <!-- Container div  -->
-  </div>
 </body>
