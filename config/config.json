@@ -1,11 +1,7 @@
 {
   "development": {
     "username": "root",
-<<<<<<< HEAD
     "password": "LMUgrad2014",
-=======
-    "password": "4Tolkien",
->>>>>>> 663beb79646d40a53228da4d0593bf9581a97f25
     "database": "divvy_db",
     "host": "localhost",
     "dialect": "mysql"
