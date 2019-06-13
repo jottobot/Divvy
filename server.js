@@ -26,7 +26,7 @@ app.engine(
 app.set("view engine", "handlebars");
 
 // Routes
-app.use(apiRouter)
+app.use('/api', apiRouter)
 app.use(htmlRouter)
 
 var syncOptions = { force: false };

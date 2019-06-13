@@ -33,6 +33,7 @@ module.exports = function (sequelize, DataTypes) {
       }
     },
   );
+  
   User.associate = function (models) {
     User.belongsToMany(models.Bill, {
       as: 'Bill',
