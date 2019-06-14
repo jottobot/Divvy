@@ -1,5 +1,6 @@
 const express = require('express');
 
+const authController = require('../controllers/auth-api-controller');
 const userController = require('../controllers/user-api-controller');
 const billController = require('../controllers/bill-api-controller');
 
@@ -13,6 +14,44 @@ const router = express.Router();
 // Get request for api documentation
 router.use('/', express.static(__dirname + '../../apidoc'));
 
+
+
+
+// ***********************************************************
+// AUTH ROUTES
+// ***********************************************************
+
+// Authenticate user
+router.post('/auth', authController.authenticateUser);
+/**
+ * @api {post} /auth/ Authenticate user
+ * @apiName authenticateUser
+ * @apiGroup Auth
+ *
+ * @apiParam {String} email User email
+ * @apiParam {String} password User password
+ *
+ * @apiExample Request body object example usage:
+  *   {
+    *	"email": "emailx@email.com",
+    *	"password": "jf&3js9LK3"
+    * }
+* @apiSuccessExample Success-Response -> return user object
+ *     HTTP/1.1 200 OK
+ *   {
+ *      "id": 2,
+ *      "firstName": "mex",
+ *      "lastName": "lastx",
+ *      "email": "emailx@email.com",
+ *      "phoneNumber": "2069999999",
+ *      "createdAt": "2019-06-14T20:07:57.000Z",
+ *      "updatedAt": "2019-06-14T20:07:57.000Z"
+*     }
+* @apiErrorExample Error-Response Example:
+*   {
+*       "message": "Incorrect email."
+*   }
+ */
 
 
 // ***********************************************************
@@ -29,18 +68,19 @@ router.get('/bills', billController.getAllBills);
  * @apiSuccessExample Success-Response -> return array of all bills. Return empty array if no bills exist:
  *     HTTP/1.1 200 OK
  *     [
-    {
-        "id": 1,
-        "title": "water",
-        "Company": "PSE",
-        "Amount": "301",
-        "BillDue": "2019-06-11T04:11:06.000Z",
-        "BillPaid": false,
-        "createdAt": "2019-06-11T04:11:06.000Z",
-        "updatedAt": "2019-06-11T04:11:06.000Z"
-    }
-]
- */
+  *  {
+  *      "id": 1,
+  *      "title": "water",
+  *      "Company": "PSE",
+  *      "Amount": "301",
+  *      "BillDue": "2019-06-11T04:11:06.000Z",
+  *      "BillPaid": false,
+  *      "createdAt": "2019-06-11T04:11:06.000Z",
+  *      "updatedAt": "2019-06-11T04:11:06.000Z"
+  *  }
+* ]
+*
+*/
 
 
 router.get('/bills/:billId', billController.getUsersForBill);
@@ -382,7 +422,8 @@ router.post('/users', userController.createUser);
     * firstName: 'Sally',
     * lastName: 'Smite',
     * email: 'Sally@email.com',
-    * phoneNumber: '4253828183'
+    * phoneNumber: '4253828183',
+    * password: "jf&3js9LK3"
  *  }
   *
   * @apiSuccessExample Success-Response -> Returns newly created user object

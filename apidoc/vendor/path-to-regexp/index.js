@@ -121,7 +121,7 @@ function replacePath (path, keys) {
       return '\\' + escape;
     }
 
-    var repeat = suffix === '+' || suffix === '*';
+    var repeat   = suffix === '+' || suffix === '*';
     var optional = suffix === '?' || suffix === '*';
 
     keys.push({

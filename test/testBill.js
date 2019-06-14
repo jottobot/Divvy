@@ -92,10 +92,10 @@ describe('POST /api/bills/:billId', function () {
 
   it('should show bill-user connections', function (done) {
     const reqBody ={
-      "email": "Sally@email.com",
-      "billId": 1,
-      "percentOwed": 34    
-    }
+      'email': 'Sally@email.com',
+      'billId': 1,
+      'percentOwed': 34
+    };
     db.Bill.bulkCreate(bills)
       // .then(db.User.bulkCreate(users))
       .then(function () {
@@ -105,7 +105,7 @@ describe('POST /api/bills/:billId', function () {
           .end(function (err, res) {
             var responseStatus = res.status;
             var responseBody = res.body;
-            console.log(responseBody)
+            console.log(responseBody);
             expect(err).to.be.null;
 
             expect(responseStatus).to.equal(200);
@@ -122,7 +122,7 @@ describe('POST /api/bills/:billId', function () {
             //   .to.be.an('object')
             //   .that.includes({ title: 'internet', Company: 'Comcast' });
 
-            
+
             done();
           });
       });

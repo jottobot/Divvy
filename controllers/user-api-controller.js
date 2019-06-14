@@ -10,6 +10,7 @@ exports.createUser = function (req, res) {
       lastName: body.lastName, // str
       email: body.email, // str
       phoneNumber: body.phoneNumber, // str
+      password: body.password, // str
     }
   ).then(result => {
     return res.json(result);
