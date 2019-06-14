@@ -1,13 +1,50 @@
 $(document).ready(function () {
 
-  const submitBillElem = $('#TODO');
-  const createUserElem = $('#TODO');
+  // jQuery button elements
+  const signUpElem = $('#TODO******************');
+  const signInElem = $('#TODO******************');
+  const submitBillElem = $('#TODO******************');
+  const searchUserByEmailElem = $('#TODO******************');
+  const addUsersToBillElem = $('#TODO******************');
+  const getBillsForUserPopulateUsersElem = $('#TODO******************');
 
+  // Ajax functions
 
-  submitBillElem.click(function() {
-    const billData = 'STUFF';
-    createBill(billData);
-  });
+  // Sign in
+  function signIn(userData) {
+    const queryUrl = 'http://localhost:3000/api/auth/';
+    $.ajax({
+      url: queryUrl,
+      method: 'POST',
+      data: {
+        email: userData.email,
+        password: userData.password,
+      },
+    }).then(function (response) {
+      console.log(response);
+    });
+  }
+
+  // Create new user
+  function createUser(userData) {
+    const createUserApiUrl = 'http://localhost:3000/api/users/';
+    const newUser = {
+      firstName: userData.firstName,
+      lastName: userData.lastName,
+      email: userData.email,
+      phoneNumber: userData.phoneNumber,
+      password: userData.password
+    };
+
+    $.ajax({
+      url: createUserApiUrl,
+      method: 'POST',
+      data: newUser,
+    }).then(response => {
+      console.log(response);
+    });
+  }
+
 
   //function create a bill
   function createBill(billData) {
@@ -26,6 +63,8 @@ $(document).ready(function () {
       console.log(response);
     });
   }
+
+
 
   //function delete bill with bill ID
   function deleteBill(billId) {
@@ -59,6 +98,20 @@ $(document).ready(function () {
     });
   }
 
+  //function get all users assciated will bill
+  function getBillsForUserPopulateUsers(userEmail) {
+    var queryURL = 'http://localhost:3000/api/users/bills/populate';
+    $.ajax({
+      url: queryURL,
+      method: 'GET',
+      data: {
+        email: userEmail,
+      }
+    }).then(function (response) {
+      console.log(response);
+    });
+  }
+
   // update existing bill
   function updateBill(billId) {
     var queryURL = 'http://localhost:3000/api/bills/update';
@@ -77,6 +130,7 @@ $(document).ready(function () {
       console.log(response);
     });
   }
+
   //function get user by email
   function getUserByEmail(email) {
     const getUserapiUrl = 'http://localhost:3000/api/users/email';
@@ -90,39 +144,60 @@ $(document).ready(function () {
   }
 
   //function add bill to user
-  function addBillToUser(data) {
+  function addBillToUser(userEmail) {
     const apiUrl = 'http://localhost:3000/api/users/addbill/';
 
     $.ajax({
       url: apiUrl,
       method: 'POST',
       data: {
-        'email': data.userEmail,
-        'billId': data.billId,
-        'percentOwed': data.percentOwed
+        'email': userEmail.userEmail,
+        'billId': Useremail.billId,
+        'percentOwed': Useremail.percentOwed
       }
     }).then(response => {
       console.log(response);
     });
   }
 
-  //function create new user
-  function createUser(userData) {
-    const createUserApiUrl = 'http://localhost:3000/api/users/';
-    const newUser = {
-      firstName: userData.firstName,
-      lastName: userData.lastName,
-      email: userData.email,
-      phoneNumber: userData.phoneNumber,
-    };
 
-    $.ajax({
-      url: createUserApiUrl,
-      method: 'POST',
-      data: newUser,
-    }).then(response => {
-      console.log(response);
+  // Onclick handler functions
+
+  // Handle sign in on click
+  signInElem.click(function () {
+    const userData = 'STUFF';
+    signIn(userData);
+  });
+
+  // Handle create user on click
+  signUpElem.click(function () {
+    const userData = 'STUFF';
+    createUser(userData);
+  });
+
+  // Handle submit bill on click
+  submitBillElem.click(function () {
+    const billData = 'STUFF';
+    createBill(billData);
+  });
+
+  // Handle search for user email
+  searchUserByEmailElem.click(function () {
+    const userEmail = 'STUFF';
+    getUserByEmail(userEmail);
+  });
+
+  // Handle search for user email
+  addUsersToBillElem.click(function () {
+    const userEmails = { 'STUFF************': 'STUFF*********' };
+    userEmails.forEach(email => {
+      addBillToUser(email);
     });
-  }
+  });
+
+  getBillsForUserPopulateUsersElem.click(function() {
+    const userEmail = 'EMAIL STUFF';
+    getBillsForUserPopulateUsers(userEmail);
+  });
 
 });
