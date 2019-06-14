@@ -1,16 +1,13 @@
 $(document).ready(function () {
+  $("#addbillcard").hide();
+  $("#viewbills").hide();
+
   // Opening modal
   var modal = document.getElementById("myModal");
   // Get the button that opens the opening modal
   var btn = document.getElementById("myBtn");
   // Get the <span> element that closes the modal
   var span = document.getElementsByClassName("close")[0];
-
-  // Get add bill button
-  // var delModalBill = document.getElementById("addBill");
-
-  // Get view bill button
-  // var delModalBill2 = document.getElementById("viewBill");
 
   // When the user clicks on the button, open the modal
   btn.onclick = function () {
@@ -19,16 +16,32 @@ $(document).ready(function () {
     $("#signinform").hide();
   };
 
-  // When the user clicks on <span> (x), add bill and view bill close the modal
+  // When the user clicks on <span> (x), the sign in and sign up get out of the opening modal
   span.onclick = function () {
     modal.style.display = "none";
   };
-  // delModalBill.onclick = function() {
-  //   modal.style.display = "none";
-  // };
-  // delModalBill2.onclick = function() {
-  //   modal.style.display = "none";
-  // };
+  $("#signupbutton").click(function () {
+    modal.style.display = "none";
+    $("#addbillcard").show();
+    $("#viewbills").show();
+  });
+  $("#signinbutton").click(function () {
+    modal.style.display = "none";
+    $("#addbillcard").show();
+    $("#viewbills").show();
+  });
+
+  // Add smooth scrolling after modal
+  $("#signupbutton").on('click', function (event) {
+    $('html, body').animate({
+      scrollTop: ($("#addbillcard").offset().top)
+    }, 200);
+  });
+  $("#signinbutton").on('click', function (event) {
+    $('html, body').animate({
+      scrollTop: ($("#addbillcard").offset().top)
+    }, 200);
+  });
 
   // showing sign in/sign up
   $("#signin").click(function () {
@@ -41,7 +54,7 @@ $(document).ready(function () {
   });
 
   // showing modal to add payers
-  $("#addusers").click(function () {
+  $("#addbillsubmit").click(function () {
     $("#modal2").show();
   });
 
@@ -55,25 +68,15 @@ $(document).ready(function () {
   };
 
   // adding emails modal
-  $("#addemails").click(function(){
+  $("#addemails").click(function () {
     var inputBill = $("#inputemail").val();
     $("#emails > tbody").append("<tr><td>" + inputBill + "</tr></td>")
   });
 
-  // Add smooth scrolling after modal
-  $("#signupbtn").on('click', function (event) {
-    $('html, body').animate({
-      scrollTop: ($(".card").offset().top)
-    }, 200);
-  });
-  $("#login").on('click', function (event) {
-    $('html, body').animate({
-      scrollTop: ($(".card").offset().top)
-    }, 200);
-  });
+  // smooth scrolling up to add a bill
   $("#addnewbill").on('click', function (event) {
     $('html, body').animate({
-      scrollTop: ($("#addBillForm").offset().top)
+      scrollTop: ($("#addbillcard").offset().top)
     }, 200);
   });
 

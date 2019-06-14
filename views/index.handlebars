@@ -12,13 +12,15 @@
 
     <!-- Cut-out title -->
     <div class="image-container">
-      <div id="myBtn" class="text">Divvy</div>
+      {{!-- <div class="zoom"> --}}
+        <div id="myBtn" class="text">Divvy</div>
+      {{!-- </div> --}}
     </div>
 
     <!-- Opening modal -->
     <div id="myModal" class="modal">
       <div class="modal-content">
-        {{!-- <span class="close">&times;</span> --}}
+        <span class="close">&times;</span>
         <div class="w3-container w3-padding-32" id="contact">
           <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16" id="divvyfont">
             Welcome to Divvy
@@ -36,104 +38,99 @@
           </center>
 
           <!-- Sign up form -->
-          <form action="action_page.php" id="signupform">
-            <div class="signupform">
-
-              <h1 class="signuptitle">Sign up</h1>
-
-              <label for="name" class="label"><b>Name</b></label>
-              <input type="text" placeholder="Jane Doe" name="name" required>
-
-              <label for="email" class="label2"><b>Email</b></label>
-              <input type="text" placeholder="name@mail.com" name="email" required>
-
-              <!-- <label>
-                <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
-              </label> -->
-
-              <!-- <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p> -->
-
-              <div class="clearfix">
-                <div id="signupBtns">
-                  <button type="submit" class="btn btn-dark">Sign up</button>
-                  <button type="submit" class="btn btn-dark">Cancel</button>
-
+          <form id="signupform">
+            <center>
+              <div class="signupform">
+                <h1 class="signuptitle">Sign up</h1>
+                <label for="name" class="signupname"><b>Name</b></label>
+                <input type="text" placeholder="Your name" name="name" required>
+                <label for="email" class="signupemail"><b>Email</b></label>
+                <input type="text" placeholder="Your email" name="email" required>
+                <div class="clearfix">
+                  <div>
+                    <button type="submit" class="btn btn-dark" id="signupbutton">Sign up</button>
+                    <button type="submit" class="btn btn-dark">Cancel</button>
+                  </div>
                 </div>
               </div>
-
-            </div>
+            </center>
           </form>
 
-          <!-- Login form -->
+          <!-- sign in form -->
           <form id="signinform">
-            <div class="form-group" id="signin">
-
-              <h1 class="signintitle">Sign In</h1>
-              <div class="name-text">
-                <label for="exampleInputEmail1">Name:</label>
-              </div>
-              <input type="email" class="form-control" id="inputName" aria-describedby="emailHelp"
-                placeholder="Jane Doe">
-
-
-              <div id="email" class="form-group">
-                <div class="email-text">
-                  <label for="exampleInputPassword1">Email:</label>
+            <center>
+              <div class="signin">
+                <h1 class="signintitle">Sign in</h1>
+                <label for="name" class="signinname"><b>Name</b></label>
+                <input type="text" placeholder="Your name" name="name" required>
+                <label for="email" class="signinemail"><b>Email</b></label>
+                <input type="text" placeholder="Your email" name="email" required>
+                <div class="clearfix">
+                  <div>
+                    <button type="submit" class="btn btn-dark" id="signinbutton">Sign in</button>
+                    <button type="submit" class="btn btn-dark">Cancel</button>
+                  </div>
                 </div>
-                <input type="email" class="form-control" id="inputEmail" placeholder="name@mail.com">
               </div>
-              <div class="form-group form-check">
-              </div>
-
-              <button type="submit" class="btn btn-dark" id="login">Log in</button>
-
+            </center>
           </form>
-
+          {{!-- closing opening modal divs --}}
         </div>
       </div>
     </div>
 
     {{!-- add a bill --}}
-    <div class="card">
+    <div class="card" id="addbillcard">
       <div class="card-body-addbill">
         Add a bill.
       </div>
       <hr>
       <div class="row">
-        <div id="addBillForm" class="col-md-3">
-          <form>
-            <div class="form-group">
-              <label for="formGroupExampleInput" class="formlabel">Bill</label>
-              <input type="text" class="form-control" id="inputbill" placeholder="Enter bill title">
-            </div>
-            <div class="form-group">
-              <label for="formGroupExampleInput2" class="formlabel">Bill company</label>
-              <input type="text" class="form-control" id="inputcompany" placeholder="Enter bill company">
-            </div>
-
-        </div>
         <div class="col-md-3">
+          {{!-- <form> --}}
+          <div class="form-group">
+            <label for="formGroupExampleInput" class="formlabel">Bill</label>
+            <input type="text" class="form-control" id="inputbill" placeholder="Enter bill title">
+          </div>
+          <div class="form-group">
+            <label for="formGroupExampleInput2" class="formlabel">Bill company</label>
+            <input type="text" class="form-control" id="inputcompany" placeholder="Enter bill company">
+          </div>
           <div class="form-group">
             <label for="formGroupExampleInput2" class="formlabel">Price</label>
             <input type="text" class="form-control" id="inputprice" placeholder="Enter bill price">
           </div>
-          <form action="/action_page.php">
-            Date due:
+          {{!-- </form> --}}
+        </div>
+
+        <div class="col-md-6">
+          <img src="images/bill-image.png" alt="bills" width="300" height="300">
+        </div>
+
+        <div class="col-md-3">
+          <form action="/action_page.php" id="duedate">
+            <h4 class="paymentdate">Payment date:</h4>
             <input type="date" name="duedate">
             {{!-- <input type="submit" value="Send"> --}}
           </form>
           <form action="/action_page.php" method="get">
-            <input type="checkbox" name="vehicle" value="Bike"> Bill is paid<br>
-            <input type="checkbox" name="vehicle" value="Car" checked> Bill is unpad<br>
+            <h5 class="paidyet">Been paid?</h5>
+            <input type="checkbox" name="bill" value="paid"> Bill is paid<br>
+            <input type="checkbox" name="bill" value="unpaid" checked> Bill is unpad<br>
             {{!-- <input type="submit" value="Submit"> --}}
           </form>
         </div>
         </form>
-        <div class="col-md-6">
-          <img src="images/bill-image.png" alt="bills" width="300" height="300">
-        </div>
+        {{!-- end of row --}}
       </div>
-      <button type="submit" class="btn btn-dark" id="addusers">Submit</button>
+      <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+          <button type="submit" class="btn btn-dark" id="addbillsubmit">Submit</button>
+        </div>
+        <div class="col-md-3"></div>
+      </div>
+    {{!-- end of add bill card --}}
     </div>
 
     {{!-- add users hidden modal --}}
@@ -176,7 +173,9 @@
           <button id="addnewbill" class="btn btn-dark" type="submit">Add a new bill</button>
         </div>
         <div class="col-6">
-          <button id="settle" class="btn btn-dark" type="submit">Settle up</button>
+          <a href="https://venmo.com/">
+            <button id="settle" class="btn btn-dark" type="submit">Settle up</button>
+          </a>
         </div>
       </div>
 
@@ -214,25 +213,25 @@
           </table>
         </div>
 
-      <div class="col-1"></div>
+        <div class="col-1"></div>
 
         <div class="col-3">
           <h5 class="dashboard">Personal Dashboard</h3>
-          <table class="table table-bordered" id="yourmoney">
-            <thead>
-              <tr>
-                <th scope="col">Money owed</th>
-                <th scope="col">Money due</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>3</td>
-                <td>5</td>
-              </tr>
-             
-            </tbody>
-          </table>
+            <table class="table table-bordered" id="yourmoney">
+              <thead>
+                <tr>
+                  <th scope="col">Money owed</th>
+                  <th scope="col">Money due</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>3</td>
+                  <td>5</td>
+                </tr>
+
+              </tbody>
+            </table>
         </div>
 
         {{!-- end of view bills div --}}
