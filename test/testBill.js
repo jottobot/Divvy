@@ -18,13 +18,15 @@ const users = [
     firstName: 'Bobby',
     lastName: 'Jones',
     email: 'Bobby@email.com',
-    phoneNumber: '206999999'
+    phoneNumber: '206999999',
+    password: 'f7khfdsKJHd'
   },
   {
     firstName: 'Sally',
     lastName: 'Smite',
     email: 'Sally@email.com',
-    phoneNumber: '4253828183'
+    phoneNumber: '4253828183',
+    'password': 'jafsd8Ikads8'
   }
 ];
 

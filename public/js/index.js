@@ -33,7 +33,7 @@ $(document).ready(function () {
       lastName: userData.lastName,
       email: userData.email,
       phoneNumber: userData.phoneNumber,
-      password: userData.password
+      password: userData.password,
     };
 
     $.ajax({
