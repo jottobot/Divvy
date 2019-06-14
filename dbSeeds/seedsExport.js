@@ -50,7 +50,8 @@ function seedDB() {
         });
       })
     )
-    .then(
+    .then(() => {
+      console.log('Creating bills');
       bills.forEach(bill => {
         db.Bill.create(
           {
@@ -61,8 +62,8 @@ function seedDB() {
             BillPaid: bill.BillPaid,
           }
         );
-      })
-    );
+      });
+    });
 }
 
-module.exports = {seedDb: seedDB};
+module.exports = { seedDb: seedDB };
