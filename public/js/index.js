@@ -67,36 +67,36 @@ $(document).ready(function () {
 
 
   //function delete bill with bill ID
-  function deleteBill(billId) {
-    var queryURL = 'http://localhost:3000/api/bills/delete/';
-    $.ajax({
-      url: queryURL + billId,
-      method: 'DELETE'
-    }).then(function (response) {
-      console.log(response);
-    });
-  }
+  // function deleteBill(billId) {
+  //   var queryURL = 'http://localhost:3000/api/bills/delete/';
+  //   $.ajax({
+  //     url: queryURL + billId,
+  //     method: 'DELETE'
+  //   }).then(function (response) {
+  //     console.log(response);
+  //   });
+  // }
 
   //function get all bills as an array
-  function getAllBills() {
-    $.ajax({
-      url: 'http://localhost:3000/api/bills/',
-      method: 'GET'
-    }).then(function (response) {
-      console.log(response);
-    });
-  }
+  // function getAllBills() {
+  //   $.ajax({
+  //     url: 'http://localhost:3000/api/bills/',
+  //     method: 'GET'
+  //   }).then(function (response) {
+  //     console.log(response);
+  //   });
+  // }
 
   //function get all users assciated will bill
-  function getAllUsersForBill(billId) {
-    var queryURL = 'http://localhost:3000/api/bills/';
-    $.ajax({
-      url: queryURL + billId,
-      method: 'GET'
-    }).then(function (response) {
-      console.log(response);
-    });
-  }
+  // function getAllUsersForBill(billId) {
+  //   var queryURL = 'http://localhost:3000/api/bills/';
+  //   $.ajax({
+  //     url: queryURL + billId,
+  //     method: 'GET'
+  //   }).then(function (response) {
+  //     console.log(response);
+  //   });
+  // }
 
   //function get all users assciated will bill
   function getBillsForUserPopulateUsers(userEmail) {
@@ -113,23 +113,23 @@ $(document).ready(function () {
   }
 
   // update existing bill
-  function updateBill(billId) {
-    var queryURL = 'http://localhost:3000/api/bills/update';
-    $.ajax({
-      url: queryURL + billId,
-      method: 'PUT',
-      data: {
-        id: 1,
-        title: 'water',
-        Company: 'PSE',
-        Amount: 300.5,
-        BillDue: Date.now(),
-        BillPaid: false,
-      },
-    }).then(function (response) {
-      console.log(response);
-    });
-  }
+  // function updateBill(billId) {
+  //   var queryURL = 'http://localhost:3000/api/bills/update';
+  //   $.ajax({
+  //     url: queryURL + billId,
+  //     method: 'PUT',
+  //     data: {
+  //       id: 1,
+  //       title: 'water',
+  //       Company: 'PSE',
+  //       Amount: 300.5,
+  //       BillDue: Date.now(),
+  //       BillPaid: false,
+  //     },
+  //   }).then(function (response) {
+  //     console.log(response);
+  //   });
+  // }
 
   //function get user by email
   function getUserByEmail(email) {

@@ -61,17 +61,17 @@ $(document).ready(function () {
   });
 
   // Add smooth scrolling after modal
-  $('#signupbtn').on('click', function (event) {
+  $('#signupbtn').on('click', function () { // removed param event so Travis would be happy
     $('html, body').animate({
       scrollTop: ($('.card').offset().top)
     }, 200);
   });
-  $('#login').on('click', function (event) {
+  $('#login').on('click', function () { // removed param event so Travis would be happy
     $('html, body').animate({
       scrollTop: ($('.card').offset().top)
     }, 200);
   });
-  $('#addnewbill').on('click', function (event) {
+  $('#addnewbill').on('click', function () { // removed param event so Travis would be happy
     $('html, body').animate({
       scrollTop: ($('#addBillForm').offset().top)
     }, 200);

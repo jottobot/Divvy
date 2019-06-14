@@ -1,6 +1,6 @@
-var db = require('../models');
+// var db = require('../models');
 
-exports.index = function(req, res) {
+exports.index = function (req, res) {
   // db.Example.findAll({}).then(function(dbExamples) {
   //   res.render("index", {
   //     msg: "Welcome!",
@@ -10,15 +10,15 @@ exports.index = function(req, res) {
   res.render('index');
 };
 
-exports.example = function(req, res) {
-  // db.Example.findOne({ where: { id: req.params.id } }).then(function(dbExample) {
-  //   res.render("example", {
-  //     example: dbExample
-  //   });
-  // });
-};
+// exports.example = function(req, res) {
+// db.Example.findOne({ where: { id: req.params.id } }).then(function(dbExample) {
+//   res.render("example", {
+//     example: dbExample
+//   });
+// });
+// };
 
-exports.notARoute = function(req, res) {
+exports.notARoute = function (req, res) {
   res.render('404');
 };
 
