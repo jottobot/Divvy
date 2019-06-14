@@ -13,22 +13,22 @@ chai.use(chaiHttp);
 
 var request;
 
-const users = [
-  {
-    firstName: 'Bobby',
-    lastName: 'Jones',
-    email: 'Bobby@email.com',
-    phoneNumber: '206999999',
-    password: 'f7khfdsKJHd'
-  },
-  {
-    firstName: 'Sally',
-    lastName: 'Smite',
-    email: 'Sally@email.com',
-    phoneNumber: '4253828183',
-    'password': 'jafsd8Ikads8'
-  }
-];
+// const users = [
+//   {
+//     firstName: 'Bobby',
+//     lastName: 'Jones',
+//     email: 'Bobby@email.com',
+//     phoneNumber: '206999999',
+//     password: 'f7khfdsKJHd'
+//   },
+//   {
+//     firstName: 'Sally',
+//     lastName: 'Smite',
+//     email: 'Sally@email.com',
+//     phoneNumber: '4253828183',
+//     'password': 'jafsd8Ikads8'
+//   }
+// ];
 
 const bills = [
   {
@@ -82,51 +82,51 @@ describe('GET /api/bills', function () {
 });
 
 
-describe('POST /api/bills/:billId', function () {
-  beforeEach(function () {
-    request = chai.request(server);
-    // return db.sequelize.sync({ force: true });
-  });
+// describe('POST /api/bills/:billId', function () {
+//   beforeEach(function () {
+//     request = chai.request(server);
+//     // return db.sequelize.sync({ force: true });
+//   });
 
-  // after(() => {
-  //   sequelize.close();
-  // });
+//   // after(() => {
+//   //   sequelize.close();
+//   // });
 
-  it('should show bill-user connections', function (done) {
-    const reqBody ={
-      'email': 'Sally@email.com',
-      'billId': 1,
-      'percentOwed': 34
-    };
-    db.Bill.bulkCreate(bills)
-      // .then(db.User.bulkCreate(users))
-      .then(function () {
-        // request.post('/api/users/addbill')
-        //   .send(reqBody)
-        request.get('/api/bills')
-          .end(function (err, res) {
-            var responseStatus = res.status;
-            var responseBody = res.body;
-            console.log(responseBody);
-            expect(err).to.be.null;
+//   it('should show bill-user connections', function (done) {
+//     const reqBody ={
+//       'email': 'Sally@email.com',
+//       'billId': 1,
+//       'percentOwed': 34
+//     };
+//     db.Bill.bulkCreate(bills)
+//       // .then(db.User.bulkCreate(users))
+//       .then(function () {
+//         // request.post('/api/users/addbill')
+//         //   .send(reqBody)
+//         request.get('/api/bills')
+//           .end(function (err, res) {
+//             var responseStatus = res.status;
+//             var responseBody = res.body;
+//             console.log(responseBody);
+//             expect(err).to.be.null;
 
-            expect(responseStatus).to.equal(200);
+//             expect(responseStatus).to.equal(200);
 
-            // expect(responseBody)
-            //   .to.be.an('array')
-            //   .that.has.lengthOf(2);
+//             // expect(responseBody)
+//             //   .to.be.an('array')
+//             //   .that.has.lengthOf(2);
 
-            // expect(responseBody[0])
-            //   .to.be.an('object')
-            //   .that.includes({ title: 'water', Company: 'PSE' });
+//             // expect(responseBody[0])
+//             //   .to.be.an('object')
+//             //   .that.includes({ title: 'water', Company: 'PSE' });
 
-            // expect(responseBody[1])
-            //   .to.be.an('object')
-            //   .that.includes({ title: 'internet', Company: 'Comcast' });
+//             // expect(responseBody[1])
+//             //   .to.be.an('object')
+//             //   .that.includes({ title: 'internet', Company: 'Comcast' });
 
 
-            done();
-          });
-      });
-  });
-});
+//             done();
+//           });
+//       });
+//   });
+// });
