@@ -1,5 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
-  const UserBill = sequelize.define("UserBill",
+  const UserBill = sequelize.define('UserBill',
     {
       percentOwed: {
         type: DataTypes.INTEGER,
@@ -10,7 +10,7 @@ module.exports = function (sequelize, DataTypes) {
         }
       }
     }
-  )
+  );
 
   return UserBill;
 };

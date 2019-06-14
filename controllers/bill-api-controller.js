@@ -1,18 +1,18 @@
-const db = require("../models");
+const db = require('../models');
 
 
 // GET route for getting all of the bills
 exports.getAllBills = function (req, res) {
   // findAll returns all entries for a table when used with no options
-  db.Bill.findAll({}).then(function (divvy_db) {
+  db.Bill.findAll({}).then(function (bills) {
     // We have access to the todos as an argument inside of the callback function
-    res.json(divvy_db);
+    res.json(bills);
   });
-}
+};
 
 // Get all users for a bill id. Populates UserBill property for each user
 exports.getUsersForBill = function (req, res) {
-  const billId = req.params.billId // billId: integer
+  const billId = req.params.billId; // billId: integer
 
   db.Bill.findAll(
     {
@@ -22,16 +22,16 @@ exports.getUsersForBill = function (req, res) {
     }
   ).then(bill => {
     bill[0].getUsers().then(users => {
-      res.json(users)
+      res.json(users);
     }).catch(err => {
-      console.log(err)
-    })
+      console.log(err);
+    });
   }
   ).catch(err => {
-    console.log(err)
-    res.json(err)
-  })
-}
+    console.log(err);
+    res.json(err);
+  });
+};
 
 // POST route for saving a new bill
 exports.postNewBill = function (req, res) {
@@ -46,9 +46,9 @@ exports.postNewBill = function (req, res) {
       BillDue: req.body.BillDue, // date
       BillPaid: req.body.BillPaid, // bool
     }
-  ).then(function (divvy_db) {
+  ).then(function (newBill) {
     // We have access to the new bill as an argument inside of the callback function
-    res.json(divvy_db);
+    res.json(newBill);
   }).catch(function (err) {
     res.json(err);
   });
@@ -62,11 +62,11 @@ exports.billDelete = function (req, res) {
     where: {
       id: req.params.id
     }
-  }).then(function (divvy_db) {
-    res.json(divvy_db);
+  }).then(function (result) {
+    res.json(result);
   }).catch(function (err) {
     res.json(err);
-  })
+  });
 };
 
 // PUT route for updating todos. We can get the updated todo data from req.body
@@ -86,10 +86,10 @@ exports.update = function (req, res) {
         id: req.body.id // int
       }
     }
-  ).then(function (divvy_db) {
-    res.json(divvy_db);
+  ).then(function (result) {
+    res.json(result);
   }).catch(function (err) {
     res.json(err);
-  })
+  });
 };
 
