@@ -73,7 +73,7 @@ $(document).ready(function () {
     modal2.style.display = 'none';
   };
 
-  
+
 
   // smooth scrolling up to add a bill
   $('#addnewbill').on('click', function () {

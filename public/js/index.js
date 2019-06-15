@@ -8,7 +8,7 @@ $(document).ready(function () {
   // Get the button that opens the opening modal
   var btn = document.getElementById('myBtn');
   // Get the <span> element that closes the modal
-  var span = document.getElementsByClassName('close')[0];
+  // var span = document.getElementsByClassName('close')[0];
 
   // jQuery button elements
   const signUpElem = $('#signupbutton');
@@ -143,8 +143,8 @@ $(document).ready(function () {
 
   //function get user by email
   function getUserByEmail(email) {
-    const data = { email: email }
-    console.log(data)
+    const data = { email: email };
+    console.log(data);
     const getUserapiUrl = 'http://localhost:3000/api/users/email';
     $.ajax({
       url: getUserapiUrl,
@@ -243,7 +243,7 @@ $(document).ready(function () {
       // BillDue: $('#dueDate').val(),
       BillPaid: $('.paid:checked').val()
     };
-    console.log(billData)
+    console.log(billData);
     createBill(billData);
   });
 
@@ -253,7 +253,7 @@ $(document).ready(function () {
     getUserByEmail(userEmail);
     // var inputBill = $('#inputemail').val();
     $('#emails > tbody').append('<tr><td>' + userEmail + '</tr></td>');
- 
+
 
 
   });

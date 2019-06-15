@@ -4,7 +4,7 @@ const utils = require('./utils');
 
 exports.createUser = function (req, res) {
   const body = req.body;
-  console.log(body)
+  console.log(body);
   db.User.create(
     {
       firstName: body.firstName, // str
