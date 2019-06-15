@@ -1,6 +1,6 @@
 $(document).ready(function () {
-  $("#addbillcard").hide();
-  $("#viewbills").hide();
+  $('#addbillcard').hide();
+  $('#viewbills').hide();
 
   // Opening modal
   var modal = document.getElementById('myModal');
@@ -20,26 +20,26 @@ $(document).ready(function () {
   span.onclick = function () {
     modal.style.display = 'none';
   };
-  $("#signupbutton").click(function () {
-    modal.style.display = "none";
-    $("#addbillcard").show();
-    $("#viewbills").show();
+  $('#signupbutton').click(function () {
+    modal.style.display = 'none';
+    $('#addbillcard').show();
+    $('#viewbills').show();
   });
-  $("#signinbutton").click(function () {
-    modal.style.display = "none";
-    $("#addbillcard").show();
-    $("#viewbills").show();
+  $('#signinbutton').click(function () {
+    modal.style.display = 'none';
+    $('#addbillcard').show();
+    $('#viewbills').show();
   });
 
   // Add smooth scrolling after modal
-  $("#signupbutton").on('click', function (event) {
+  $('#signupbutton').on('click', function () {
     $('html, body').animate({
-      scrollTop: ($("#addbillcard").offset().top)
+      scrollTop: ($('#addbillcard').offset().top)
     }, 200);
   });
-  $("#signinbutton").on('click', function (event) {
+  $('#signinbutton').on('click', function () {
     $('html, body').animate({
-      scrollTop: ($("#addbillcard").offset().top)
+      scrollTop: ($('#addbillcard').offset().top)
     }, 200);
   });
 
@@ -54,13 +54,8 @@ $(document).ready(function () {
   });
 
   // showing modal to add payers
-
-  $("#addbillsubmit").click(function () {
-    $("#modal2").show();
-
-  $('#addusers').click(function () {
+  $('#addbillsubmit').click(function () {
     $('#modal2').show();
-
   });
 
   // addusers modal
@@ -73,37 +68,15 @@ $(document).ready(function () {
   };
 
   // adding emails modal
-
-  $("#addemails").click(function () {
-    var inputBill = $("#inputemail").val();
-    $("#emails > tbody").append("<tr><td>" + inputBill + "</tr></td>")
+  $('#addemails').click(function () {
+    var inputBill = $('#inputemail').val();
+    $('#emails > tbody').append('<tr><td>' + inputBill + '</tr></td>');
   });
 
   // smooth scrolling up to add a bill
-  $("#addnewbill").on('click', function (event) {
+  $('#addnewbill').on('click', function () {
     $('html, body').animate({
-      scrollTop: ($("#addbillcard").offset().top)
-
-//   $('#addemails').click(function(){
-//     var inputBill = $('#inputemail').val();
-//     $('#emails > tbody').append('<tr><td>' + inputBill + '</tr></td>');
-//   });
-
-  // Add smooth scrolling after modal
-  $('#signupbtn').on('click', function () { // removed param event so Travis would be happy
-    $('html, body').animate({
-      scrollTop: ($('.card').offset().top)
-    }, 200);
-  });
-  $('#login').on('click', function () { // removed param event so Travis would be happy
-    $('html, body').animate({
-      scrollTop: ($('.card').offset().top)
-    }, 200);
-  });
-  $('#addnewbill').on('click', function () { // removed param event so Travis would be happy
-    $('html, body').animate({
-      scrollTop: ($('#addBillForm').offset().top)
-
+      scrollTop: ($('#addbillcard').offset().top)
     }, 200);
   });
 
