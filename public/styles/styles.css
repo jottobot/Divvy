@@ -183,3 +183,9 @@ body, html, h1 {
   font-size: 18px;
   text-transform: uppercase;
 }
+
+.username {
+  font-family: 'Playfair Display', serif;
+  font-size: 25px;
+  font-display: UPPERCASE;
+ }

@@ -43,7 +43,7 @@ exports.postNewBill = function (req, res) {
       title: req.body.title, // str
       Company: req.body.Company, // str
       Amount: req.body.Amount, // float
-      BillDue: req.body.BillDue, // date
+      // BillDue: req.body.BillDue, // date
       BillPaid: req.body.BillPaid, // bool
     }
   ).then(function (newBill) {

@@ -1,3 +1,4 @@
+
 $(document).ready(function () {
   $('#addbillcard').hide();
   $('#viewbills').hide();
@@ -13,7 +14,7 @@ $(document).ready(function () {
   const signUpElem = $('#signupbutton');
   // const signInElem = $('#signinbutton');
   const submitBillElem = $('#addbillsubmit');
-  const searchUserByEmailElem = $('#addUserEmail');
+  // const searchUserByEmailElem = $('#addUserEmail');
   const addUsersToBillElem = $('#addemails');
   const getBillsForUserPopulateUsersElem = $('#addemails');
 
@@ -142,13 +143,18 @@ $(document).ready(function () {
 
   //function get user by email
   function getUserByEmail(email) {
+    const data = { email: email }
+    console.log(data)
     const getUserapiUrl = 'http://localhost:3000/api/users/email';
     $.ajax({
       url: getUserapiUrl,
       method: 'GET',
-      data: email,
+      data: data,
     }).then(response => {
       console.log(response);
+      if (response.length) {
+        $('#emails > tbody').append('<tr><td>' + response[0] + '</tr></td>');
+      }
     });
   }
 
@@ -198,6 +204,9 @@ $(document).ready(function () {
     $('html, body').animate({
       scrollTop: ($('#addbillcard').offset().top)
     }, 200);
+
+    var signinname = $('#signinname').val();
+    $('.username').append(signinname + '.');
   });
 
 
@@ -220,24 +229,33 @@ $(document).ready(function () {
     $('html, body').animate({
       scrollTop: ($('#addbillcard').offset().top)
     }, 200);
+
+    var signupname = $('#signupfirstname').val();
+    $('.username').append(signupname + '.');
   });
 
   // Handle submit bill on click
   submitBillElem.click(function () {
     const billData = {
-      "title": $('#inputbill').val().trim(),
-      "Company": $('#inputcompany').val().trim(),
-      "Amount": $('#inputprice').val().trim(),
-      "BillDue": $('#duedate').val(),
-      "BillPaid": $('.paid.checked').val(),
+      title: $('#inputbill').val().trim(),
+      Company: $('#inputcompany').val().trim(),
+      Amount: $('#inputprice').val().trim(),
+      // BillDue: $('#dueDate').val(),
+      BillPaid: $('.paid:checked').val()
     };
+    console.log(billData)
     createBill(billData);
   });
 
   // Handle search for user email
-  searchUserByEmailElem.click(function () {
-    const userEmail = 'STUFF';
+  $('#addUserEmail').click(function () {
+    const userEmail = $('#inputemail').val();
     getUserByEmail(userEmail);
+    // var inputBill = $('#inputemail').val();
+    $('#emails > tbody').append('<tr><td>' + userEmail + '</tr></td>');
+ 
+
+
   });
 
   // Handle search for user email
@@ -247,6 +265,8 @@ $(document).ready(function () {
       addBillToUser(email);
     });
   });
+
+
 
   getBillsForUserPopulateUsersElem.click(function () {
     const userEmail = 'EMAIL STUFF';

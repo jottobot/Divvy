@@ -29,6 +29,8 @@ exports.getAllUsers = function (req, res) {
 };
 
 exports.getUserByEmail = function (req, res) {
+  console.log('stuff', req.body.data);
+  console.log('other stuff', req.body.data.email);
   db.User.findAll(
     {
       where: {

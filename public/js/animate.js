@@ -73,11 +73,7 @@ $(document).ready(function () {
     modal2.style.display = 'none';
   };
 
-  // adding emails modal
-  $('#addUserEmail').click(function () {
-    var inputBill = $('#inputemail').val();
-    $('#emails > tbody').append('<tr><td>' + inputBill + '</tr></td>');
-  });
+  
 
   // smooth scrolling up to add a bill
   $('#addnewbill').on('click', function () {
