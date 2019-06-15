@@ -47,6 +47,8 @@
                 <label for="email" class="signupemail"><b>Email</b></label>
                 <input type="text" placeholder="Your email" name="email" required>
                 <div class="clearfix">
+                  <label for="password" class="signuppassword"><b>Password</b></label>
+                  <input type="text" placeholder="Your password" name="password" required>
                   <div>
                     <button type="submit" class="btn btn-dark" id="signupbutton">Sign up</button>
                     <button type="submit" class="btn btn-dark">Cancel</button>
@@ -65,6 +67,8 @@
                 <input type="text" placeholder="Your name" name="name" required>
                 <label for="email" class="signinemail"><b>Email</b></label>
                 <input type="text" placeholder="Your email" name="email" required>
+                <label for="password" class="signuppassword"><b>Password</b></label>
+                  <input type="text" placeholder="Your password" name="password" required>
                 <div class="clearfix">
                   <div>
                     <button type="submit" class="btn btn-dark" id="signinbutton">Sign in</button>
@@ -115,8 +119,8 @@
           </form>
           <form action="/action_page.php" method="get">
             <h5 class="paidyet">Been paid?</h5>
-            <input type="checkbox" name="bill" value="paid"> Bill is paid<br>
-            <input type="checkbox" name="bill" value="unpaid" checked> Bill is unpaid<br>
+            <input type="checkbox" name="bill" value="paid" class="paid"> Bill is paid<br>
+            <input type="checkbox" name="bill" value="unpaid" class="paid" checked> Bill is unpad<br>
             {{!-- <input type="submit" value="Submit"> --}}
           </form>
         </div>
@@ -169,9 +173,6 @@
               </tbody>
 
             </table>
-
-          
-            <div id="payersBtns">
 
             <button type="submit" class="btn btn-dark" id="addUserEmail">Add user</button>
             <button type="submit" class="btn btn-dark" id="addemails">Submit</button>
@@ -259,23 +260,9 @@
         {{!-- end of view bills div --}}
       </div>
 
-
-      {{!-- PUT INTO SIDE BAR --}}
-      {{!-- <thead>
-          <tr id="headertable1">
-            <th>Total Balance</th>
-            <th>Total Owed</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>$</td>
-            <td>$</td>
-          </tr>
-        </tbody>
-      </table> --}}
-
-
+      {{!-- Chat --}}
+      {{!-- <script id="cid0020000221547496565" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js"
+        style="width: 200px;height: 300px;">{ "handle": "divvyapp", "arch": "js", "styles": { "a": "000000", "b": 100, "c": "FFFFFF", "d": "FFFFFF", "k": "000000", "l": "000000", "m": "000000", "n": "FFFFFF", "p": "10", "q": "000000", "r": 100, "pos": "br", "cv": 1, "cvfnt": "'Helvetica Neue', Helvetica, Arial, sans-serif, sans-serif", "cvbg": "000000", "cvw": 200, "cvh": 30, "ticker": 1, "fwtickm": 1 } }</script> --}}
 
       <!-- Container div  -->
     </div>

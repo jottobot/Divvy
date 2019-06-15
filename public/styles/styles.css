@@ -3,7 +3,7 @@ body, html, h1 {
   font-family: 'Playfair Display', serif;
 } 
 .parallax { 
-  background-image: url("images/DJI_0087-2_1024x1024.jpg");
+  background-image: url("../images/DJI_0087-2_1024x1024.jpg");
   height: 100%; 
   background-attachment: fixed;
   background-position: center;
