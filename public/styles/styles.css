@@ -2,28 +2,19 @@ body, html, h1 {
   height: 100%;
   font-family: 'Playfair Display', serif;
 } 
-
 .parallax { 
-  /* The image used */
   background-image: url("images/DJI_0087-2_1024x1024.jpg");
-
-  /* Set a specific height */
   height: 100%; 
-
-  /* Create the parallax scrolling effect */
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
-
 .text {
   background-color: rgba(255, 255, 255, 0.847);
   color: black;
   font-family: 'Archivo Black', sans-serif;
-  /* font-family: 'Open Sans', sans-serif; */
-  /* font-weight: bold; */
-  font-size: 7vw; /* Responsive font size */
+  font-size: 7vw;
   letter-spacing: 5px;
   margin: 0 auto; 
   padding: 30px;
@@ -31,12 +22,23 @@ body, html, h1 {
   position: absolute; 
   top: 50%; 
   left: 50%;
-  /* add mobile response to change to 50% at certain width of phone !!!!!! */
   transform: translate(-50%, -50%); /* Position text in the middle */
   mix-blend-mode: screen; /* This makes the cutout text possible */
-} 
+}
+/* .zoom {
+  padding: 50px;
+  transition: transform .2s;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+}
+.zoom:hover {
+  -ms-transform: scale(1.1);   
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1); 
+} */
 
-/* The Modal (background) */
+/* opening modal */
 .modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
@@ -49,12 +51,11 @@ body, html, h1 {
   background-color: rgb(0,0,0); 
   background-color: rgba(0,0,0,0.4);
 }
-
 #myBtn {
   background-color: white;
 }
 
-/* Modal Content/Box */
+/* modal content/box */
 .modal-content {
   background-color: white;
   margin: 15% auto; /* 15% from the top and centered */
@@ -62,72 +63,43 @@ body, html, h1 {
   border: 1px solid #888;
   width: 80%; /* Could be more or less, depending on screen size */
 }
-
 #divvyfont {
   font-family: 'Playfair Display', serif;
   text-align: center;
   font-size: 50px;
 }
-
 #divvyfont2 {
   text-align: center;
   font-size: 20px;
 }
-
-
-/* The Close Button */
+.signInsignUpBtns {
+  margin-top: 20px;
+}
 .close {
   color:white;
 }
 
-.signintitle {
-  font-family: 'Playfair Display', serif;
-}
-.signuptitle {
-  font-family: 'Playfair Display', serif;
-}
-
-.signInsignUpBtns {
-  margin-top: 20px;
-}
-
-#inputName {
-  width: 300px;
-  margin-left: 350px;
-}
-
-#inputEmail {
-  width: 300px;
-  margin-left: 50px;
-}
-
-.name-text {
-  margin-left: 350px;
-  text-align: left;
-}
-
-.email-text {
-  text-align: left;
-  margin-left: 50px;
-  margin-top: 5px;
-}
-
-#email {
-  margin-left: 300px;
-}
-
-.signupform {
+/* sign up form */
+#signupform {
   font-family: 'Playfair Display', serif;
   text-align: center;
   padding-top: 30px;
   padding-bottom: 15px;
   font-size: 15px;
 }
-
-.clearfix {
-  margin-top: 20px;
+.signuptitle {
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 20px;
+}
+.signupname {
+  font-family: 'Playfair Display', serif;
+}
+.signupemail {
+  font-family: 'Playfair Display', serif;
+  padding-left: 20px;
 }
 
+/* sign in form */
 #signinform {
   font-family: 'Playfair Display', serif;
   text-align: center;
@@ -135,15 +107,22 @@ body, html, h1 {
   padding-bottom: 15px;
   font-size: 15px;
 }
-
-.label {
+.signintitle {
   font-family: 'Playfair Display', serif;
+  margin-bottom: 20px;
+}
+.signinemail {
+  font-family: 'Playfair Display', serif;
+  padding-left: 20px;
+}
+.signinname {
+  font-family: 'Playfair Display', serif;
+  padding-left: 20px;
+}
+.clearfix {
+  margin-top: 20px;
 }
 
-.label2 {
-  font-family: 'Playfair Display', serif;
-  padding-left: 30px;
-}
 
 /* Add a bill card */
 .card {
@@ -157,11 +136,23 @@ body, html, h1 {
 }
 .formlabel {
   font-size: 20px;
-  margin-bottom: 30px;
+  margin-bottom: 15px;
 }
-#addBillForm {
-  text-align: left;
-  margin-bottom: 10px;
+.paymentdate {
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+#duedate {
+  margin-bottom: 40px;
+}
+.paidyet {
+  margin-bottom: 5px;
+  font-family: 'Playfair Display', serif;
+}
+#addbillsubmit {
+  margin-top: 30px;
+  font-size: 20px;
 }
 
 /* View bills page */
