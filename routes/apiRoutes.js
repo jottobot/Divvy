@@ -267,7 +267,7 @@ router.get('/users', userController.getAllUsers);
  */
 
 
-router.get('/users/bills/populate', userController.getBillsForUserPopulateUsers);
+router.get('/users/bills/populate/:email', userController.getBillsForUserPopulateUsers);
 /**
  * @api {get} /users/bills/populate Get all bills associated with a user's email and populate each bill with every user associated with that bill
  * @apiName getBillsForUserPopulateUsers
@@ -339,7 +339,7 @@ router.get('/users/bills/populate', userController.getBillsForUserPopulateUsers)
  */
 
 
-router.get('/users/bills/', userController.getBillsForUser);
+router.get('/users/bills/:email', userController.getBillsForUser);
 /**
  * @api {get} /users/bills Get all bills associated with a user's email
  * @apiName getBillsForUser
@@ -376,7 +376,7 @@ router.get('/users/bills/', userController.getBillsForUser);
  */
 
 
-router.get('/users/email/', userController.getUserByEmail);
+router.get('/users/email/:email', userController.getUserByEmail);
 /**
  * @api {get} /users/email Get user by email
  * @apiName getUserByEmail

@@ -110,13 +110,10 @@ $(document).ready(function () {
 
   //function get all users assciated will bill
   function getBillsForUserPopulateUsers(userEmail) {
-    var queryURL = 'http://localhost:3000/api/users/bills/populate';
+    var queryURL = 'http://localhost:3000/api/users/bills/populate/';
     $.ajax({
-      url: queryURL,
+      url: queryURL + userEmail,
       method: 'GET',
-      data: {
-        email: userEmail,
-      }
     }).then(function (response) {
       console.log(response);
     });
@@ -143,13 +140,10 @@ $(document).ready(function () {
 
   //function get user by email
   function getUserByEmail(email) {
-    const data = { email: email };
-    console.log(data);
-    const getUserapiUrl = 'http://localhost:3000/api/users/email';
+    const getUserapiUrl = 'http://localhost:3000/api/users/email/';
     $.ajax({
-      url: getUserapiUrl,
+      url: getUserapiUrl + email,
       method: 'GET',
-      data: data,
     }).then(response => {
       console.log(response);
       if (response.length) {

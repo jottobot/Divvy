@@ -4,7 +4,6 @@ const utils = require('./utils');
 
 exports.createUser = function (req, res) {
   const body = req.body;
-  console.log(body);
   db.User.create(
     {
       firstName: body.firstName, // str
@@ -29,12 +28,11 @@ exports.getAllUsers = function (req, res) {
 };
 
 exports.getUserByEmail = function (req, res) {
-  console.log('stuff', req.body.data);
-  console.log('other stuff', req.body.data.email);
+  const email = req.params.email;
   db.User.findAll(
     {
       where: {
-        email: req.body.email // str
+        email: email // str
       }
     }
   ).then(result => {
@@ -46,7 +44,7 @@ exports.getUserByEmail = function (req, res) {
 
 // Get all bills associated with a user email
 exports.getBillsForUser = function (req, res) {
-  userEmail = req.body.email; // str
+  userEmail = req.params.email; // str
   db.User.findAll(
     {
       where: {
@@ -68,7 +66,7 @@ exports.getBillsForUser = function (req, res) {
 
 // Get all bills associated with a user email and populates each user for the bill
 exports.getBillsForUserPopulateUsers = function (req, res) {
-  userEmail = req.body.email; // str
+  userEmail = req.params.email; // str
   db.User.findAll(
     {
       where: {
