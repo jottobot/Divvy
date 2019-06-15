@@ -21,13 +21,13 @@ module.exports = function (sequelize, DataTypes) {
         min: 0
       },
     },
-    BillDue: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      validate: {
-        // Validation needed?
-      },
-    },
+    // BillDue: {
+    //   type: DataTypes.DATE,
+    //   allowNull: false,
+    //   validate: {
+    //     // Validation needed?
+    //   },
+    // },
     BillPaid: {
       type: DataTypes.BOOLEAN,
       defaultValue: false,

@@ -22,14 +22,14 @@ const bills = [
     title: 'water',
     Company: 'PSE',
     Amount: 300.5,
-    BillDue: Date.now(),
+    // BillDue: Date.now(),
     BillPaid: false,
   },
   {
     title: 'internet',
     Company: 'Comcast',
     Amount: 40.83,
-    BillDue: Date.now(),
+    // BillDue: Date.now(),
     BillPaid: false,
   }
 ];

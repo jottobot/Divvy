@@ -42,13 +42,21 @@
             <center>
               <div class="signupform">
                 <h1 class="signuptitle">Sign up</h1>
-                <label for="name" class="signupname"><b>Name</b></label>
-                <input type="text" placeholder="Your name" name="name" required>
-                <label for="email" class="signupemail"><b>Email</b></label>
-                <input type="text" placeholder="Your email" name="email" required>
+                <label for="name"  class="signupfirstname"><b>First Name</b></label>
+                <input type="text" id="signupfirstname" placeholder="Your name" name="name" required>
+
+                <label for="name"  class="signuplastname"><b>Last Name</b></label>
+                <input type="text" id="signuplastname" placeholder="Your name" name="name" required>
+
+                <label for="email"  class="signupemail"><b>Email</b></label>
+                <input type="text" id="signupemail" placeholder="Your email" name="email" required>
+
+                <label for="phone" class="signupphone"><b>Phone</b></label>
+                <input type="text" id="signupphone" placeholder="Your phone" name="phone" required>
+
                 <div class="clearfix">
                   <label for="password" class="signuppassword"><b>Password</b></label>
-                  <input type="text" placeholder="Your password" name="password" required>
+                  <input type="text" id="signuppassword" placeholder="Your password" name="password" required>
                   <div>
                     <button type="submit" class="btn btn-dark" id="signupbutton">Sign up</button>
                     <button type="submit" class="btn btn-dark">Cancel</button>
@@ -67,8 +75,8 @@
                 <input type="text" placeholder="Your name" name="name" id="signinname" required>
                 <label for="email" class="signinemail"><b>Email</b></label>
                 <input type="text" placeholder="Your email" name="email" id="signinemail" required>
-                <label for="password" class="signuppassword"><b>Password</b></label>
-                  <input type="text" placeholder="Your password" name="password" id="signinpassword" required>
+                <label for="name" class="signuppassword"><b>Password</b></label>
+                  <input type="text" placeholder="Your password" name="name" id="signinpassword" required>
                 <div class="clearfix">
                   <div>
                     <button type="submit" class="btn btn-dark" id="signinbutton">Sign in</button>
@@ -86,8 +94,9 @@
     {{!-- add a bill --}}
     <div class="card" id="addbillcard">
       <div class="card-body-addbill">
-        Add a bill.
+        Add a bill,
       </div>
+      <div class="username"></div>
       <hr>
       <div class="row">
         <div class="col-md-3">
@@ -114,13 +123,13 @@
         <div class="col-md-3">
           <form action="/action_page.php" id="duedate">
             <h4 class="paymentdate">Payment date:</h4>
-            <input type="date" name="duedate">
+            <input id ="dueDate" type="date" name="duedate">
             {{!-- <input type="submit" value="Send"> --}}
           </form>
           <form action="/action_page.php" method="get">
             <h5 class="paidyet">Been paid?</h5>
-            <input type="checkbox" name="bill" value="paid" class="paid"> Bill is paid<br>
-            <input type="checkbox" name="bill" value="unpaid" class="paid" checked> Bill is unpad<br>
+            <input type="checkbox" name="bill" value="true" class="paid"> Bill is paid<br>
+            <input type="checkbox" name="bill" value="false" class="paid" checked> Bill is unpaid<br>
             {{!-- <input type="submit" value="Submit"> --}}
           </form>
         </div>
@@ -159,8 +168,8 @@
                     <div class="row">
                       <div id="addPayersEmailPercentage">
                       <th>Email:</th>
-                      <th>Percentage:</th>
-
+                      <th>Amount: <input type="text" class="form-control" id="inputemail" placeholder="Enter email"></th>
+                    
                       </div>
                     
 
@@ -189,6 +198,7 @@
       <div class="card-body-addbill">
         View bills.
       </div>
+      <div class="username"></div>
 
       {{!-- add/settle buttons --}}
       <div class="row">
@@ -208,7 +218,7 @@
       <div class="row">
         <div class="col-8">
           <table class="table table-hover table-dark">
-            <h3 class="dashboard">Household Bills</h3>
+            <h3 class="dashboard">Your Bills</h3>
             <thead>
               <tr>
                 <th scope="col" class="viewtable">ID</th>

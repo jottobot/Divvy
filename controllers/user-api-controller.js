@@ -4,6 +4,7 @@ const utils = require('./utils');
 
 exports.createUser = function (req, res) {
   const body = req.body;
+  console.log(body);
   db.User.create(
     {
       firstName: body.firstName, // str
@@ -28,6 +29,8 @@ exports.getAllUsers = function (req, res) {
 };
 
 exports.getUserByEmail = function (req, res) {
+  console.log('stuff', req.body.data);
+  console.log('other stuff', req.body.data.email);
   db.User.findAll(
     {
       where: {
