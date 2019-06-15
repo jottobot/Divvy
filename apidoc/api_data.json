@@ -1,5 +1,60 @@
 [
   {
+    "type": "post",
+    "url": "/auth/",
+    "title": "Authenticate user",
+    "name": "authenticateUser",
+    "group": "Auth",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>User email</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>User password</p>"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Request body object example usage:",
+        "content": "  {\n\t\"email\": \"emailx@email.com\",\n\t\"password\": \"jf&3js9LK3\"\n}",
+        "type": "json"
+      }
+    ],
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response -> return user object",
+          "content": "  HTTP/1.1 200 OK\n{\n   \"id\": 2,\n   \"firstName\": \"mex\",\n   \"lastName\": \"lastx\",\n   \"email\": \"emailx@email.com\",\n   \"phoneNumber\": \"2069999999\",\n   \"createdAt\": \"2019-06-14T20:07:57.000Z\",\n   \"updatedAt\": \"2019-06-14T20:07:57.000Z\"\n  }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Error-Response Example:",
+          "content": "{\n    \"message\": \"Incorrect email.\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "routes/apiRoutes.js",
+    "groupTitle": "Auth"
+  },
+  {
     "type": "get",
     "url": "/bills/",
     "title": "Get all bills as array",
@@ -9,7 +64,7 @@
       "examples": [
         {
           "title": "Success-Response -> return array of all bills. Return empty array if no bills exist:",
-          "content": "    HTTP/1.1 200 OK\n    [\n    {\n        \"id\": 1,\n        \"title\": \"water\",\n        \"Company\": \"PSE\",\n        \"Amount\": \"301\",\n        \"BillDue\": \"2019-06-11T04:11:06.000Z\",\n        \"BillPaid\": false,\n        \"createdAt\": \"2019-06-11T04:11:06.000Z\",\n        \"updatedAt\": \"2019-06-11T04:11:06.000Z\"\n    }\n]",
+          "content": "    HTTP/1.1 200 OK\n    [\n {\n     \"id\": 1,\n     \"title\": \"water\",\n     \"Company\": \"PSE\",\n     \"Amount\": \"301\",\n     \"BillDue\": \"2019-06-11T04:11:06.000Z\",\n     \"BillPaid\": false,\n     \"createdAt\": \"2019-06-11T04:11:06.000Z\",\n     \"updatedAt\": \"2019-06-11T04:11:06.000Z\"\n }\n]",
           "type": "json"
         }
       ]
@@ -215,7 +270,7 @@
     "examples": [
       {
         "title": "Request body update bill object example usage:",
-        "content": "{    \n id: 1\n title: \"water\",\n Company: \"PSE\",\n Amount: 300.5,\n BillDue: Date.now(),\n BillPaid: false,\n}",
+        "content": "{\n id: 1\n title: \"water\",\n Company: \"PSE\",\n Amount: 300.5,\n BillDue: Date.now(),\n BillPaid: false,\n}",
         "type": "json"
       }
     ],
@@ -301,7 +356,7 @@
     "examples": [
       {
         "title": "Request body example usage:",
-        "content": "{\n  \"email\": \"Sally@gmail.com\",\n  \"billId\": 1,\n  \"percentOwed\": 34    \n}",
+        "content": "{\n  \"email\": \"Sally@gmail.com\",\n  \"billId\": 1,\n  \"percentOwed\": 34\n}",
         "type": "json"
       }
     ],
@@ -317,7 +372,7 @@
     "error": {
       "examples": [
         {
-          "title": "Error-Response Example: If bill does not exist -> return void. If email does not exist -> return {}. If email already connected to bill -> return void. ",
+          "title": "Error-Response Example: If bill does not exist -> return void. If email does not exist -> return {}. If email already connected to bill -> return void.",
           "content": " {\n    \"name\": \"SequelizeValidationError\",\n    \"errors\": [\n        {\n            \"message\": \"Validation max on percentOwed failed\",\n            \"type\": \"Validation error\",\n            \"path\": \"percentOwed\",\n            \"value\": 101,\n            \"origin\": \"FUNCTION\",\n            \"instance\": {\n                \"BillId\": null,\n                \"UserId\": null,\n                \"percentOwed\": 101,\n                \"updatedAt\": \"2019-06-12T18:13:17.177Z\"\n            },\n            \"validatorKey\": \"max\",\n            \"validatorName\": \"max\",\n            \"validatorArgs\": [\n                100\n            ],\n            \"original\": {\n                \"validatorName\": \"max\",\n                \"validatorArgs\": [\n                    100\n                ]\n            }\n        }\n    ]\n}",
           "type": "json"
         }
@@ -370,7 +425,7 @@
     "examples": [
       {
         "title": "Request body new user object example usage:",
-        "content": "  {\nfirstName: 'Sally',\nlastName: 'Smite',\nemail: 'Sally@email.com',\nphoneNumber: '4253828183'\n }",
+        "content": "  {\nfirstName: 'Sally',\nlastName: 'Smite',\nemail: 'Sally@email.com',\nphoneNumber: '4253828183',\npassword: \"jf&3js9LK3\"\n }",
         "type": "json"
       }
     ],

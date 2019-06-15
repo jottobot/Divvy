@@ -1,12 +1,12 @@
-require("dotenv").config();
+require('dotenv').config();
 
-var express = require("express");
-var exphbs = require("express-handlebars");
+var express = require('express');
+var exphbs = require('express-handlebars');
 
-var db = require("./models");
+var db = require('./models');
 
-const apiRouter = require('./routes/apiRoutes')
-const htmlRouter = require('./routes/htmlRoutes')
+const apiRouter = require('./routes/apiRoutes');
+const htmlRouter = require('./routes/htmlRoutes');
 
 var app = express();
 var PORT = process.env.PORT || 3000;
@@ -14,26 +14,26 @@ var PORT = process.env.PORT || 3000;
 // Middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(express.static("public"));
+app.use(express.static('public'));
 
 // Handlebars
 app.engine(
-  "handlebars",
+  'handlebars',
   exphbs({
-    defaultLayout: "main"
+    defaultLayout: 'main'
   })
 );
-app.set("view engine", "handlebars");
+app.set('view engine', 'handlebars');
 
 // Routes
-app.use('/api', apiRouter)
-app.use(htmlRouter)
+app.use('/api', apiRouter);
+app.use(htmlRouter);
 
 var syncOptions = { force: false };
 
 // If running a test, set syncOptions.force to true
 // clearing the `testdb`
-if (process.env.NODE_ENV === "test") {
+if (process.env.NODE_ENV === 'test') {
   syncOptions.force = true;
 }
 
@@ -41,7 +41,7 @@ if (process.env.NODE_ENV === "test") {
 db.sequelize.sync(syncOptions).then(function () {
   app.listen(PORT, function () {
     console.log(
-      "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
+      '==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.',
       PORT,
       PORT
     );
