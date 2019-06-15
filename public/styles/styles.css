@@ -91,7 +91,13 @@ body, html, h1 {
   font-family: 'Playfair Display', serif;
   margin-bottom: 20px;
 }
-.signupname {
+.signupfirstname {
+  font-family: 'Playfair Display', serif;
+}
+.signuplastname {
+  font-family: 'Playfair Display', serif;
+}
+.signupphone {
   font-family: 'Playfair Display', serif;
 }
 .signupemail {

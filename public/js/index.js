@@ -1,12 +1,21 @@
 $(document).ready(function () {
+  $('#addbillcard').hide();
+  $('#viewbills').hide();
+
+  // Opening modal
+  var modal = document.getElementById('myModal');
+  // Get the button that opens the opening modal
+  var btn = document.getElementById('myBtn');
+  // Get the <span> element that closes the modal
+  var span = document.getElementsByClassName('close')[0];
 
   // jQuery button elements
-  const signUpElem = $('#TODO******************');
-  const signInElem = $('#TODO******************');
-  const submitBillElem = $('#TODO******************');
-  const searchUserByEmailElem = $('#TODO******************');
-  const addUsersToBillElem = $('#TODO******************');
-  const getBillsForUserPopulateUsersElem = $('#TODO******************');
+  const signUpElem = $('#signupbutton');
+  // const signInElem = $('#signinbutton');
+  const submitBillElem = $('#addbillsubmit');
+  const searchUserByEmailElem = $('#addUserEmail');
+  const addUsersToBillElem = $('#addemails');
+  const getBillsForUserPopulateUsersElem = $('#addemails');
 
   // Ajax functions
 
@@ -163,21 +172,65 @@ $(document).ready(function () {
 
   // Onclick handler functions
 
+
+  // When the user clicks on the button, open the modal
+  btn.onclick = function () {
+    modal.style.display = 'block';
+    $('#signupform').hide();
+    $('#signinform').hide();
+  };
+
+  // span.onclick = function () {
+  //   modal.style.display = 'none';
+  // };
+
   // Handle sign in on click
-  signInElem.click(function () {
-    const userData = 'STUFF';
+  $('#signinbutton').click(function (event) {
+    event.preventDefault();
+    const userData = {
+      email: $('#signinemail').val().trim(),
+      password: $('#signinpassword').val().trim()
+    };
     signIn(userData);
+    modal.style.display = 'none';
+    $('#addbillcard').show();
+    $('#viewbills').show();
+    $('html, body').animate({
+      scrollTop: ($('#addbillcard').offset().top)
+    }, 200);
   });
+
 
   // Handle create user on click
   signUpElem.click(function () {
-    const userData = 'STUFF';
+    event.preventDefault();
+
+    const userData = {
+      firstName: $('#signupfirstname').val().trim(),
+      lastName: $('#signuplastname').val().trim(),
+      email: $('#signupemail').val().trim(),
+      phoneNumber: $('#signupphone').val().trim(),
+      password: $('#signuppassword').val().trim()
+    };
     createUser(userData);
+
+    modal.style.display = 'none';
+    $('#addbillcard').show();
+    $('#viewbills').show();
+    $('html, body').animate({
+      scrollTop: ($('#addbillcard').offset().top)
+    }, 200);
   });
 
   // Handle submit bill on click
   submitBillElem.click(function () {
-    const billData = 'STUFF';
+    const billData = {
+      "title": $('#inputbill').val().trim(),
+      "Company": $('#inputcompany').val().trim(),
+      "Amount": $('#inputprice').val().trim(),
+      "BillDue": $('#duedate').val(),
+      "BillPaid": $('.paid.checked').val(),
+    };
     createBill(billData);
   });
 
@@ -195,7 +248,7 @@ $(document).ready(function () {
     });
   });
 
-  getBillsForUserPopulateUsersElem.click(function() {
+  getBillsForUserPopulateUsersElem.click(function () {
     const userEmail = 'EMAIL STUFF';
     getBillsForUserPopulateUsers(userEmail);
   });

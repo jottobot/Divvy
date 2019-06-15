@@ -42,13 +42,21 @@
             <center>
               <div class="signupform">
                 <h1 class="signuptitle">Sign up</h1>
-                <label for="name" class="signupname"><b>Name</b></label>
-                <input type="text" placeholder="Your name" name="name" required>
-                <label for="email" class="signupemail"><b>Email</b></label>
-                <input type="text" placeholder="Your email" name="email" required>
+                <label for="name"  class="signupfirstname"><b>First Name</b></label>
+                <input type="text" id="signupfirstname" placeholder="Your name" name="name" required>
+
+                <label for="name"  class="signuplastname"><b>Last Name</b></label>
+                <input type="text" id="signuplastname" placeholder="Your name" name="name" required>
+
+                <label for="email"  class="signupemail"><b>Email</b></label>
+                <input type="text" id="signupemail" placeholder="Your email" name="email" required>
+
+                <label for="phone" class="signupphone"><b>Phone</b></label>
+                <input type="text" id="signupphone" placeholder="Your phone" name="phone" required>
+
                 <div class="clearfix">
                   <label for="password" class="signuppassword"><b>Password</b></label>
-                  <input type="text" placeholder="Your password" name="password" required>
+                  <input type="text" id="signuppassword" placeholder="Your password" name="password" required>
                   <div>
                     <button type="submit" class="btn btn-dark" id="signupbutton">Sign up</button>
                     <button type="submit" class="btn btn-dark">Cancel</button>
@@ -63,12 +71,12 @@
             <center>
               <div class="signin">
                 <h1 class="signintitle">Sign in</h1>
-                <label for="name" class="signinname"><b>Name</b></label>
-                <input type="text" placeholder="Your name" name="name" id="signinname" required>
+                {{!-- <label for="name" class="signinname"><b>Name</b></label>
+                <input type="text" placeholder="Your name" name="name" id="signinname" required> --}}
                 <label for="email" class="signinemail"><b>Email</b></label>
                 <input type="text" placeholder="Your email" name="email" id="signinemail" required>
-                <label for="password" class="signuppassword"><b>Password</b></label>
-                  <input type="text" placeholder="Your password" name="password" id="signinpassword" required>
+                <label for="name" class="signuppassword"><b>Password</b></label>
+                  <input type="text" placeholder="Your password" name="name" id="signinpassword" required>
                 <div class="clearfix">
                   <div>
                     <button type="submit" class="btn btn-dark" id="signinbutton">Sign in</button>
