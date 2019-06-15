@@ -68,7 +68,7 @@ $(document).ready(function () {
   };
 
   // adding emails modal
-  $('#addemails').click(function () {
+  $('#addUserEmail').click(function () {
     var inputBill = $('#inputemail').val();
     $('#emails > tbody').append('<tr><td>' + inputBill + '</tr></td>');
   });
