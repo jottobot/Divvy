@@ -30,11 +30,13 @@ module.exports = function (sequelize, DataTypes) {
       phoneNumber: {
         type: DataTypes.STRING,
         allowNull: true,
-        validate: {
+        validate: {          // TODO validate phone number
+        }
+       p,
+ s  
+          len: [10, 12],
           // TODO validate phone number
         }
-      },
-      password: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {

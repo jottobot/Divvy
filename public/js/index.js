@@ -1,12 +1,12 @@
 $(document).ready(function () {
 
   // jQuery button elements
-  const signUpElem = $('#TODO******************');
-  const signInElem = $('#TODO******************');
-  const submitBillElem = $('#TODO******************');
+  const signUpElem = $('#signupbutton');
+  const signInElem = $('#signinbutton');
+  const submitBillElem = $('#addbillsubmit');
   const searchUserByEmailElem = $('#TODO******************');
-  const addUsersToBillElem = $('#TODO******************');
-  const getBillsForUserPopulateUsersElem = $('#TODO******************');
+  const addUsersToBillElem = $('#addemails');
+  const getBillsForUserPopulateUsersElem = $('#addemails');
 
   // Ajax functions
 

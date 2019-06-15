@@ -29,7 +29,7 @@ app.set('view engine', 'handlebars');
 app.use('/api', apiRouter);
 app.use(htmlRouter);
 
-var syncOptions = { force: false };
+var syncOptions = { force: true };
 
 // If running a test, set syncOptions.force to true
 // clearing the `testdb`
