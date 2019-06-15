@@ -13,7 +13,7 @@
     <!-- Cut-out title -->
     <div class="image-container">
       {{!-- <div class="zoom"> --}}
-        <div id="myBtn" class="text">Divvy</div>
+      <div id="myBtn" class="text">Divvy</div>
       {{!-- </div> --}}
     </div>
 
@@ -116,7 +116,7 @@
           <form action="/action_page.php" method="get">
             <h5 class="paidyet">Been paid?</h5>
             <input type="checkbox" name="bill" value="paid"> Bill is paid<br>
-            <input type="checkbox" name="bill" value="unpaid" checked> Bill is unpad<br>
+            <input type="checkbox" name="bill" value="unpaid" checked> Bill is unpaid<br>
             {{!-- <input type="submit" value="Submit"> --}}
           </form>
         </div>
@@ -130,7 +130,7 @@
         </div>
         <div class="col-md-3"></div>
       </div>
-    {{!-- end of add bill card --}}
+      {{!-- end of add bill card --}}
     </div>
 
     {{!-- add users hidden modal --}}
@@ -149,12 +149,34 @@
               </div>
             </form>
             <table id="emails">
+              <tbody>
+                <thead>
+                  <tr>
+                    <div class="row">
+                      <div id="addPayersEmailPercentage">
+                      <th>Email:</th>
+                      <th>Percentage:</th>
 
-              <tbody></tbody>
+                      </div>
+                    
+
+                    </div>
+                    <hr>
+
+                  </tr>
+
+                 </thead>
+              </tbody>
 
             </table>
 
+          
+            <div id="payersBtns">
+
+            <button type="submit" class="btn btn-dark" id="addUserEmail">Add user</button>
             <button type="submit" class="btn btn-dark" id="addemails">Submit</button>
+
+            </div>
           </center>
         </div>
       </div>

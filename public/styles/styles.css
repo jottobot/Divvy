@@ -99,6 +99,15 @@ body, html, h1 {
   padding-left: 20px;
 }
 
+/* Add Payers */
+#addPayersEmailPercentage {
+  margin-left: 300px;
+}
+
+#payersBtns {
+  padding-top: 30px;
+}
+
 /* sign in form */
 #signinform {
   font-family: 'Playfair Display', serif;
