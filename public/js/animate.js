@@ -84,10 +84,10 @@ $(document).ready(function () {
     $('html, body').animate({
       scrollTop: ($("#addbillcard").offset().top)
 
-  $('#addemails').click(function(){
-    var inputBill = $('#inputemail').val();
-    $('#emails > tbody').append('<tr><td>' + inputBill + '</tr></td>');
-  });
+//   $('#addemails').click(function(){
+//     var inputBill = $('#inputemail').val();
+//     $('#emails > tbody').append('<tr><td>' + inputBill + '</tr></td>');
+//   });
 
   // Add smooth scrolling after modal
   $('#signupbtn').on('click', function () { // removed param event so Travis would be happy
