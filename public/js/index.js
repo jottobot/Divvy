@@ -39,6 +39,10 @@ $(document).ready(function () {
     localStorage.setItem('authState', JSON.stringify(authState));
   }
 
+  // function getAuthState() {
+  //   return localStorage.getItem('authState');
+  // }
+
   // ***************************************
   // Ajax functions
   // ***************************************
@@ -134,7 +138,30 @@ $(document).ready(function () {
   //   });
   // }
 
+
   //function get all users assciated will bill
+  function getBillsForUser(userEmail) {
+    var queryURL = 'http://localhost:3000/api/users/bills/';
+    $.ajax({
+      url: queryURL + userEmail,
+      method: 'GET',
+    }).then(function (response) {
+      console.log(response);
+      response.forEach(bill => {
+        const tableRow = $('<tr>');
+        const tableHead = $('<th>').attr('scope', 'row').attr('data-id', bill.id).text(bill.id);
+        const titleCell = $('<td>').text(bill.title);
+        const companyCell = $('<td>').text(bill.Company);
+        const amountCell = $('<td>').text(bill.Amount);
+        const isPaidCell = $('<td>').text(bill.BillPaid);
+        tableRow
+          .append(tableHead, titleCell, companyCell, amountCell, isPaidCell);
+        $('#current-bills').append(tableRow);
+      });
+    });
+  }
+
+  //function get all users assciated will bill and populate users
   function getBillsForUserPopulateUsers(userEmail) {
     var queryURL = 'http://localhost:3000/api/users/bills/populate/';
     $.ajax({
@@ -144,6 +171,17 @@ $(document).ready(function () {
       console.log(response);
     });
   }
+
+  // Get details for a single bill
+  // function billDetail(billId) {
+  //   var queryURL = 'http://localhost:3000/api/bills/';
+  //   $.ajax({
+  //     url: queryURL + billId,
+  //     method: 'GET',
+  //   }).then(function (response) {
+  //     console.log(response);
+  //   });
+  // }
 
   // update existing bill
   // function updateBill(billId) {
@@ -211,6 +249,7 @@ $(document).ready(function () {
     console.log(response);
     if (response.id) { // user found
       createAuthState(response.firstName, response.email);
+      getBillsForUser(response.email);
       $('.username').append(response.firstName + '.');
 
       modal.style.display = 'none';
@@ -283,7 +322,6 @@ $(document).ready(function () {
 
   // Handle add users to bill click
   addUsersToBillElem.click(function () {
-    // const userEmails = { 'STUFF************': 'STUFF*********' };
     $('.add-payer-user').each((index, value) => {
       const email = $(value).find('[email]').attr('email');
       const amountOwed = $(value).find('input').val();
@@ -296,8 +334,6 @@ $(document).ready(function () {
       // addBillToUser(email);
     });
   });
-
-
 
   getBillsForUserPopulateUsersElem.click(function () {
     const userEmail = 'EMAIL STUFF';

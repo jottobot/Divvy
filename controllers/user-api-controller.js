@@ -108,7 +108,7 @@ exports.addBillToUser = function (req, res) {
       .findAll({ where: { id: billId } })
       .then(bill => {
         user[0].addBill(bill[0], {
-          through: { percentOwed: amountOwed }
+          through: { amountOwed: amountOwed }
         }
         ).then(result => {
           res.json(result);
