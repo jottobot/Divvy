@@ -267,18 +267,14 @@ router.get('/users', userController.getAllUsers);
  */
 
 
-router.get('/users/bills/populate', userController.getBillsForUserPopulateUsers);
+router.get('/users/bills/populate/:email', userController.getBillsForUserPopulateUsers);
 /**
- * @api {get} /users/bills/populate Get all bills associated with a user's email and populate each bill with every user associated with that bill
+ * @api {get} /users/bills/populate/:email Get all bills associated with a user's email and populate each bill with every user associated with that bill
  * @apiName getBillsForUserPopulateUsers
  * @apiGroup User
  *
  * @apiParam {String} email Users email as a string
  *
- * @apiExample Request body example:
-  *  {
-* "email": "Bobby@email.com"
-* }
   *
  * @apiSuccessExample Success-Response -> return array of nested arrays of all user populated bills for user. Each nested array represents a bill. Return empty array if no bills for user exist. Populates 'UserBill' property of each user
  *     HTTP/1.1 200 OK
@@ -339,18 +335,14 @@ router.get('/users/bills/populate', userController.getBillsForUserPopulateUsers)
  */
 
 
-router.get('/users/bills/', userController.getBillsForUser);
+router.get('/users/bills/:email', userController.getBillsForUser);
 /**
- * @api {get} /users/bills Get all bills associated with a user's email
+ * @api {get} /users/bills/:email Get all bills associated with a user's email
  * @apiName getBillsForUser
  * @apiGroup User
  *
  * @apiParam {String} email Users email as a string
  *
- * @apiExample Request body example:
-  *  {
-* "email": "Bobby@email.com"
-* }
   *
  * @apiSuccessExample Success-Response -> return array of all bills for user. Return empty array if no bills for user exist. Populates 'UserBill' property
  *     HTTP/1.1 200 OK
@@ -376,18 +368,14 @@ router.get('/users/bills/', userController.getBillsForUser);
  */
 
 
-router.get('/users/email/', userController.getUserByEmail);
+router.get('/users/email/:email', userController.getUserByEmail);
 /**
- * @api {get} /users/email Get user by email
+ * @api {get} /users/email/:email Get user by email
  * @apiName getUserByEmail
  * @apiGroup User
  *
  * @apiParam {String} email Users email as a string
  *
- * @apiExample Request body example:
-  *  {
-* "email": "Bobby@email.com"
-* }
   *
  * @apiSuccessExample Success-Response -> return array with user object. Return empty array if user does not exist.
  *     HTTP/1.1 200 OK
@@ -403,7 +391,6 @@ router.get('/users/email/', userController.getUserByEmail);
     }
 ]
  */
-
 
 
 router.post('/users', userController.createUser);

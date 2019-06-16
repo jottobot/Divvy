@@ -1,12 +1,11 @@
 module.exports = function (sequelize, DataTypes) {
   const UserBill = sequelize.define('UserBill',
     {
-      percentOwed: {
-        type: DataTypes.INTEGER,
+      amountOwed: {
+        type: DataTypes.DECIMAL(10, 2),
         allowNull: false,
         validate: {
           min: 0,
-          max: 100
         }
       }
     }

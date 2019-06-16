@@ -58,7 +58,7 @@ function seedDB() {
             title: bill.title,
             Company: bill.Company,
             Amount: bill.Amount,
-            BillDue: bill.BillDue,
+            // BillDue: bill.BillDue,
             BillPaid: bill.BillPaid,
           }
         );

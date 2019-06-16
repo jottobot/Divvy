@@ -54,15 +54,16 @@ $(document).ready(function () {
     $('#signinform').show();
     $('#signupform').hide();
   });
+
   $('#signup').click(function () {
     $('#signupform').show();
     $('#signinform').hide();
   });
 
   // showing modal to add payers
-  $('#addbillsubmit').click(function () {
-    $('#modal2').show();
-  });
+  // $('#addbillsubmit').click(function () {
+  //   $('#modal2').show();
+  // });
 
   // addusers modal
   var modal2 = document.getElementById('modal2');

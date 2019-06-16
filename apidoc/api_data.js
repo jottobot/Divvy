@@ -453,7 +453,7 @@ define({ "api": [
   },
   {
     "type": "get",
-    "url": "/users/bills",
+    "url": "/users/bills/:email",
     "title": "Get all bills associated with a user's email",
     "name": "getBillsForUser",
     "group": "User",
@@ -470,13 +470,6 @@ define({ "api": [
         ]
       }
     },
-    "examples": [
-      {
-        "title": "Request body example:",
-        "content": " {\n\"email\": \"Bobby@email.com\"\n}",
-        "type": "json"
-      }
-    ],
     "success": {
       "examples": [
         {
@@ -492,7 +485,7 @@ define({ "api": [
   },
   {
     "type": "get",
-    "url": "/users/bills/populate",
+    "url": "/users/bills/populate/:email",
     "title": "Get all bills associated with a user's email and populate each bill with every user associated with that bill",
     "name": "getBillsForUserPopulateUsers",
     "group": "User",
@@ -509,13 +502,6 @@ define({ "api": [
         ]
       }
     },
-    "examples": [
-      {
-        "title": "Request body example:",
-        "content": " {\n\"email\": \"Bobby@email.com\"\n}",
-        "type": "json"
-      }
-    ],
     "success": {
       "examples": [
         {
@@ -531,7 +517,7 @@ define({ "api": [
   },
   {
     "type": "get",
-    "url": "/users/email",
+    "url": "/users/email/:email",
     "title": "Get user by email",
     "name": "getUserByEmail",
     "group": "User",
@@ -548,13 +534,6 @@ define({ "api": [
         ]
       }
     },
-    "examples": [
-      {
-        "title": "Request body example:",
-        "content": " {\n\"email\": \"Bobby@email.com\"\n}",
-        "type": "json"
-      }
-    ],
     "success": {
       "examples": [
         {
