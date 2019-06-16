@@ -21,8 +21,16 @@ $(document).ready(function () {
   const getBillsForUserPopulateUsersElem = $('#addemails');
 
 
+  // ***************************************
   // Local Storage functions
+  // ***************************************
+
+  function deleteAuthState() {
+    localStorage.removeItem('authState');
+  }
+
   function createAuthState(firstName, email) {
+    deleteAuthState();
     const authState = {
       firstName: firstName,
       email: email,
@@ -31,11 +39,9 @@ $(document).ready(function () {
     localStorage.setItem('authState', JSON.stringify(authState));
   }
 
-  function deleteAuthState() {
-    localStorage.removeItem('authState');
-  }
-
+  // ***************************************
   // Ajax functions
+  // ***************************************
 
   // Sign in
   function signIn(userData, callback) {
@@ -53,7 +59,7 @@ $(document).ready(function () {
   }
 
   // Create new user
-  function createUser(userData) {
+  function createUser(userData, callback) {
     const createUserApiUrl = 'http://localhost:3000/api/users/';
     const newUser = {
       firstName: userData.firstName,
@@ -199,7 +205,7 @@ $(document).ready(function () {
   //   });
   // }
 
-  
+
   // Saves user authentication and scrolls page down to create bill section
   function directUserAfterAuth(response) {
     console.log(response);
@@ -217,8 +223,9 @@ $(document).ready(function () {
   }
 
 
+  // ***************************************
   // Onclick handler functions
-
+  // ***************************************
 
   // When the user clicks on the button, open the modal
   btn.onclick = function () {
@@ -240,7 +247,6 @@ $(document).ready(function () {
     };
     signIn(userData, directUserAfterAuth);
   });
-
 
   // Handle create user on click
   signUpElem.click(function () {
@@ -275,7 +281,7 @@ $(document).ready(function () {
     getUserByEmail(userEmail);
   });
 
-  // Handle search for user email
+  // Handle add users to bill click
   addUsersToBillElem.click(function () {
     // const userEmails = { 'STUFF************': 'STUFF*********' };
     $('.add-payer-user').each((index, value) => {
