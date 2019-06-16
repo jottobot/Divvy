@@ -17,12 +17,28 @@ $(document).ready(function () {
   const submitBillElem = $('#addbillsubmit');
   const searchUserByEmailElem = $('#addUserEmail');
   const addUsersToBillElem = $('#addemails');
+
   const getBillsForUserPopulateUsersElem = $('#addemails');
+
+
+  // Local Storage functions
+  function createAuthState(firstName, email) {
+    const authState = {
+      firstName: firstName,
+      email: email,
+    };
+
+    localStorage.setItem('authState', JSON.stringify(authState));
+  }
+
+  function deleteAuthState() {
+    localStorage.removeItem('authState');
+  }
 
   // Ajax functions
 
   // Sign in
-  function signIn(userData) {
+  function signIn(userData, callback) {
     const queryUrl = 'http://localhost:3000/api/auth/';
     $.ajax({
       url: queryUrl,
@@ -31,8 +47,8 @@ $(document).ready(function () {
         email: userData.email,
         password: userData.password,
       },
-    }).then(function (response) {
-      console.log(response);
+    }).then(response => {
+      callback(response);
     });
   }
 
@@ -52,7 +68,7 @@ $(document).ready(function () {
       method: 'POST',
       data: newUser,
     }).then(response => {
-      console.log(response);
+      callback(response);
     });
   }
 
@@ -183,6 +199,23 @@ $(document).ready(function () {
   //   });
   // }
 
+  
+  // Saves user authentication and scrolls page down to create bill section
+  function directUserAfterAuth(response) {
+    console.log(response);
+    if (response.id) { // user found
+      createAuthState(response.firstName, response.email);
+      $('.username').append(response.firstName + '.');
+
+      modal.style.display = 'none';
+      $('#addbillcard').show();
+      $('#viewbills').show();
+      $('html, body').animate({
+        scrollTop: ($('#addbillcard').offset().top)
+      }, 200);
+    }
+  }
+
 
   // Onclick handler functions
 
@@ -205,16 +238,7 @@ $(document).ready(function () {
       email: $('#signinemail').val().trim(),
       password: $('#signinpassword').val().trim()
     };
-    signIn(userData);
-    modal.style.display = 'none';
-    $('#addbillcard').show();
-    $('#viewbills').show();
-    $('html, body').animate({
-      scrollTop: ($('#addbillcard').offset().top)
-    }, 200);
-
-    var signinname = $('#signinname').val();
-    $('.username').append(signinname + '.');
+    signIn(userData, directUserAfterAuth);
   });
 
 
@@ -229,17 +253,7 @@ $(document).ready(function () {
       phoneNumber: $('#signupphone').val().trim(),
       password: $('#signuppassword').val().trim()
     };
-    createUser(userData);
-
-    modal.style.display = 'none';
-    $('#addbillcard').show();
-    $('#viewbills').show();
-    $('html, body').animate({
-      scrollTop: ($('#addbillcard').offset().top)
-    }, 200);
-
-    var signupname = $('#signupfirstname').val();
-    $('.username').append(signupname + '.');
+    createUser(userData, directUserAfterAuth);
   });
 
   // Handle submit bill on click
