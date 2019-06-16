@@ -3,6 +3,7 @@ $(document).ready(function () {
   $('#addbillcard').hide();
   $('#viewbills').hide();
 
+
   // Opening modal
   var modal = document.getElementById('myModal');
   // Get the button that opens the opening modal
@@ -14,7 +15,7 @@ $(document).ready(function () {
   const signUpElem = $('#signupbutton');
   // const signInElem = $('#signinbutton');
   const submitBillElem = $('#addbillsubmit');
-  // const searchUserByEmailElem = $('#addUserEmail');
+  const searchUserByEmailElem = $('#addUserEmail');
   const addUsersToBillElem = $('#addemails');
   const getBillsForUserPopulateUsersElem = $('#addemails');
 
@@ -71,6 +72,9 @@ $(document).ready(function () {
       }
     }).then(function (response) {
       console.log(response);
+      if (response.id) {
+        billId = response.id;
+      }
     });
   }
 
@@ -147,27 +151,37 @@ $(document).ready(function () {
     }).then(response => {
       console.log(response);
       if (response.length) {
-        $('#emails > tbody').append('<tr><td>' + response[0] + '</tr></td>');
+        const user = response[0];
+        const userDiv = $('<div>').addClass('add-payer-user');
+        const firstNameElem = $('<tr><td>' + user.firstName + '</tr></td>').attr('firstName', user.firstName);
+        const lastNameElem = $('<tr><td>' + user.lastName + '</tr></td>').attr('last-name', user.lastName);
+        const userEmailElem = $('<tr><td>' + user.email + '</tr></td>').attr('email', user.email);
+        const amountOwedElem = $('<tr><td>Amount: <input type="number" min="0" class="form-control" placeholder="Enter amount" required></tr></td>');
+
+        userDiv.append(firstNameElem, lastNameElem, userEmailElem, amountOwedElem);
+        $('#emails > tbody').append(userDiv);
+      } else {
+        console.log('user email does not exist');
       }
     });
   }
 
   //function add bill to user
-  function addBillToUser(userEmail) {
-    const apiUrl = 'http://localhost:3000/api/users/addbill/';
+  // function addBillToUser(userData) {
+  //   const apiUrl = 'http://localhost:3000/api/users/addbill/';
 
-    $.ajax({
-      url: apiUrl,
-      method: 'POST',
-      data: {
-        'email': userEmail.userEmail,
-        'billId': Useremail.billId,
-        'percentOwed': Useremail.percentOwed
-      }
-    }).then(response => {
-      console.log(response);
-    });
-  }
+  //   $.ajax({
+  //     url: apiUrl,
+  //     method: 'POST',
+  //     data: {
+  //       'email': userData.email,
+  //       'billId': userData.billId,
+  //       'amountOwed': userData.amountOwed
+  //     }
+  //   }).then(response => {
+  //     console.log(response);
+  //   });
+  // }
 
 
   // Onclick handler functions
@@ -237,26 +251,29 @@ $(document).ready(function () {
       // BillDue: $('#dueDate').val(),
       BillPaid: $('.paid:checked').val()
     };
-    console.log(billData);
     createBill(billData);
+    $('#modal2').show();
   });
 
   // Handle search for user email
-  $('#addUserEmail').click(function () {
+  searchUserByEmailElem.click(function () {
     const userEmail = $('#inputemail').val();
     getUserByEmail(userEmail);
-    // var inputBill = $('#inputemail').val();
-    $('#emails > tbody').append('<tr><td>' + userEmail + '</tr></td>');
-
-
-
   });
 
   // Handle search for user email
   addUsersToBillElem.click(function () {
-    const userEmails = { 'STUFF************': 'STUFF*********' };
-    userEmails.forEach(email => {
-      addBillToUser(email);
+    // const userEmails = { 'STUFF************': 'STUFF*********' };
+    $('.add-payer-user').each((index, value) => {
+      const email = $(value).find('[email]').attr('email');
+      const amountOwed = $(value).find('input').val();
+      // const dataToSend = {
+      //   email: email,
+      //   amountOwed: amountOwed
+      // }
+      console.log(email);
+      console.log(amountOwed);
+      // addBillToUser(email);
     });
   });
 

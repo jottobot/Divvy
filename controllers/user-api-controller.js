@@ -96,7 +96,7 @@ exports.getBillsForUserPopulateUsers = function (req, res) {
 exports.addBillToUser = function (req, res) {
   const email = req.body.email; // str
   const billId = req.body.billId; // int
-  const percentOwed = req.body.percentOwed; // int
+  const amountOwed = req.body.amountOwed; // int
   db.User.findAll(
     {
       where: {
@@ -107,9 +107,8 @@ exports.addBillToUser = function (req, res) {
     db.Bill
       .findAll({ where: { id: billId } })
       .then(bill => {
-
         user[0].addBill(bill[0], {
-          through: { percentOwed: percentOwed } // allows percentOwed field addition
+          through: { percentOwed: amountOwed }
         }
         ).then(result => {
           res.json(result);
