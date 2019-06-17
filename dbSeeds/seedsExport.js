@@ -6,14 +6,14 @@ const users = [
     lastName: 'Jones',
     email: 'Bobby@email.com',
     phoneNumber: '206999999',
-    password: 'f7khfdsKJHd'
+    password: '1234'
   },
   {
     firstName: 'Sally',
     lastName: 'Smite',
     email: 'Sally@email.com',
     phoneNumber: '4253828183',
-    'password': 'jafsd8Ikads8'
+    password: '1234'
   }
 ];
 
