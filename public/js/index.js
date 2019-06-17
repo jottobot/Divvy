@@ -15,11 +15,10 @@ $(document).ready(function () {
 
   // jQuery button elements
   const signUpElem = $('#signupbutton');
-  // const signInElem = $('#signinbutton');
+  const signInElem = $('#signinbutton');
   const submitBillElem = $('#addbillsubmit');
   const searchUserByEmailElem = $('#addUserEmail');
   const addUsersToBillElem = $('#addemails');
-  const getBillsForUserPopulateUsersElem = $('#addemails');
 
 
   // ***************************************
@@ -29,19 +28,20 @@ $(document).ready(function () {
     localStorage.removeItem('authState');
   }
 
-  function createAuthState(firstName, email) {
+  function createAuthState(firstName, lastName, email) {
     deleteAuthState();
     const authState = {
       firstName: firstName,
+      lastName: lastName,
       email: email,
     };
 
     localStorage.setItem('authState', JSON.stringify(authState));
   }
 
-  // function getAuthState() {
-  //   return localStorage.getItem('authState');
-  // }
+  function getAuthState() {
+    return localStorage.getItem('authState');
+  }
 
   // ***************************************
   // Ajax functions
@@ -78,10 +78,11 @@ $(document).ready(function () {
       method: 'POST',
       data: newUser,
     }).then(response => {
+      userData.amountYouOwe
+
       callback(response);
     });
   }
-
 
   //function create a bill
   function createBill(billData) {
@@ -97,9 +98,22 @@ $(document).ready(function () {
         BillPaid: billData.BillPaid,
       }
     }).then(function (response) {
-      console.log(response);
-      if (response.id) {
+
+
+      if (response.id) { // bill creation success
         billId = response.id;
+        const amountYouOwe = billData.amountYouOwe;
+        const billCreater = getAuthState();
+        const userData = {
+          email: billCreater.email,
+          billId: billId,
+          amountOwed: amountYouOwe,
+        };
+
+        addBillToUser(userData).then(() => {
+          addUsersToBillElem.attr('data-id', billId);
+          $('#modal2').show();
+        });
       }
     });
   }
@@ -164,10 +178,10 @@ $(document).ready(function () {
     });
   }
 
-  $(document).on('click', '.addPayers', function(event) {
+  $(document).on('click', '.addPayers', function (event) {
     event.preventDefault();
     var billId = $(this).parent().attr('data-id');
-    $('#addemails').attr('data-id', billId);
+    addUsersToBillElem.attr('data-id', billId);
     $('#modal2').show();
   });
 
@@ -185,7 +199,7 @@ $(document).ready(function () {
     });
   }
 
-  $(document).on('click', '.viewBill', function(event) {
+  $(document).on('click', '.viewBill', function (event) {
     event.preventDefault();
     var billId = $(this).parent().attr('data-id');
     $('#billDetailModal').show();
@@ -228,6 +242,7 @@ $(document).ready(function () {
   //function get user by email
   function getUserByEmail(email) {
     const getUserapiUrl = 'http://localhost:3000/api/users/email/';
+
     $.ajax({
       url: getUserapiUrl + email,
       method: 'GET',
@@ -235,6 +250,7 @@ $(document).ready(function () {
       console.log(response);
       if (response.length) {
         const user = response[0];
+
         const userDiv = $('<div>').addClass('add-payer-user');
         const firstNameElem = $('<tr><td>' + user.firstName + '</tr></td>').attr('firstName', user.firstName);
         const lastNameElem = $('<tr><td>' + user.lastName + '</tr></td>').attr('last-name', user.lastName);
@@ -272,7 +288,7 @@ $(document).ready(function () {
   function directUserAfterAuth(response) {
     console.log(response);
     if (response.id) { // user found
-      createAuthState(response.firstName, response.email);
+      createAuthState(response.firstName, response.lastName, response.email);
       getBillsForUser(response.email);
       $('.username').append(response.firstName + '.');
 
@@ -302,7 +318,7 @@ $(document).ready(function () {
   };
 
   // Handle sign in on click
-  $('#signinbutton').click(function (event) {
+  signInElem.click(function (event) {
     event.preventDefault();
     const userData = {
       email: $('#signinemail').val().trim(),
@@ -332,10 +348,12 @@ $(document).ready(function () {
       Company: $('#inputcompany').val().trim(),
       Amount: $('#inputprice').val().trim(),
       // BillDue: $('#dueDate').val(),
-      BillPaid: $('.paid:checked').val()
+      BillPaid: $('.paid:checked').val(),
+      amountYouOwe: $('#price-you-owe').val(),
     };
+
+
     createBill(billData);
-    $('#modal2').show();
   });
 
   // Handle search for user email
@@ -364,10 +382,10 @@ $(document).ready(function () {
 
   });
 
-  getBillsForUserPopulateUsersElem.click(function () {
-    const userEmail = 'EMAIL STUFF';
-    getBillsForUserPopulateUsers(userEmail);
-  });
+  // getBillsForUserPopulateUsersElem.click(function () {
+  //   const userEmail = 'EMAIL STUFF';
+  //   getBillsForUserPopulateUsers(userEmail);
+  // });
 
   // $('#addemails').click(
   //   $('html, body').animate({
