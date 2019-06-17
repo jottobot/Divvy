@@ -54,14 +54,14 @@
                 <label for="phone" class="signupphone"><b>Phone</b></label>
                 <input type="text" id="signupphone" placeholder="Your phone" name="phone" required>
 
+                <label for="password" class="signuppassword"><b>Password</b></label>
+                <input type="text" id="signuppassword" placeholder="Your password" name="password" required>
+
                 <div class="clearfix">
-                  <label for="password" class="signuppassword"><b>Password</b></label>
-                  <input type="text" id="signuppassword" placeholder="Your password" name="password" required>
-                  <div>
-                    <button type="submit" class="btn btn-dark" id="signupbutton">Sign up</button>
-                    <button type="submit" class="btn btn-dark">Cancel</button>
-                  </div>
+                  <button type="submit" class="btn btn-dark" id="signupbutton">Sign up</button>
+                  <button type="submit" class="btn btn-dark">Cancel</button>
                 </div>
+
               </div>
             </center>
           </form>
@@ -128,6 +128,7 @@
           </form> --}}
           <form action="/action_page.php" method="get">
             <h5 class="paidyet">Been paid?</h5>
+            <hr>
             <input type="checkbox" name="bill" value="true" class="paid"> Bill is paid<br>
             <input type="checkbox" name="bill" value="false" class="paid" checked> Bill is unpaid<br>
             {{!-- <input type="submit" value="Submit"> --}}
@@ -139,7 +140,7 @@
       <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6">
-          <button type="submit" class="btn btn-dark" id="addbillsubmit">Submit</button>
+          <button type="submit" class="btn btn-dark" id="addbillsubmit">Add payers</button>
         </div>
         <div class="col-md-3"></div>
       </div>
@@ -149,7 +150,7 @@
     {{!-- add users hidden modal --}}
     <div id="modal2" class="modal">
       <div class="modal-content">
-          <span class="close">&times;</span>
+        <span class="close">&times;</span>
         <div class="w3-container w3-padding-32" id="contact">
           <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16" id="divvyfont">
             Add payers
@@ -157,7 +158,7 @@
           <center>
             <form>
               <div class="form-group">
-                <label for="formGroupExampleInput" class="formlabel">Enter payer's email</label>
+                <label for="formGroupExampleInput" class="formlabel">Input emails to whom owes the bill.</label>
                 <input type="text" class="form-control" id="inputemail" placeholder="Enter email">
               </div>
             </form>
@@ -166,100 +167,105 @@
                 <thead>
                   <tr>
                     <div class="row">
-                      <div id="addPayersEmailPercentage">
-                        <th>Email:</th>
-                        <th>Amount:
-                          {{!-- <input type="text" class="form-control" id="inputemail" placeholder="Enter email"> --}}
-                        </th>
+                      <div>
+                        
+                        <th id="addPayersEmail">Payer information:</th>
+                        
+                        
                       </div>
                     </div>
                     <hr>
-
                   </tr>
 
                 </thead>
               </tbody>
-
             </table>
 
-            <button type="submit" class="btn btn-dark" id="addUserEmail">Add user</button>
-            <button type="submit" class="btn btn-dark" id="addemails">Submit</button>
+            <button type="submit" class="btn btn-dark" id="addUserEmail">Add payer</button>
+            <button type="submit" class="btn btn-dark" id="addemails">Submit bill</button>
 
         </div>
         </center>
       </div>
     </div>
-  </div>
 
 
-  {{!-- View Bill modal --}}
 
-<!-- Modal -->
-<div class="modal" id="billDetailModal">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Bill Detail</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-      <div id="viewBill"></div>
-      </div>
-    </div>
-  </div>
-</div>
+    {{!-- View Bill modal --}}
 
-
-  <!-- View bills page -->
-  <div class="card" id="viewbills">
-    <div class="card-body-addbill">
-      View bills.
-    </div>
-    <div class="username"></div>
-
-    {{!-- add/settle buttons --}}
-    <div class="row">
-      <div class="col-6">
-        <button id="addnewbill" class="btn btn-dark" type="submit">Add a new bill</button>
-      </div>
-      <div class="col-6">
-        <a href="https://venmo.com/">
-          <button id="settle" class="btn btn-dark" type="submit">Settle up</button>
-        </a>
+    <!-- Modal -->
+    <div class="modal" id="billDetailModal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Bill Detail</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div id="viewBill"></div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <hr>
 
-    {{!-- dashboard --}}
-    <div class="row">
-      <div class="col-8">
-        <table id="current-bills" class="table table-hover table-dark">
-          <h3 class="dashboard">Your Bills</h3>
-          <thead>
-            <tr>
-              <th scope="col" class="viewtable">ID</th>
-              <th scope="col" class="viewtable">Bill</th>
-              <th scope="col" class="viewtable">Company</th>
-              <th scope="col" class="viewtable">Total bill</th>
-              <th scope="col" class="viewtable">You owe</th>
-              <th scope="col" class="viewtable">Paid</th>
-            </tr>
-          </thead>
-
-          <tbody>
+    <!-- View bills page -->
+    <div class="card" id="viewbills">
+      <div class="card-body-addbill">
+        View your bills,
+      </div>
+      <div class="username"></div>
 
 
 
-          </tbody>
-        </table>
+      <hr>
+
+      {{!-- dashboard --}}
+      <div class="row">
+        {{!-- <div class="col-8"> --}}
+        <div class="col-1"></div>
+        <div class="col-10">
+          <table id="current-bills" class="table table-hover table-dark">
+            <h3 class="dashboard">Bill Details</h3>
+            <thead>
+              <tr>
+                <th scope="col" class="viewtable">ID</th>
+                <th scope="col" class="viewtable">Bill</th>
+                <th scope="col" class="viewtable">Company</th>
+                <th scope="col" class="viewtable">Total bill</th>
+                <th scope="col" class="viewtable">You owe</th>
+                <th scope="col" class="viewtable">Paid</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-1"></div>
       </div>
 
-      <div class="col-1"></div>
+      <hr>
 
-      <div class="col-3">
+      {{!-- add/settle buttons --}}
+      <div class="row">
+        <div class="col-4"></div>
+        <div class="col-2">
+          <button id="addnewbill" class="btn btn-dark" type="submit">Add a new bill</button>
+        </div>
+        <div class="col-2">
+          <a href="https://venmo.com/">
+            <button id="settle" class="btn btn-dark" type="submit">Settle up</button>
+          </a>
+        </div>
+        <div class="col-4"></div>
+      </div>
+      {{!-- </div> --}}
+
+      {{!-- <div class="col-1"></div> --}}
+
+      {{!-- <div class="col-3">
         <h5 class="dashboard">Personal Dashboard</h3>
           <table class="table table-bordered" id="yourmoney">
             <thead>
@@ -276,7 +282,7 @@
 
             </tbody>
           </table>
-      </div>
+      </div> --}}
 
       {{!-- end of view bills div --}}
     </div>
@@ -286,5 +292,6 @@
         style="width: 200px;height: 300px;">{ "handle": "divvyapp", "arch": "js", "styles": { "a": "000000", "b": 100, "c": "FFFFFF", "d": "FFFFFF", "k": "000000", "l": "000000", "m": "000000", "n": "FFFFFF", "p": "10", "q": "000000", "r": 100, "pos": "br", "cv": 1, "cvfnt": "'Helvetica Neue', Helvetica, Arial, sans-serif, sans-serif", "cvbg": "000000", "cvw": 200, "cvh": 30, "ticker": 1, "fwtickm": 1 } }</script> --}}
 
     <!-- Container div  -->
+  </div>
   </div>
 </body>
