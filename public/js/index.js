@@ -135,8 +135,6 @@ $(document).ready(function () {
     });
   }
 
-
-
   //function delete bill with bill ID
   // function deleteBill(billId) {
   //   var queryURL = 'http://localhost:3000/api/bills/delete/';
@@ -186,8 +184,8 @@ $(document).ready(function () {
         const amountCell = $('<td>').text(bill.Amount);
         const isPaidCell = $('<td>').text(bill.BillPaid);
         const youOweCell = $('<td>').text(bill.UserBill.amountOwed);
-        const addPayers = $('<button type="button" class="btn btn-light addPayers">Add payers</button>');
-        const billDetail = $('<button type="button" class="btn btn-light viewBill">View Bill</button>');
+        const addPayers = $('<button type="button" class="btn btn-outline-light addPayers">Add payers</button>');
+        const billDetail = $('<button type="button" class="btn btn-outline-light viewBill">Bill details</button>');
         tableRow
           .append(tableHead, titleCell, companyCell, amountCell, youOweCell, isPaidCell, addPayers, billDetail);
         $('#current-bills').append(tableRow);

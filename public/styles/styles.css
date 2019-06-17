@@ -113,12 +113,12 @@ body, html, h1 {
 }
 
 /* Add Payers */
-#addPayersEmailPercentage {
+/* #addPayersEmailPercentage {
   margin-left: 300px;
 }
 #payersBtns {
   padding-top: 30px;
-}
+} */
 
 /* sign in form */
 #signinform {
@@ -185,12 +185,16 @@ body, html, h1 {
 }
 
 /* View bills page */
+#viewBills {
+  margin-bottom: 100px;
+}
 #headertable1 {
   padding-bottom: 20px;
 }
 .dashboard {
   margin-bottom: 20px;
   font-family: 'Playfair Display', serif;
+  text-align: center;
 }
 .viewtable {
   font-family: 'Playfair Display', serif;
@@ -205,18 +209,19 @@ body, html, h1 {
  #current-bills {
    margin-bottom: 20px;
  }
+ .addPayers {
+  margin-left: 10px;
+  text-transform: uppercase; 
+ }
+ .viewBill {
+   margin-left: 10px;
+   text-transform: uppercase;
+ }
 
  /* footer */
- .navbar {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  text-align: center;
-  height: 30px;
-  font-size: 10px;
+ .page-footer {
   background-color: #f5f5f5;
+  color: black;
   font-family: 'Archivo Black', sans-serif;
-}
-.navbar-text {
-  text-align: center;
-}
+ }
+

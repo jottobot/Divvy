@@ -110,7 +110,7 @@
             <label for="formGroupExampleInput2" class="formlabel">Bill Total</label>
             <input type="number" class="form-control" id="inputprice" placeholder="Enter bill price" required>
           </div>
-           <div class="form-group">
+          <div class="form-group">
             <label for="formGroupExampleInput2" class="formlabel">How much you owe</label>
             <input type="number" class="form-control" id="price-you-owe" placeholder="Enter amount you owe" required>
           </div>
@@ -191,7 +191,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Bill Detail</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Bill Details</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -214,7 +214,6 @@
 
       {{!-- dashboard --}}
       <div class="row">
-        {{!-- <div class="col-8"> --}}
         <div class="col-1"></div>
         <div class="col-10">
           <table id="current-bills" class="table table-hover table-dark">
@@ -227,6 +226,8 @@
                 <th scope="col" class="viewtable">Total bill</th>
                 <th scope="col" class="viewtable">You owe</th>
                 <th scope="col" class="viewtable">Paid</th>
+                {{!-- <th scope="col" class="viewtable">Add payers</th> --}}
+                {{!-- <th scope="col" class="viewtable">View details</th> --}}
               </tr>
             </thead>
             <tbody>
@@ -253,45 +254,14 @@
       </div>
 
 
-
-
-      {{!-- <div class="col-3">
-        <h5 class="dashboard">Personal Dashboard</h3>
-          <table class="table table-bordered" id="yourmoney">
-            <thead>
-              <tr>
-                <th scope="col">Money owed</th>
-                <th scope="col">Money due</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>3</td>
-                <td>5</td>
-              </tr>
-
-            </tbody>
-          </table>
-      </div> --}}
-
-      
     </div>
-    
-    </div>
-
-    {{!-- Chat --}}
-    {{!-- <script id="cid0020000221547496565" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js"
-        style="width: 200px;height: 300px;">{ "handle": "divvyapp", "arch": "js", "styles": { "a": "000000", "b": 100, "c": "FFFFFF", "d": "FFFFFF", "k": "000000", "l": "000000", "m": "000000", "n": "FFFFFF", "p": "10", "q": "000000", "r": 100, "pos": "br", "cv": 1, "cvfnt": "'Helvetica Neue', Helvetica, Arial, sans-serif, sans-serif", "cvbg": "000000", "cvw": 200, "cvh": 30, "ticker": 1, "fwtickm": 1 } }</script> --}}
-
-    <!-- Container div  -->
   </div>
 
-  {{!-- footer --}}
-  <div class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container">
-      <p class="navbar-text">© 2019: DIVVY.
-      </p>
-    </div>
+  {{!-- Chat --}}
+  {{!-- <script id="cid0020000221547496565" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js"
+        style="width: 200px;height: 300px;">{ "handle": "divvyapp", "arch": "js", "styles": { "a": "000000", "b": 100, "c": "FFFFFF", "d": "FFFFFF", "k": "000000", "l": "000000", "m": "000000", "n": "FFFFFF", "p": "10", "q": "000000", "r": 100, "pos": "br", "cv": 1, "cvfnt": "'Helvetica Neue', Helvetica, Arial, sans-serif, sans-serif", "cvbg": "000000", "cvw": 200, "cvh": 30, "ticker": 1, "fwtickm": 1 } }</script> --}}
+
+  <!-- Container div  -->
   </div>
 
 </body>
