@@ -8,6 +8,8 @@ $(document).ready(function () {
   var modal = document.getElementById('myModal');
   // Add Payer modal
   var modal2 = document.getElementById('modal2');
+  // Add Payer modal
+  var billDetailModal = document.getElementById('billDetailModal');
   // Get the button that opens the opening modal
   var openingModalBtn = document.getElementById('myBtn');
   // Get the <span> element that closes the modal
@@ -84,7 +86,7 @@ $(document).ready(function () {
     });
   }
 
-  // function add bill to user
+  // Add bill to user
   function addBillToUser(userData, callback) {
     const apiUrl = 'http://localhost:3000/api/users/addbill/';
 
@@ -100,6 +102,27 @@ $(document).ready(function () {
       callback();
       console.log(response);
     });
+  }
+
+  // Adds a table row in adding a user to a bill modal
+  function buildAddUserToBillTableRow(user, isBillCreator) {
+    $('.add-payer-user').remove();
+
+    let amountOwedElem;
+    const userDiv = $('<div>').addClass('add-payer-user');
+    const firstNameElem = $('<tr><td>' + user.firstName + '</tr></td>').attr('firstName', user.firstName);
+    const lastNameElem = $('<tr><td>' + user.lastName + '</tr></td>').attr('last-name', user.lastName);
+    const userEmailElem = $('<tr><td>' + user.email + '</tr></td>').attr('email', user.email);
+    var line = $('<div>').append('<hr>');
+
+    userDiv.append(firstNameElem, lastNameElem, userEmailElem);
+    if (!isBillCreator) {
+      amountOwedElem = $('<tr><td>Amount: <input type="number" min="0" class="form-control" min="0" value="0" placeholder="Enter amount" required></tr></td>');
+      userDiv.append(amountOwedElem);
+    }
+    userDiv.append(line);
+
+    $('#emails > tbody').append(userDiv);
   }
 
   //function create a bill
@@ -119,16 +142,18 @@ $(document).ready(function () {
       if (response.id) { // bill creation success
         billId = response.id;
         const amountYouOwe = billData.amountYouOwe;
-        const billCreater = getAuthState();
+        const billCreator = getAuthState();
 
         const userData = {
-          email: billCreater.email,
+          email: billCreator.email,
           billId: billId,
           amountOwed: amountYouOwe,
         };
 
-        addBillToUser(userData, function () {
+        addBillToUser(userData, function () { // add bill creator to bill
           addUsersToBillElem.attr('data-id', billId);
+          buildAddUserToBillTableRow(billCreator, true);
+
           $('#modal2').show();
         });
       }
@@ -168,6 +193,21 @@ $(document).ready(function () {
   // }
 
 
+  function buildBillViewRow(bill, destination) {
+    const tableRow = $('<tr>').attr('data-id', bill.id);
+    const tableHead = $('<th>').attr('scope', 'row').text(bill.id);
+    const titleCell = $('<td>').text(bill.title);
+    const companyCell = $('<td>').text(bill.Company);
+    const amountCell = $('<td>').text(bill.Amount);
+    const isPaidCell = $('<td>').text(bill.BillPaid);
+    const youOweCell = $('<td>').text(bill.UserBill.amountOwed);
+    const addPayersBtn = $('<button type="button" class="btn btn-light addPayers">Add payers</button>');
+    const billDetailBtn = $('<button type="button" class="btn btn-light viewBill">View Bill</button>');
+    tableRow
+      .append(tableHead, titleCell, companyCell, amountCell, youOweCell, isPaidCell, addPayersBtn, billDetailBtn);
+    destination.append(tableRow);
+  }
+
   //function get all users associated will bill
   function getBillsForUser(userEmail) {
     var queryURL = 'http://localhost:3000/api/users/bills/';
@@ -177,34 +217,35 @@ $(document).ready(function () {
     }).then(function (response) {
       console.log(response);
       response.forEach(bill => {
-        const tableRow = $('<tr>').attr('data-id', bill.id);
-        const tableHead = $('<th>').attr('scope', 'row').text(bill.id);
-        const titleCell = $('<td>').text(bill.title);
-        const companyCell = $('<td>').text(bill.Company);
-        const amountCell = $('<td>').text(bill.Amount);
-        const isPaidCell = $('<td>').text(bill.BillPaid);
-        const youOweCell = $('<td>').text(bill.UserBill.amountOwed);
-        const addPayers = $('<button type="button" class="btn btn-outline-light addPayers">Add payers</button>');
-        const billDetail = $('<button type="button" class="btn btn-outline-light viewBill">Bill details</button>');
-        const settle = $('<button type="button" class="btn btn-outline-light settle" id="settle">Pay bill</button>');
-        tableRow
-          .append(tableHead, titleCell, companyCell, amountCell, youOweCell, isPaidCell, addPayers, billDetail, settle);
-        $('#current-bills').append(tableRow);
+        buildBillViewRow(bill, $('#current-bills'));
       });
     });
   }
 
+  function buildRowsBillDetail(payers) {
+    $('.bill-payer-detail').remove();
+
+    payers.forEach(payer => {
+      const payerDiv = $('<div>').addClass('bill-payer-detail');
+      const firstNameElem = $('<tr><td>' + payer.firstName + '</tr></td>');
+      const lastNameElem = $('<tr><td>' + payer.lastName + '</tr></td>');
+      const userEmailElem = $('<tr><td>' + payer.email + '</tr></td>');
+      const amountPayerOwesElem = $('<tr><td>' + payer.UserBill.amountOwed + '</tr></td>');
+      var line = $('<div>').append('<hr>');
+      payerDiv.append(firstNameElem, lastNameElem, userEmailElem, amountPayerOwesElem, line);
+
+      $('#bill-detail-users').append(payerDiv);
+    });
+  }
+
   // Get details for a single bill
-  function billDetail(billId) {
+  function billDetail(billId, callback) {
     var queryURL = 'http://localhost:3000/api/bills/';
     $.ajax({
       url: queryURL + billId,
       method: 'GET',
-    }).then(function (response) {
-      for (var i = 0; i < response.length; i++) {
-        // var user = response[i];
-      }
-      console.log(response);
+    }).then(response => {
+      callback(response);
     });
   }
 
@@ -240,6 +281,8 @@ $(document).ready(function () {
   //   });
   // }
 
+
+
   //function get user by email
   function getUserByEmail(email) {
     const getUserapiUrl = 'http://localhost:3000/api/users/email/';
@@ -252,15 +295,7 @@ $(document).ready(function () {
       if (response.length) {
         const user = response[0];
 
-        const userDiv = $('<div>').addClass('add-payer-user');
-        const firstNameElem = $('<tr><td>' + user.firstName + '</tr></td>').attr('firstName', user.firstName);
-        const lastNameElem = $('<tr><td>' + user.lastName + '</tr></td>').attr('last-name', user.lastName);
-        const userEmailElem = $('<tr><td>' + user.email + '</tr></td>').attr('email', user.email);
-        const amountOwedElem = $('<tr><td>Amount owed: <input type="number" min="0" class="form-control" min="0" value="0" placeholder="Enter amount" required></tr></td>');
-        var line = $('<div>').append('<hr>');
-
-        userDiv.append(firstNameElem, lastNameElem, userEmailElem, amountOwedElem, line);
-        $('#emails > tbody').append(userDiv);
+        buildAddUserToBillTableRow(user, false);
       } else {
         // ADD ALERT FOR NO USER FOUND
         // $('.alert').toggleClass('in out');
@@ -307,6 +342,7 @@ $(document).ready(function () {
 
   span.onclick = function () {
     modal2.style.display = 'none';
+    billDetailModal.style.display = 'none';
   };
 
   // Handle sign in on click
@@ -344,7 +380,6 @@ $(document).ready(function () {
       amountYouOwe: $('#price-you-owe').val(),
     };
 
-
     createBill(billData);
   });
 
@@ -366,7 +401,10 @@ $(document).ready(function () {
     event.preventDefault();
     var billId = $(this).parent().attr('data-id');
     $('#billDetailModal').show();
-    billDetail(billId);
+    billDetail(billId, function (response) {
+      console.log(response);
+      buildRowsBillDetail(response);
+    });
   });
 
   // Handle add users to bill click
