@@ -104,6 +104,8 @@ $(document).ready(function () {
 
   // Adds a table row in adding a user to a bill modal
   function buildAddUserToBillTableRow(user, isBillCreator) {
+    $('.add-payer-user').remove();
+
     let amountOwedElem;
     const userDiv = $('<div>').addClass('add-payer-user');
     const firstNameElem = $('<tr><td>' + user.firstName + '</tr></td>').attr('firstName', user.firstName);
@@ -293,8 +295,12 @@ $(document).ready(function () {
 
         buildAddUserToBillTableRow(user, false);
       } else {
-        console.log('user email does not exist');
+        // ADD ALERT FOR NO USER FOUND
+        // $('.alert').toggleClass('in out');
+        // return false;
+        alert('Email address not found. Please have user make an account.');
       }
+      console.log('user email does not exist');
     });
   }
 
@@ -312,6 +318,8 @@ $(document).ready(function () {
       $('html, body').animate({
         scrollTop: ($('#addbillcard').offset().top)
       }, 200);
+    } else {
+      alert('Please enter a valid email address OR make an account.');
     }
   }
 
