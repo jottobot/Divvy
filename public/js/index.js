@@ -1,3 +1,7 @@
+// const developmentBaseUrl = 'http://localhost:3000/';
+const productionBaseUrl = 'https://vast-gorge-37663.herokuapp.com/';
+
+const baseUrl = productionBaseUrl;
 
 $(document).ready(function () {
   $('#addbillcard').hide();
@@ -51,7 +55,7 @@ $(document).ready(function () {
 
   // Sign in
   function signIn(userData, callback) {
-    const queryUrl = 'http://localhost:3000/api/auth/';
+    const queryUrl = baseUrl + 'api/auth/';
     $.ajax({
       url: queryUrl,
       method: 'POST',
@@ -66,7 +70,7 @@ $(document).ready(function () {
 
   // Create new user
   function createUser(userData, callback) {
-    const createUserApiUrl = 'http://localhost:3000/api/users/';
+    const createUserApiUrl = baseUrl + 'api/users/';
     const newUser = {
       firstName: userData.firstName,
       lastName: userData.lastName,
@@ -88,7 +92,7 @@ $(document).ready(function () {
 
   // Add bill to user
   function addBillToUser(userData, callback) {
-    const apiUrl = 'http://localhost:3000/api/users/addbill/';
+    const apiUrl = baseUrl + 'api/users/addbill/';
 
     $.ajax({
       url: apiUrl,
@@ -105,11 +109,9 @@ $(document).ready(function () {
   }
 
   // Adds a table row in adding a user to a bill modal
-  function buildAddUserToBillTableRow(user, isBillCreator) {
-    $('.add-payer-user').remove();
-
+  function buildAddUserToBillTableRow(user, isBillCreator, payerClass) {
     let amountOwedElem;
-    const userDiv = $('<div>').addClass('add-payer-user');
+    const userDiv = $('<div>').addClass(payerClass);
     const firstNameElem = $('<tr><td>' + user.firstName + '</tr></td>').attr('firstName', user.firstName);
     const lastNameElem = $('<tr><td>' + user.lastName + '</tr></td>').attr('last-name', user.lastName);
     const userEmailElem = $('<tr><td>' + user.email + '</tr></td>').attr('email', user.email);
@@ -127,7 +129,7 @@ $(document).ready(function () {
 
   //function create a bill
   function createBill(billData) {
-    var queryURL = 'http://localhost:3000/api/bills/';
+    var queryURL = baseUrl + 'api/bills/';
     $.ajax({
       url: queryURL,
       method: 'POST',
@@ -152,7 +154,10 @@ $(document).ready(function () {
 
         addBillToUser(userData, function () { // add bill creator to bill
           addUsersToBillElem.attr('data-id', billId);
-          buildAddUserToBillTableRow(billCreator, true);
+          $('.add-payer-user').remove();
+          $('.bill-creater').remove();
+
+          buildAddUserToBillTableRow(billCreator, true, 'bill-creater');
 
           $('#modal2').show();
         });
@@ -210,7 +215,7 @@ $(document).ready(function () {
 
   //function get all users associated will bill
   function getBillsForUser(userEmail) {
-    var queryURL = 'http://localhost:3000/api/users/bills/';
+    var queryURL = baseUrl + 'api/users/bills/';
     $.ajax({
       url: queryURL + userEmail,
       method: 'GET',
@@ -240,7 +245,7 @@ $(document).ready(function () {
 
   // Get details for a single bill
   function billDetail(billId, callback) {
-    var queryURL = 'http://localhost:3000/api/bills/';
+    var queryURL = baseUrl + 'api/bills/';
     $.ajax({
       url: queryURL + billId,
       method: 'GET',
@@ -285,7 +290,7 @@ $(document).ready(function () {
 
   //function get user by email
   function getUserByEmail(email) {
-    const getUserapiUrl = 'http://localhost:3000/api/users/email/';
+    const getUserapiUrl = baseUrl + 'api/users/email/';
 
     $.ajax({
       url: getUserapiUrl + email,
@@ -295,14 +300,14 @@ $(document).ready(function () {
       if (response.length) {
         const user = response[0];
 
-        buildAddUserToBillTableRow(user, false);
+        buildAddUserToBillTableRow(user, false, 'add-payer-user');
       } else {
         // ADD ALERT FOR NO USER FOUND
         // $('.alert').toggleClass('in out');
         // return false;
         alert('Email address not found. Please have user make an account.');
+        console.log('user email does not exist');
       }
-      console.log('user email does not exist');
     });
   }
 
@@ -390,6 +395,8 @@ $(document).ready(function () {
   $(document).on('click', '.addPayers', function (event) {
     event.preventDefault();
     var billId = $(this).parent().attr('data-id');
+    $('.add-payer-user').remove();
+    $('.bill-creater').remove();
     addUsersToBillElem.attr('data-id', billId);
     $('#modal2').show();
   });
@@ -418,7 +425,6 @@ $(document).ready(function () {
       console.log(dataToSend);
       addBillToUser(dataToSend, function () {
         $('#modal2').hide();
-        $('.add-payer-user').remove();
       });
     });
 
