@@ -164,7 +164,7 @@ $(document).ready(function () {
     });
   }
 
-  $(document).on('click', '.addPayers', function(event) {
+  $(document).on('click', '.addPayers', function (event) {
     event.preventDefault();
     var billId = $(this).parent().attr('data-id');
     $('#addemails').attr('data-id', billId);
@@ -185,7 +185,7 @@ $(document).ready(function () {
     });
   }
 
-  $(document).on('click', '.viewBill', function(event) {
+  $(document).on('click', '.viewBill', function (event) {
     event.preventDefault();
     var billId = $(this).parent().attr('data-id');
     $('#billDetailModal').show();
@@ -239,14 +239,18 @@ $(document).ready(function () {
         const firstNameElem = $('<tr><td>' + user.firstName + '</tr></td>').attr('firstName', user.firstName);
         const lastNameElem = $('<tr><td>' + user.lastName + '</tr></td>').attr('last-name', user.lastName);
         const userEmailElem = $('<tr><td>' + user.email + '</tr></td>').attr('email', user.email);
-        const amountOwedElem = $('<tr><td>Amount: <input type="number" min="0" class="form-control" min="0" value="0" placeholder="Enter amount" required></tr></td>');
+        const amountOwedElem = $('<tr><td>Amount owed: <input type="number" min="0" class="form-control" min="0" value="0" placeholder="Enter amount" required></tr></td>');
         var line = $('<div>').append('<hr>');
 
         userDiv.append(firstNameElem, lastNameElem, userEmailElem, amountOwedElem, line);
         $('#emails > tbody').append(userDiv);
       } else {
-        console.log('user email does not exist');
+        // ADD ALERT FOR NO USER FOUND
+        // $('.alert').toggleClass('in out');
+        // return false;
+        alert('Email address not found. Please have user make an account.');
       }
+      console.log('user email does not exist');
     });
   }
 
@@ -282,6 +286,8 @@ $(document).ready(function () {
       $('html, body').animate({
         scrollTop: ($('#addbillcard').offset().top)
       }, 200);
+    } else {
+      alert('Please enter a valid email address OR make an account.');
     }
   }
 

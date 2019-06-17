@@ -10,6 +10,11 @@ body, html, h1 {
   background-repeat: no-repeat;
   background-size: cover;
 }
+/* .image-container {
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+} */
 .text {
   background-color: rgba(255, 255, 255, 0.847);
   color: black;
@@ -24,15 +29,17 @@ body, html, h1 {
   left: 50%;
   transform: translate(-50%, -50%); /* Position text in the middle */
   mix-blend-mode: screen; /* This makes the cutout text possible */
+  /* transition: .2s; */
 }
-/* .zoom {
-  padding: 50px;
-  transition: transform .2s;
-  width: 200px;
-  height: 200px;
-  margin: 0 auto;
-}
-.zoom:hover {
+/* .zoom { */
+  /* overflow: hidden; */
+  /* padding: 50px; */
+  /* transition: transform .2s; */
+  /* width: 200px;
+  height: 200px; */
+  /* margin: 0 auto; */
+/* } */
+/* .text:hover {
   -ms-transform: scale(1.1);   
   -webkit-transform: scale(1.1);
   transform: scale(1.1); 
@@ -198,3 +205,18 @@ body, html, h1 {
  #current-bills {
    margin-bottom: 20px;
  }
+
+ /* footer */
+ .navbar {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  height: 30px;
+  font-size: 10px;
+  background-color: #f5f5f5;
+  font-family: 'Archivo Black', sans-serif;
+}
+.navbar-text {
+  text-align: center;
+}

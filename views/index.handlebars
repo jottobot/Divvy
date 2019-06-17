@@ -8,6 +8,7 @@
   <!-- Parallax -->
   <div class="parallax"></div>
 
+  {{!-- whole site in this container --}}
   <div class="container">
 
     <!-- Cut-out title -->
@@ -52,7 +53,7 @@
                 <input type="text" id="signupemail" placeholder="Your email" name="email" required>
 
                 <label for="phone" class="signupphone"><b>Phone</b></label>
-                <input type="text" id="signupphone" placeholder="Your phone" name="phone" required>
+                <input type="text" id="signupphone" placeholder="Your phone number" name="phone" required>
 
                 <label for="password" class="signuppassword"><b>Password</b></label>
                 <input type="text" id="signuppassword" placeholder="Your password" name="password" required>
@@ -61,7 +62,6 @@
                   <button type="submit" class="btn btn-dark" id="signupbutton">Sign up</button>
                   <button type="submit" class="btn btn-dark">Cancel</button>
                 </div>
-
               </div>
             </center>
           </form>
@@ -71,8 +71,6 @@
             <center>
               <div class="signin">
                 <h1 class="signintitle">Sign in</h1>
-                {{!-- <label for="name" class="signinname"><b>Name</b></label>
-                <input type="text" placeholder="Your name" name="name" id="signinname" required> --}}
                 <label for="email" class="signinemail"><b>Email</b></label>
                 <input type="text" placeholder="Your email" name="email" id="signinemail" required>
                 <label for="name" class="signuppassword"><b>Password</b></label>
@@ -100,7 +98,6 @@
       <hr>
       <div class="row">
         <div class="col-md-3">
-          {{!-- <form> --}}
           <div class="form-group">
             <label for="formGroupExampleInput" class="formlabel">Bill</label>
             <input type="text" class="form-control" id="inputbill" placeholder="Enter bill title" required>
@@ -113,7 +110,6 @@
             <label for="formGroupExampleInput2" class="formlabel">Price</label>
             <input type="number" class="form-control" id="inputprice" placeholder="Enter bill price" required>
           </div>
-          {{!-- </form> --}}
         </div>
 
         <div class="col-md-6">
@@ -121,11 +117,6 @@
         </div>
 
         <div class="col-md-3">
-          {{!-- <form action="/action_page.php" id="duedate">
-            <h4 class="paymentdate">Payment date:</h4>
-            <input id="dueDate" type="date" name="duedate">
-            <input type="submit" value="Send">
-          </form> --}}
           <form action="/action_page.php" method="get">
             <h5 class="paidyet">Been paid?</h5>
             <hr>
@@ -134,7 +125,6 @@
             {{!-- <input type="submit" value="Submit"> --}}
           </form>
         </div>
-        </form>
         {{!-- end of row --}}
       </div>
       <div class="row">
@@ -158,8 +148,8 @@
           <center>
             <form>
               <div class="form-group">
-                <label for="formGroupExampleInput" class="formlabel">Input emails to whom owes the bill.</label>
-                <input type="text" class="form-control" id="inputemail" placeholder="Enter email">
+                <label for="formGroupExampleInput" class="formlabel">Enter each payer's email.</label>
+                <input type="text" class="form-control" id="inputemail" placeholder="Enter email" style="width: 50%">
               </div>
             </form>
             <table id="emails">
@@ -168,31 +158,30 @@
                   <tr>
                     <div class="row">
                       <div>
-                        
                         <th id="addPayersEmail">Payer information:</th>
-                        
-                        
                       </div>
                     </div>
-                    <hr>
                   </tr>
-
                 </thead>
               </tbody>
             </table>
-
+            {{!-- buttons on add payers modal --}}
             <button type="submit" class="btn btn-dark" id="addUserEmail">Add payer</button>
+
+            {{!-- ALERT FOR NO USER --}}
+            {{!-- <div class="alert alert-info fade out" id="bsalert">
+              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+              <strong>Alert!</strong> This email cannot be found. Please have this user create an account first.
+            </div> --}}
+
             <button type="submit" class="btn btn-dark" id="addemails">Submit bill</button>
 
+          </center>
         </div>
-        </center>
       </div>
     </div>
 
-
-
     {{!-- View Bill modal --}}
-
     <!-- Modal -->
     <div class="modal" id="billDetailModal">
       <div class="modal-dialog" role="document">
@@ -210,15 +199,12 @@
       </div>
     </div>
 
-
     <!-- View bills page -->
     <div class="card" id="viewbills">
       <div class="card-body-addbill">
         View your bills,
       </div>
       <div class="username"></div>
-
-
 
       <hr>
 
@@ -261,9 +247,9 @@
         </div>
         <div class="col-4"></div>
       </div>
-      {{!-- </div> --}}
 
-      {{!-- <div class="col-1"></div> --}}
+
+
 
       {{!-- <div class="col-3">
         <h5 class="dashboard">Personal Dashboard</h3>
@@ -284,7 +270,9 @@
           </table>
       </div> --}}
 
-      {{!-- end of view bills div --}}
+      
+    </div>
+    
     </div>
 
     {{!-- Chat --}}
@@ -293,5 +281,13 @@
 
     <!-- Container div  -->
   </div>
+
+  {{!-- footer --}}
+  <div class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container">
+      <p class="navbar-text">© 2019: DIVVY.
+      </p>
+    </div>
   </div>
+
 </body>
