@@ -45,7 +45,7 @@ body, html, h1 {
   transform: scale(1.1); 
 } */
 
-/* opening modal */
+/* OPENING MODAL */
 .modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
@@ -61,7 +61,6 @@ body, html, h1 {
 #myBtn {
   background-color: white;
 }
-
 /* modal content/box */
 .modal-content {
   background-color: white;
@@ -82,11 +81,8 @@ body, html, h1 {
 .signInsignUpBtns {
   margin-top: 20px;
 }
-.close {
-  color:white;
-}
 
-/* sign up form */
+/* SIGN UP FORM */
 #signupform {
   font-family: 'Playfair Display', serif;
   text-align: center;
@@ -112,15 +108,7 @@ body, html, h1 {
   padding-left: 20px;
 }
 
-/* Add Payers */
-/* #addPayersEmailPercentage {
-  margin-left: 300px;
-}
-#payersBtns {
-  padding-top: 30px;
-} */
-
-/* sign in form */
+/* SIGN IN FORM */
 #signinform {
   font-family: 'Playfair Display', serif;
   text-align: center;
@@ -144,8 +132,7 @@ body, html, h1 {
   margin-top: 20px;
 }
 
-
-/* Add a bill card */
+/* ADD A BILL DIV */
 .card {
   padding: 50px;
   text-align: center;
@@ -158,6 +145,9 @@ body, html, h1 {
 .formlabel {
   font-size: 20px;
   margin-bottom: 15px;
+}
+#price-you-owe {
+  margin-bottom: 20px;
 }
 .paymentdate {
   font-family: 'Playfair Display', serif;
@@ -184,17 +174,19 @@ body, html, h1 {
   margin-bottom: 15px;
 }
 
-/* View bills page */
+/* VIEW BILLS DIV */
 #viewBills {
   margin-bottom: 100px;
 }
 #headertable1 {
   padding-bottom: 20px;
 }
-.dashboard {
+#billdetails {
   margin-bottom: 20px;
   font-family: 'Playfair Display', serif;
   text-align: center;
+  font-size: 30px;
+  vertical-align: middle;
 }
 .viewtable {
   font-family: 'Playfair Display', serif;
@@ -217,8 +209,12 @@ body, html, h1 {
    margin-left: 10px;
    text-transform: uppercase;
  }
+ .settle {
+  margin-left: 10px;
+  text-transform: uppercase;
+ }
 
- /* footer */
+ /* FOOTER */
  .page-footer {
   background-color: #f5f5f5;
   color: black;

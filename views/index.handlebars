@@ -5,20 +5,20 @@
     </div>
   </div>
 
-  <!-- Parallax -->
+  <!-- PARALLX\AX -->
   <div class="parallax"></div>
 
-  {{!-- whole site in this container --}}
+  {{!-- PAGE CONTAINER --}}
   <div class="container">
 
-    <!-- Cut-out title -->
+    <!-- DIVVY TITLE -->
     <div class="image-container">
       {{!-- <div class="zoom"> --}}
       <div id="myBtn" class="text">Divvy</div>
       {{!-- </div> --}}
     </div>
 
-    <!-- Opening modal -->
+    <!-- OPENING MODAL -->
     <div id="myModal" class="modal">
       <div class="modal-content">
         <span class="close">&times;</span>
@@ -38,7 +38,7 @@
             </div>
           </center>
 
-          <!-- Sign up form -->
+          <!-- SIGN UP -->
           <form id="signupform">
             <center>
               <div class="signupform">
@@ -66,7 +66,7 @@
             </center>
           </form>
 
-          <!-- sign in form -->
+          <!-- SIGN IN -->
           <form id="signinform">
             <center>
               <div class="signin">
@@ -89,7 +89,7 @@
       </div>
     </div>
 
-    {{!-- add a bill --}}
+    {{!-- ADD A BILL CARD --}}
     <div class="card" id="addbillcard">
       <div class="card-body-addbill">
         Add a bill,
@@ -107,13 +107,10 @@
             <input type="text" class="form-control" id="inputcompany" placeholder="Enter bill company" required>
           </div>
           <div class="form-group">
-            <label for="formGroupExampleInput2" class="formlabel">Bill Total</label>
+            <label for="formGroupExampleInput2" class="formlabel">Bill total</label>
             <input type="number" class="form-control" id="inputprice" placeholder="Enter bill price" required>
           </div>
-          <div class="form-group">
-            <label for="formGroupExampleInput2" class="formlabel">How much you owe</label>
-            <input type="number" class="form-control" id="price-you-owe" placeholder="Enter amount you owe" required>
-          </div>
+
 
         </div>
 
@@ -122,6 +119,10 @@
         </div>
 
         <div class="col-md-3">
+          <div class="form-group">
+            <label for="formGroupExampleInput2" class="formlabel">Portion owed</label>
+            <input type="number" class="form-control" id="price-you-owe" placeholder="Enter amount you owe" required>
+          </div>
           <form action="/action_page.php" method="get">
             <h5 class="paidyet">Been paid?</h5>
             <hr>
@@ -141,7 +142,7 @@
       {{!-- end of add bill card --}}
     </div>
 
-    {{!-- add users hidden modal --}}
+    {{!-- ADD PAYERS MODAL --}}
     <div id="modal2" class="modal">
       <div class="modal-content">
         <span class="close">&times;</span>
@@ -171,40 +172,13 @@
             </table>
             {{!-- buttons on add payers modal --}}
             <button type="submit" class="btn btn-dark" id="addUserEmail">Add payer</button>
-
-            {{!-- ALERT FOR NO USER --}}
-            {{!-- <div class="alert alert-info fade out" id="bsalert">
-              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-              <strong>Alert!</strong> This email cannot be found. Please have this user create an account first.
-            </div> --}}
-
-            <button type="submit" class="btn btn-dark" id="addemails">Add payers</button>
-
+            <button type="submit" class="btn btn-dark" id="addemails">Submit bill</button>
           </center>
         </div>
       </div>
     </div>
 
-    {{!-- View Bill modal --}}
-    <!-- Modal -->
-    <div class="modal" id="billDetailModal">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Bill Details</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-           
-          </div>
-          <div class="modal-body">
-            <div id="bill-detail-users"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- View bills page -->
+    {{!-- VIEW BILLS CARD --}}
     <div class="card" id="viewbills">
       <div class="card-body-addbill">
         View your bills,
@@ -215,54 +189,59 @@
 
       {{!-- dashboard --}}
       <div class="row">
-        <div class="col-1"></div>
-        <div class="col-10">
-          <table id="current-bills" class="table table-hover table-dark">
-            <h3 class="dashboard">Bill Details</h3>
-            <thead>
-              <tr>
-                <th scope="col" class="viewtable">ID</th>
-                <th scope="col" class="viewtable">Bill</th>
-                <th scope="col" class="viewtable">Company</th>
-                <th scope="col" class="viewtable">Bill Total</th>
-                <th scope="col" class="viewtable">You Owe</th>
-                <th scope="col" class="viewtable">Paid</th>
-                {{!-- <th scope="col" class="viewtable">Add payers</th> --}}
-                {{!-- <th scope="col" class="viewtable">View details</th> --}}
-              </tr>
-            </thead>
-            <tbody>
-            </tbody>
-          </table>
+        <table id="current-bills" class="table table-hover table-dark">
+          <p class="dashboard" id="billdetails">Bill Details</p>
+          <thead>
+            <tr>
+              <th scope="col" class="viewtable">ID</th>
+              <th scope="col" class="viewtable">Bill</th>
+              <th scope="col" class="viewtable">Company</th>
+              <th scope="col" class="viewtable">Bill total</th>
+              <th scope="col" class="viewtable">You owe</th>
+              <th scope="col" class="viewtable">Paid</th>
+              {{!-- <th scope="col" class="viewtable">Add payers</th> --}}
+              {{!-- <th scope="col" class="viewtable">Details</th> --}}
+              {{!-- <th scope="col" class="viewtable">Pay bill</th> --}}
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+
+      {{!-- bill details modal --}}
+       <div class="modal" tabindex="-1" role="dialog" id="billDetailModal">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="w3-container w3-padding-32" id="contact">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <h5 class="w3-border-bottom w3-border-light-grey w3-padding-16" id="divvyfont">
+                Bill Details
+              </h5>
+              <center>
+                <div class="modal-body">
+                  <div id="viewBill"></div>
+                </div>
+                <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+              </center>
+            </div>
+          </div>
         </div>
-        <div class="col-1"></div>
       </div>
 
       <hr>
 
-      {{!-- add/settle buttons --}}
+      {{!-- add bill button --}}
       <div class="row">
-        <div class="col-4"></div>
-        <div class="col-2">
-          <button id="addnewbill" class="btn btn-dark" type="submit">Add a new bill</button>
-        </div>
-        <div class="col-2">
-          <a href="https://venmo.com/">
-            <button id="settle" class="btn btn-dark" type="submit">Settle up</button>
-          </a>
-        </div>
-        <div class="col-4"></div>
+        <button id="addnewbill" class="btn btn-dark" type="submit">Add a new bill</button>
       </div>
-
 
     </div>
   </div>
 
-  {{!-- Chat --}}
-  {{!-- <script id="cid0020000221547496565" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js"
-        style="width: 200px;height: 300px;">{ "handle": "divvyapp", "arch": "js", "styles": { "a": "000000", "b": 100, "c": "FFFFFF", "d": "FFFFFF", "k": "000000", "l": "000000", "m": "000000", "n": "FFFFFF", "p": "10", "q": "000000", "r": 100, "pos": "br", "cv": 1, "cvfnt": "'Helvetica Neue', Helvetica, Arial, sans-serif, sans-serif", "cvbg": "000000", "cvw": 200, "cvh": 30, "ticker": 1, "fwtickm": 1 } }</script> --}}
-
-  <!-- Container div  -->
+  <!-- END CONTAINER DIV  -->
   </div>
 
 </body>
