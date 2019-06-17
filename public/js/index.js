@@ -303,12 +303,6 @@ $(document).ready(function () {
 
         buildAddUserToBillTableRow(user, false, 'add-payer-user');
       } else {
-        // ADD ALERT FOR NO USER FOUND
-        // $('.alert').toggleClass('in out');
-        // return false;
-        
-
-
         alert('Email address not found. Please have user make an account.');
         console.log('user email does not exist');
       }
@@ -434,16 +428,5 @@ $(document).ready(function () {
 
 
   });
-
-  // getBillsForUserPopulateUsersElem.click(function () {
-  //   const userEmail = 'EMAIL STUFF';
-  //   getBillsForUserPopulateUsers(userEmail);
-  // });
-
-  // $('#addemails').click(
-  //   $('html, body').animate({
-  //   scrollTop: ($('#addbillcard').offset().top)
-  // }, 200));
-
 
 });
