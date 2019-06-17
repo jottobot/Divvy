@@ -1,7 +1,7 @@
-// const developmentBaseUrl = 'http://localhost:3000/';
-const productionBaseUrl = 'https://vast-gorge-37663.herokuapp.com/';
+const developmentBaseUrl = 'http://localhost:3000/';
+// const productionBaseUrl = 'https://vast-gorge-37663.herokuapp.com/';
 
-const baseUrl = productionBaseUrl;
+const baseUrl = developmentBaseUrl;
 
 $(document).ready(function () {
   $('#addbillcard').hide();
@@ -240,7 +240,7 @@ $(document).ready(function () {
       var line = $('<div>').append('<hr>');
       payerDiv.append(firstNameElem, lastNameElem, userEmailElem, amountPayerOwesElem, line);
 
-      $('#bill-detail-users').append(payerDiv);
+      $('#viewBill').append(payerDiv);
     });
   }
 
@@ -428,5 +428,10 @@ $(document).ready(function () {
 
 
   });
+
+  $('.closeBillDetails').click(function() {
+    $('#billDetailModal').hide();
+  });
+
 
 });
