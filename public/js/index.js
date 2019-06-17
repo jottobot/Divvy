@@ -1,7 +1,7 @@
-// const developmentBaseUrl = 'http://localhost:3000/';
-const productionBaseUrl = 'https://vast-gorge-37663.herokuapp.com/';
+const developmentBaseUrl = 'http://localhost:3000/';
+// const productionBaseUrl = 'https://vast-gorge-37663.herokuapp.com/';
 
-const baseUrl = productionBaseUrl;
+const baseUrl = developmentBaseUrl;
 
 $(document).ready(function () {
   $('#addbillcard').hide();
@@ -30,12 +30,14 @@ $(document).ready(function () {
   // ***************************************
   // Local Storage functions
   // ***************************************
+
   function deleteAuthState() {
     localStorage.removeItem('authState');
   }
 
   function createAuthState(firstName, lastName, email) {
     deleteAuthState();
+    $('.username').text('');
     const authState = {
       firstName: firstName,
       lastName: lastName,
@@ -90,17 +92,17 @@ $(document).ready(function () {
     });
   }
 
-  // Add bill to user
-  function addBillToUser(userData, callback) {
+  // Associate a bill with a user
+  function addBillToUser(userAndBillData, callback) {
     const apiUrl = baseUrl + 'api/users/addbill/';
 
     $.ajax({
       url: apiUrl,
       method: 'POST',
       data: {
-        'email': userData.email,
-        'billId': userData.billId,
-        'amountOwed': userData.amountOwed
+        'email': userAndBillData.email,
+        'billId': userAndBillData.billId,
+        'amountOwed': userAndBillData.amountOwed
       }
     }).then(response => {
       callback();
@@ -127,7 +129,7 @@ $(document).ready(function () {
     $('#emails > tbody').append(userDiv);
   }
 
-  //function create a bill
+  //function create a bill and submit to DB
   function createBill(billData) {
     var queryURL = baseUrl + 'api/bills/';
     $.ajax({
@@ -165,41 +167,9 @@ $(document).ready(function () {
     });
   }
 
-  //function delete bill with bill ID
-  // function deleteBill(billId) {
-  //   var queryURL = 'http://localhost:3000/api/bills/delete/';
-  //   $.ajax({
-  //     url: queryURL + billId,
-  //     method: 'DELETE'
-  //   }).then(function (response) {
-  //     console.log(response);
-  //   });
-  // }
-
-  //function get all bills as an array
-  // function getAllBills() {
-  //   $.ajax({
-  //     url: 'http://localhost:3000/api/bills/',
-  //     method: 'GET'
-  //   }).then(function (response) {
-  //     console.log(response);
-  //   });
-  // }
-
-  //function get all users assciated will bill
-  // function getAllUsersForBill(billId) {
-  //   var queryURL = 'http://localhost:3000/api/bills/';
-  //   $.ajax({
-  //     url: queryURL + billId,
-  //     method: 'GET'
-  //   }).then(function (response) {
-  //     console.log(response);
-  //   });
-  // }
-
-
+  // Constructs a bill row in the dashboard bills table
   function buildBillViewRow(bill, destination) {
-    const tableRow = $('<tr>').attr('data-id', bill.id);
+    const tableRow = $('<tr>').attr('data-id', bill.id).addClass('bill-list-item');
     const tableHead = $('<th>').attr('scope', 'row').text(bill.id);
     const titleCell = $('<td>').text(bill.title);
     const companyCell = $('<td>').text(bill.Company);
@@ -228,6 +198,7 @@ $(document).ready(function () {
     });
   }
 
+  // Constructs a user row in the bill detail view modal table
   function buildRowsBillDetail(payers) {
     $('.bill-payer-detail').remove();
 
@@ -240,11 +211,11 @@ $(document).ready(function () {
       var line = $('<div>').append('<hr>');
       payerDiv.append(firstNameElem, lastNameElem, userEmailElem, amountPayerOwesElem, line);
 
-      $('#bill-detail-users').append(payerDiv);
+      $('#viewBill').append(payerDiv);
     });
   }
 
-  // Get details for a single bill
+  // Get details for a single bill by bill id
   function billDetail(billId, callback) {
     var queryURL = baseUrl + 'api/bills/';
     $.ajax({
@@ -255,41 +226,7 @@ $(document).ready(function () {
     });
   }
 
-  //function get all users assciated will bill and populate users
-  // function getBillsForUserPopulateUsers(userEmail) {
-  //   var queryURL = 'http://localhost:3000/api/users/bills/populate/';
-  //   $.ajax({
-  //     url: queryURL + userEmail,
-  //     method: 'GET',
-  //   }).then(function (response) {
-  //     console.log(response);
-  //   });
-  // }
-
-
-
-  // update existing bill
-  // function updateBill(billId) {
-  //   var queryURL = 'http://localhost:3000/api/bills/update';
-  //   $.ajax({
-  //     url: queryURL + billId,
-  //     method: 'PUT',
-  //     data: {
-  //       id: 1,
-  //       title: 'water',
-  //       Company: 'PSE',
-  //       Amount: 300.5,
-  //       BillDue: Date.now(),
-  //       BillPaid: false,
-  //     },
-  //   }).then(function (response) {
-  //     console.log(response);
-  //   });
-  // }
-
-
-
-  //function get user by email
+  // Get user by email
   function getUserByEmail(email) {
     const getUserapiUrl = baseUrl + 'api/users/email/';
 
@@ -340,6 +277,7 @@ $(document).ready(function () {
     $('#signinform').hide();
   };
 
+  // Closes modal
   span.onclick = function () {
     modal2.style.display = 'none';
     billDetailModal.style.display = 'none';
@@ -390,15 +328,21 @@ $(document).ready(function () {
     $('#inputemail').val('');
   });
 
+  // Binds the 'add payers' button for each bill in dashboard
   $(document).on('click', '.addPayers', function (event) {
     event.preventDefault();
     var billId = $(this).parent().attr('data-id');
     $('.add-payer-user').remove();
     $('.bill-creater').remove();
     addUsersToBillElem.attr('data-id', billId);
+
+    const user = getAuthState();
+    buildAddUserToBillTableRow(user, true, 'bill-creater');
+
     $('#modal2').show();
   });
 
+  // Binds the 'view bill' button for each bill in dashboard
   $(document).on('click', '.viewBill', function (event) {
     event.preventDefault();
     var billId = $(this).parent().attr('data-id');
@@ -425,8 +369,14 @@ $(document).ready(function () {
         $('#modal2').hide();
       });
     });
+  });
 
-
+  // Repopulates all user bills in dashboard
+  $('#refresh-bills').click(function(event) {
+    event.preventDefault();
+    $('.bill-list-item').remove();
+    const user = getAuthState();
+    getBillsForUser(user.email);
   });
 
 });
