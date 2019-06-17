@@ -156,9 +156,11 @@ $(document).ready(function () {
         const companyCell = $('<td>').text(bill.Company);
         const amountCell = $('<td>').text(bill.Amount);
         const isPaidCell = $('<td>').text(bill.BillPaid);
+        const youOwe = $('<td>').text(bill.UserBill.amountOwed);
         const btnCell = $('<button type="button" class="btn btn-light addPayers">Add payers</button>');
+        const btnCell2 = $('<button type="button" class="btn btn-light viewBill">View Bill</button>');
         tableRow
-          .append(tableHead, titleCell, companyCell, amountCell, isPaidCell, btnCell);
+          .append(tableHead, titleCell, companyCell, amountCell, youOwe, isPaidCell, btnCell, btnCell2);
         $('#current-bills').append(tableRow);
       });
     });
@@ -169,6 +171,29 @@ $(document).ready(function () {
     var billId = $(this).parent().attr('data-id');
     $('#addemails').attr('data-id', billId);
     $('#modal2').show();
+  });
+
+  // Get details for a single bill
+  function billDetail(billId) {
+    var queryURL = 'http://localhost:3000/api/bills/';
+    $.ajax({
+      url: queryURL + billId,
+      method: 'GET',
+    }).then(function (response) {
+      for (var i = 0; i < response.length; i++) {
+        // var user = response[i];
+
+
+      }
+      console.log(response);
+    });
+  }
+
+  $(document).on('click', '.viewBill', function(event) {
+    event.preventDefault();
+    var billId = $(this).parent().attr('data-id');
+    $('#billDetailModal').show();
+    billDetail(billId);
   });
 
 
@@ -183,16 +208,7 @@ $(document).ready(function () {
     });
   }
 
-  // Get details for a single bill
-  // function billDetail(billId) {
-  //   var queryURL = 'http://localhost:3000/api/bills/';
-  //   $.ajax({
-  //     url: queryURL + billId,
-  //     method: 'GET',
-  //   }).then(function (response) {
-  //     console.log(response);
-  //   });
-  // }
+
 
   // update existing bill
   // function updateBill(billId) {
