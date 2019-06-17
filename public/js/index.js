@@ -102,6 +102,25 @@ $(document).ready(function () {
     });
   }
 
+  // Add a table row in adding a user to a bill modal
+  function buildAddUserToBillTableRow(user, isBillCreator) {
+    let amountOwedElem;
+    const userDiv = $('<div>').addClass('add-payer-user');
+    const firstNameElem = $('<tr><td>' + user.firstName + '</tr></td>').attr('firstName', user.firstName);
+    const lastNameElem = $('<tr><td>' + user.lastName + '</tr></td>').attr('last-name', user.lastName);
+    const userEmailElem = $('<tr><td>' + user.email + '</tr></td>').attr('email', user.email);
+    var line = $('<div>').append('<hr>');
+
+    userDiv.append(firstNameElem, lastNameElem, userEmailElem);
+    if (!isBillCreator) {
+      amountOwedElem = $('<tr><td>Amount: <input type="number" min="0" class="form-control" min="0" value="0" placeholder="Enter amount" required></tr></td>');
+      userDiv.append(amountOwedElem);
+    }
+    userDiv.append(line);
+
+    $('#emails > tbody').append(userDiv);
+  }
+
   //function create a bill
   function createBill(billData) {
     var queryURL = 'http://localhost:3000/api/bills/';
@@ -119,23 +138,23 @@ $(document).ready(function () {
       if (response.id) { // bill creation success
         billId = response.id;
         const amountYouOwe = billData.amountYouOwe;
-        const billCreater = getAuthState();
+        const billCreator = getAuthState();
 
         const userData = {
-          email: billCreater.email,
+          email: billCreator.email,
           billId: billId,
           amountOwed: amountYouOwe,
         };
 
-        addBillToUser(userData, function () {
+        addBillToUser(userData, function () { // add bill creator to bill
           addUsersToBillElem.attr('data-id', billId);
+          buildAddUserToBillTableRow(billCreator, true);
+          
           $('#modal2').show();
         });
       }
     });
   }
-
-
 
   //function delete bill with bill ID
   // function deleteBill(billId) {
@@ -241,6 +260,8 @@ $(document).ready(function () {
   //   });
   // }
 
+
+
   //function get user by email
   function getUserByEmail(email) {
     const getUserapiUrl = 'http://localhost:3000/api/users/email/';
@@ -253,15 +274,7 @@ $(document).ready(function () {
       if (response.length) {
         const user = response[0];
 
-        const userDiv = $('<div>').addClass('add-payer-user');
-        const firstNameElem = $('<tr><td>' + user.firstName + '</tr></td>').attr('firstName', user.firstName);
-        const lastNameElem = $('<tr><td>' + user.lastName + '</tr></td>').attr('last-name', user.lastName);
-        const userEmailElem = $('<tr><td>' + user.email + '</tr></td>').attr('email', user.email);
-        const amountOwedElem = $('<tr><td>Amount: <input type="number" min="0" class="form-control" min="0" value="0" placeholder="Enter amount" required></tr></td>');
-        var line = $('<div>').append('<hr>');
-
-        userDiv.append(firstNameElem, lastNameElem, userEmailElem, amountOwedElem, line);
-        $('#emails > tbody').append(userDiv);
+        buildAddUserToBillTableRow(user, false);
       } else {
         console.log('user email does not exist');
       }
