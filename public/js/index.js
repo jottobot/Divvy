@@ -206,10 +206,11 @@ $(document).ready(function () {
     const amountCell = $('<td>').text(bill.Amount);
     const isPaidCell = $('<td>').text(bill.BillPaid);
     const youOweCell = $('<td>').text(bill.UserBill.amountOwed);
-    const addPayersBtn = $('<button type="button" class="btn btn-light addPayers">Add payers</button>');
-    const billDetailBtn = $('<button type="button" class="btn btn-light viewBill">View Bill</button>');
+    const addPayersBtn = $('<button type="button" class="btn btn-outline-light addPayers">Add payers</button>');
+    const billDetailBtn = $('<button type="button" class="btn btn-outline-light viewBill">View Bill</button>');
+    const settle = $('<button type="button" class="btn btn-outline-light settle">Pay bill</button>');
     tableRow
-      .append(tableHead, titleCell, companyCell, amountCell, youOweCell, isPaidCell, addPayersBtn, billDetailBtn);
+      .append(tableHead, titleCell, companyCell, amountCell, youOweCell, isPaidCell, addPayersBtn, billDetailBtn, settle);
     destination.append(tableRow);
   }
 
