@@ -8,6 +8,8 @@ $(document).ready(function () {
   var modal = document.getElementById('myModal');
   // Add Payer modal
   var modal2 = document.getElementById('modal2');
+  // Add Payer modal
+  var billDetailModal = document.getElementById('billDetailModal');
   // Get the button that opens the opening modal
   var openingModalBtn = document.getElementById('myBtn');
   // Get the <span> element that closes the modal
@@ -337,6 +339,7 @@ $(document).ready(function () {
 
   span.onclick = function () {
     modal2.style.display = 'none';
+    billDetailModal.style.display = 'none';
   };
 
   // Handle sign in on click
