@@ -135,8 +135,6 @@ $(document).ready(function () {
     });
   }
 
-
-
   //function delete bill with bill ID
   // function deleteBill(billId) {
   //   var queryURL = 'http://localhost:3000/api/bills/delete/';
@@ -186,8 +184,8 @@ $(document).ready(function () {
         const amountCell = $('<td>').text(bill.Amount);
         const isPaidCell = $('<td>').text(bill.BillPaid);
         const youOweCell = $('<td>').text(bill.UserBill.amountOwed);
-        const addPayers = $('<button type="button" class="btn btn-light addPayers">Add payers</button>');
-        const billDetail = $('<button type="button" class="btn btn-light viewBill">View Bill</button>');
+        const addPayers = $('<button type="button" class="btn btn-outline-light addPayers">Add payers</button>');
+        const billDetail = $('<button type="button" class="btn btn-outline-light viewBill">Bill details</button>');
         tableRow
           .append(tableHead, titleCell, companyCell, amountCell, youOweCell, isPaidCell, addPayers, billDetail);
         $('#current-bills').append(tableRow);
@@ -257,14 +255,18 @@ $(document).ready(function () {
         const firstNameElem = $('<tr><td>' + user.firstName + '</tr></td>').attr('firstName', user.firstName);
         const lastNameElem = $('<tr><td>' + user.lastName + '</tr></td>').attr('last-name', user.lastName);
         const userEmailElem = $('<tr><td>' + user.email + '</tr></td>').attr('email', user.email);
-        const amountOwedElem = $('<tr><td>Amount: <input type="number" min="0" class="form-control" min="0" value="0" placeholder="Enter amount" required></tr></td>');
+        const amountOwedElem = $('<tr><td>Amount owed: <input type="number" min="0" class="form-control" min="0" value="0" placeholder="Enter amount" required></tr></td>');
         var line = $('<div>').append('<hr>');
 
         userDiv.append(firstNameElem, lastNameElem, userEmailElem, amountOwedElem, line);
         $('#emails > tbody').append(userDiv);
       } else {
-        console.log('user email does not exist');
+        // ADD ALERT FOR NO USER FOUND
+        // $('.alert').toggleClass('in out');
+        // return false;
+        alert('Email address not found. Please have user make an account.');
       }
+      console.log('user email does not exist');
     });
   }
 
@@ -282,6 +284,8 @@ $(document).ready(function () {
       $('html, body').animate({
         scrollTop: ($('#addbillcard').offset().top)
       }, 200);
+    } else {
+      alert('Please enter a valid email address OR make an account.');
     }
   }
 
