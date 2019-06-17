@@ -199,9 +199,9 @@
               <th scope="col" class="viewtable">Bill total</th>
               <th scope="col" class="viewtable">You owe</th>
               <th scope="col" class="viewtable">Paid</th>
-              {{!-- <th scope="col" class="viewtable">Add payers</th> --}}
-              {{!-- <th scope="col" class="viewtable">Details</th> --}}
-              {{!-- <th scope="col" class="viewtable">Pay bill</th> --}}
+              {{!-- <th scope="col" id="addPayersHeader" class="viewtable">Add payers</th>
+              <th scope="col" id="viewDetailsHeader" class="viewtable">Details</th>
+              <th scope="col" class="viewtable">Pay bill</th> --}}
             </tr>
           </thead>
           <tbody>
@@ -214,9 +214,6 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="w3-container w3-padding-32" id="contact">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
               <h5 class="w3-border-bottom w3-border-light-grey w3-padding-16" id="divvyfont">
                 Bill Details
               </h5>
@@ -224,7 +221,7 @@
                 <div class="modal-body">
                   <div id="viewBill"></div>
                 </div>
-                <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-dark closeBillDetails" data-dismiss="modal">Close</button>
               </center>
             </div>
           </div>

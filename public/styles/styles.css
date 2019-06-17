@@ -205,6 +205,13 @@ body, html, h1 {
   margin-left: 10px;
   text-transform: uppercase; 
  }
+ #addPayersHeader {
+  text-align: center;
+  margin: 0px;  
+ }
+ /* #viewDetailsHeader {
+
+ } */
  .viewBill {
    margin-left: 10px;
    text-transform: uppercase;

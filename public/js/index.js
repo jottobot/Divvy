@@ -1,7 +1,7 @@
-// const developmentBaseUrl = 'http://localhost:3000/';
-const productionBaseUrl = 'https://vast-gorge-37663.herokuapp.com/';
+const developmentBaseUrl = 'http://localhost:3000/';
+// const productionBaseUrl = 'https://vast-gorge-37663.herokuapp.com/';
 
-const baseUrl = productionBaseUrl;
+const baseUrl = developmentBaseUrl;
 
 $(document).ready(function () {
   $('#addbillcard').hide();
@@ -378,5 +378,10 @@ $(document).ready(function () {
     const user = getAuthState();
     getBillsForUser(user.email);
   });
+
+  $('.closeBillDetails').click(function() {
+    $('#billDetailModal').hide();
+  });
+
 
 });
