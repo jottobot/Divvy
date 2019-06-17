@@ -5,13 +5,13 @@
     </div>
   </div>
 
-  <!-- Parallax -->
+  <!-- PARALLX\AX -->
   <div class="parallax"></div>
 
-  {{!-- whole site in this container --}}
+  {{!-- PAGE CONTAINER --}}
   <div class="container">
 
-    <!-- Cut-out title -->
+    <!-- DIVVY TITLE -->
     <div class="image-container">
       {{!-- <div class="zoom"> --}}
       <div id="myBtn" class="text">Divvy</div>
@@ -107,13 +107,10 @@
             <input type="text" class="form-control" id="inputcompany" placeholder="Enter bill company" required>
           </div>
           <div class="form-group">
-            <label for="formGroupExampleInput2" class="formlabel">Bill Total</label>
+            <label for="formGroupExampleInput2" class="formlabel">Bill total</label>
             <input type="number" class="form-control" id="inputprice" placeholder="Enter bill price" required>
           </div>
-          <div class="form-group">
-            <label for="formGroupExampleInput2" class="formlabel">How much you owe</label>
-            <input type="number" class="form-control" id="price-you-owe" placeholder="Enter amount you owe" required>
-          </div>
+
 
         </div>
 
@@ -122,6 +119,10 @@
         </div>
 
         <div class="col-md-3">
+          <div class="form-group">
+            <label for="formGroupExampleInput2" class="formlabel">Portion owed</label>
+            <input type="number" class="form-control" id="price-you-owe" placeholder="Enter amount you owe" required>
+          </div>
           <form action="/action_page.php" method="get">
             <h5 class="paidyet">Been paid?</h5>
             <hr>
@@ -172,12 +173,6 @@
             {{!-- buttons on add payers modal --}}
             <button type="submit" class="btn btn-dark" id="addUserEmail">Add payer</button>
 
-            {{!-- ALERT FOR NO USER --}}
-            {{!-- <div class="alert alert-info fade out" id="bsalert">
-              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-              <strong>Alert!</strong> This email cannot be found. Please have this user create an account first.
-            </div> --}}
-
             <button type="submit" class="btn btn-dark" id="addemails">Submit bill</button>
 
           </center>
@@ -185,19 +180,26 @@
       </div>
     </div>
 
-    {{!-- View Bill modal --}}
+    {{!-- View Bill Div --}}
     <!-- Modal -->
-    <div class="modal" id="billDetailModal">
+    <div class="modal" tabindex="-1" role="dialog" id="billDetailModal">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Bill Details</h5>
+          <div class="w3-container w3-padding-32" id="contact">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
-          </div>
-          <div class="modal-body">
-            <div id="viewBill"></div>
+            <h5 class="w3-border-bottom w3-border-light-grey w3-padding-16" id="divvyfont">
+              Bill Details
+            </h5>
+            <center>
+              <div class="modal-body">
+                <div id="viewBill"></div>
+              </div>
+
+              <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+
+            </center>
           </div>
         </div>
       </div>
@@ -214,43 +216,32 @@
 
       {{!-- dashboard --}}
       <div class="row">
-        <div class="col-1"></div>
-        <div class="col-10">
-          <table id="current-bills" class="table table-hover table-dark">
-            <h3 class="dashboard">Bill Details</h3>
-            <thead>
-              <tr>
-                <th scope="col" class="viewtable">ID</th>
-                <th scope="col" class="viewtable">Bill</th>
-                <th scope="col" class="viewtable">Company</th>
-                <th scope="col" class="viewtable">Total bill</th>
-                <th scope="col" class="viewtable">You owe</th>
-                <th scope="col" class="viewtable">Paid</th>
-                {{!-- <th scope="col" class="viewtable">Add payers</th> --}}
-                {{!-- <th scope="col" class="viewtable">View details</th> --}}
-              </tr>
-            </thead>
-            <tbody>
-            </tbody>
-          </table>
-        </div>
-        <div class="col-1"></div>
+        <table id="current-bills" class="table table-hover table-dark">
+          <p class="dashboard" id="billdetails">Bill Details</p>
+          <thead>
+            <tr>
+              <th scope="col" class="viewtable">ID</th>
+              <th scope="col" class="viewtable">Bill</th>
+              <th scope="col" class="viewtable">Company</th>
+              <th scope="col" class="viewtable">Total bill</th>
+              <th scope="col" class="viewtable">You owe</th>
+              <th scope="col" class="viewtable">Paid</th>
+              {{!-- <th scope="col" class="viewtable">Add payers</th> --}}
+              {{!-- <th scope="col" class="viewtable">View details</th> --}}
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
       </div>
 
       <hr>
 
       {{!-- add/settle buttons --}}
       <div class="row">
-        <div class="col-4"></div>
-        <div class="col-2">
-          <button id="addnewbill" class="btn btn-dark" type="submit">Add a new bill</button>
-        </div>
-        <div class="col-2">
-          <a href="https://venmo.com/">
-            <button id="settle" class="btn btn-dark" type="submit">Settle up</button>
-          </a>
-        </div>
-        <div class="col-4"></div>
+      
+        <button id="addnewbill" class="btn btn-dark" type="submit">Add a new bill</button>
+    
       </div>
 
 

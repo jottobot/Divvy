@@ -186,8 +186,9 @@ $(document).ready(function () {
         const youOweCell = $('<td>').text(bill.UserBill.amountOwed);
         const addPayers = $('<button type="button" class="btn btn-outline-light addPayers">Add payers</button>');
         const billDetail = $('<button type="button" class="btn btn-outline-light viewBill">Bill details</button>');
+        const settle = $('<button type="button" class="btn btn-outline-light settle" id="settle">Pay bill</button>');
         tableRow
-          .append(tableHead, titleCell, companyCell, amountCell, youOweCell, isPaidCell, addPayers, billDetail);
+          .append(tableHead, titleCell, companyCell, amountCell, youOweCell, isPaidCell, addPayers, billDetail, settle);
         $('#current-bills').append(tableRow);
       });
     });
@@ -264,6 +265,9 @@ $(document).ready(function () {
         // ADD ALERT FOR NO USER FOUND
         // $('.alert').toggleClass('in out');
         // return false;
+        
+
+
         alert('Email address not found. Please have user make an account.');
       }
       console.log('user email does not exist');
