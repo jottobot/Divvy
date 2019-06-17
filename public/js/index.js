@@ -164,11 +164,11 @@ $(document).ready(function () {
     });
   }
 
-  $(document).on("click", ".addPayers", function(event) {
+  $(document).on('click', '.addPayers', function(event) {
     event.preventDefault();
-     var billId =  $(this).parent().attr("data-id");
-     $("#addemails").attr("data-id", billId);
-      $("#modal2").show();
+    var billId = $(this).parent().attr('data-id');
+    $('#addemails').attr('data-id', billId);
+    $('#modal2').show();
   });
 
 
@@ -329,7 +329,7 @@ $(document).ready(function () {
   searchUserByEmailElem.click(function () {
     const userEmail = $('#inputemail').val();
     getUserByEmail(userEmail);
-    $("#inputemail").val("");
+    $('#inputemail').val('');
   });
 
   // Handle add users to bill click
@@ -337,7 +337,7 @@ $(document).ready(function () {
     $('.add-payer-user').each((index, value) => {
       const email = $(value).find('[email]').attr('email');
       const amountOwed = $(value).find('input').val();
-      const billId = $(this).attr("data-id");
+      const billId = $(this).attr('data-id');
       const dataToSend = {
         email: email,
         amountOwed: amountOwed,
@@ -346,8 +346,8 @@ $(document).ready(function () {
       console.log(dataToSend);
       addBillToUser(dataToSend);
     });
-    $("#modal2").hide();
-    $(".add-payer-user").remove();
+    $('#modal2').hide();
+    $('.add-payer-user').remove();
 
   });
 
