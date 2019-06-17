@@ -100,7 +100,7 @@
       <hr>
       <div class="row">
         <div class="col-md-3">
-          {{!-- <form> --}}
+
           <div class="form-group">
             <label for="formGroupExampleInput" class="formlabel">Bill</label>
             <input type="text" class="form-control" id="inputbill" placeholder="Enter bill title" required>
@@ -110,10 +110,14 @@
             <input type="text" class="form-control" id="inputcompany" placeholder="Enter bill company" required>
           </div>
           <div class="form-group">
-            <label for="formGroupExampleInput2" class="formlabel">Price</label>
+            <label for="formGroupExampleInput2" class="formlabel">Bill Total</label>
             <input type="number" class="form-control" id="inputprice" placeholder="Enter bill price" required>
           </div>
-          {{!-- </form> --}}
+           <div class="form-group">
+            <label for="formGroupExampleInput2" class="formlabel">How much you owe</label>
+            <input type="number" class="form-control" id="price-you-owe" placeholder="Enter amount you owe" required>
+          </div>
+
         </div>
 
         <div class="col-md-6">
@@ -129,9 +133,8 @@
           <form action="/action_page.php" method="get">
             <h5 class="paidyet">Been paid?</h5>
             <hr>
-            <input type="checkbox" name="bill" value="true" class="paid"> Bill is paid<br>
-            <input type="checkbox" name="bill" value="false" class="paid" checked> Bill is unpaid<br>
-            {{!-- <input type="submit" value="Submit"> --}}
+            <input type="radio" name="bill" value="true" class="paid"> Bill is paid<br>
+            <input type="radio" name="bill" value="false" class="paid" checked> Bill is unpaid<br>
           </form>
         </div>
         </form>
