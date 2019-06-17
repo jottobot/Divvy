@@ -109,7 +109,6 @@ body, html, h1 {
 #addPayersEmailPercentage {
   margin-left: 300px;
 }
-
 #payersBtns {
   padding-top: 30px;
 }
@@ -169,6 +168,14 @@ body, html, h1 {
   margin-top: 30px;
   font-size: 20px;
 }
+#addPayersEmail {
+  margin-bottom: 20px;
+  text-align: center;
+}
+.add-payer-user {
+  text-align:center;
+  margin-bottom: 15px;
+}
 
 /* View bills page */
 #headertable1 {
@@ -183,9 +190,11 @@ body, html, h1 {
   font-size: 18px;
   text-transform: uppercase;
 }
-
 .username {
   font-family: 'Playfair Display', serif;
   font-size: 25px;
   font-display: UPPERCASE;
+ }
+ #current-bills {
+   margin-bottom: 20px;
  }

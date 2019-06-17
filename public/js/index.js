@@ -19,14 +19,12 @@ $(document).ready(function () {
   const submitBillElem = $('#addbillsubmit');
   const searchUserByEmailElem = $('#addUserEmail');
   const addUsersToBillElem = $('#addemails');
-
   const getBillsForUserPopulateUsersElem = $('#addemails');
 
 
   // ***************************************
   // Local Storage functions
   // ***************************************
-
   function deleteAuthState() {
     localStorage.removeItem('authState');
   }
@@ -141,7 +139,7 @@ $(document).ready(function () {
   // }
 
 
-  //function get all users assciated will bill
+  //function get all users associated will bill
   function getBillsForUser(userEmail) {
     var queryURL = 'http://localhost:3000/api/users/bills/';
     $.ajax({
@@ -182,8 +180,6 @@ $(document).ready(function () {
     }).then(function (response) {
       for (var i = 0; i < response.length; i++) {
         // var user = response[i];
-
-
       }
       console.log(response);
     });
@@ -244,8 +240,9 @@ $(document).ready(function () {
         const lastNameElem = $('<tr><td>' + user.lastName + '</tr></td>').attr('last-name', user.lastName);
         const userEmailElem = $('<tr><td>' + user.email + '</tr></td>').attr('email', user.email);
         const amountOwedElem = $('<tr><td>Amount: <input type="number" min="0" class="form-control" min="0" value="0" placeholder="Enter amount" required></tr></td>');
+        var line = $('<div>').append('<hr>');
 
-        userDiv.append(firstNameElem, lastNameElem, userEmailElem, amountOwedElem);
+        userDiv.append(firstNameElem, lastNameElem, userEmailElem, amountOwedElem, line);
         $('#emails > tbody').append(userDiv);
       } else {
         console.log('user email does not exist');
@@ -371,5 +368,11 @@ $(document).ready(function () {
     const userEmail = 'EMAIL STUFF';
     getBillsForUserPopulateUsers(userEmail);
   });
+
+  // $('#addemails').click(
+  //   $('html, body').animate({
+  //   scrollTop: ($('#addbillcard').offset().top)
+  // }, 200));
+
 
 });
