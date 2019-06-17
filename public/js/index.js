@@ -84,7 +84,7 @@ $(document).ready(function () {
     });
   }
 
-  // function add bill to user
+  // Add bill to user
   function addBillToUser(userData, callback) {
     const apiUrl = 'http://localhost:3000/api/users/addbill/';
 
@@ -102,7 +102,7 @@ $(document).ready(function () {
     });
   }
 
-  // Add a table row in adding a user to a bill modal
+  // Adds a table row in adding a user to a bill modal
   function buildAddUserToBillTableRow(user, isBillCreator) {
     let amountOwedElem;
     const userDiv = $('<div>').addClass('add-payer-user');
@@ -149,7 +149,7 @@ $(document).ready(function () {
         addBillToUser(userData, function () { // add bill creator to bill
           addUsersToBillElem.attr('data-id', billId);
           buildAddUserToBillTableRow(billCreator, true);
-          
+
           $('#modal2').show();
         });
       }
@@ -189,6 +189,21 @@ $(document).ready(function () {
   // }
 
 
+  function buildBillViewRow(bill, destination) {
+    const tableRow = $('<tr>').attr('data-id', bill.id);
+    const tableHead = $('<th>').attr('scope', 'row').text(bill.id);
+    const titleCell = $('<td>').text(bill.title);
+    const companyCell = $('<td>').text(bill.Company);
+    const amountCell = $('<td>').text(bill.Amount);
+    const isPaidCell = $('<td>').text(bill.BillPaid);
+    const youOweCell = $('<td>').text(bill.UserBill.amountOwed);
+    const addPayersBtn = $('<button type="button" class="btn btn-light addPayers">Add payers</button>');
+    const billDetailBtn = $('<button type="button" class="btn btn-light viewBill">View Bill</button>');
+    tableRow
+      .append(tableHead, titleCell, companyCell, amountCell, youOweCell, isPaidCell, addPayersBtn, billDetailBtn);
+    destination.append(tableRow);
+  }
+
   //function get all users associated will bill
   function getBillsForUser(userEmail) {
     var queryURL = 'http://localhost:3000/api/users/bills/';
@@ -198,33 +213,35 @@ $(document).ready(function () {
     }).then(function (response) {
       console.log(response);
       response.forEach(bill => {
-        const tableRow = $('<tr>').attr('data-id', bill.id);
-        const tableHead = $('<th>').attr('scope', 'row').text(bill.id);
-        const titleCell = $('<td>').text(bill.title);
-        const companyCell = $('<td>').text(bill.Company);
-        const amountCell = $('<td>').text(bill.Amount);
-        const isPaidCell = $('<td>').text(bill.BillPaid);
-        const youOweCell = $('<td>').text(bill.UserBill.amountOwed);
-        const addPayers = $('<button type="button" class="btn btn-light addPayers">Add payers</button>');
-        const billDetail = $('<button type="button" class="btn btn-light viewBill">View Bill</button>');
-        tableRow
-          .append(tableHead, titleCell, companyCell, amountCell, youOweCell, isPaidCell, addPayers, billDetail);
-        $('#current-bills').append(tableRow);
+        buildBillViewRow(bill, $('#current-bills'));
       });
     });
   }
 
+  function buildRowsBillDetail(payers) {
+    $('.bill-payer-detail').remove();
+
+    payers.forEach(payer => {
+      const payerDiv = $('<div>').addClass('bill-payer-detail');
+      const firstNameElem = $('<tr><td>' + payer.firstName + '</tr></td>');
+      const lastNameElem = $('<tr><td>' + payer.lastName + '</tr></td>');
+      const userEmailElem = $('<tr><td>' + payer.email + '</tr></td>');
+      const amountPayerOwesElem = $('<tr><td>' + payer.UserBill.amountOwed + '</tr></td>');
+      var line = $('<div>').append('<hr>');
+      payerDiv.append(firstNameElem, lastNameElem, userEmailElem, amountPayerOwesElem, line);
+
+      $('#bill-detail-users').append(payerDiv);
+    });
+  }
+
   // Get details for a single bill
-  function billDetail(billId) {
+  function billDetail(billId, callback) {
     var queryURL = 'http://localhost:3000/api/bills/';
     $.ajax({
       url: queryURL + billId,
       method: 'GET',
-    }).then(function (response) {
-      for (var i = 0; i < response.length; i++) {
-        // var user = response[i];
-      }
-      console.log(response);
+    }).then(response => {
+      callback(response);
     });
   }
 
@@ -349,7 +366,6 @@ $(document).ready(function () {
       amountYouOwe: $('#price-you-owe').val(),
     };
 
-
     createBill(billData);
   });
 
@@ -371,7 +387,10 @@ $(document).ready(function () {
     event.preventDefault();
     var billId = $(this).parent().attr('data-id');
     $('#billDetailModal').show();
-    billDetail(billId);
+    billDetail(billId, function (response) {
+      console.log(response);
+      buildRowsBillDetail(response);
+    });
   });
 
   // Handle add users to bill click
