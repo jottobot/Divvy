@@ -1,7 +1,8 @@
-const developmentBaseUrl = 'http://localhost:3000/';
-// const productionBaseUrl = 'https://vast-gorge-37663.herokuapp.com/';
+// const developmentBaseUrl = 'http://localhost:3000/';
+const productionBaseUrl = 'https://vast-gorge-37663.herokuapp.com/';
 
-const baseUrl = developmentBaseUrl;
+// const baseUrl = developmentBaseUrl;
+const baseUrl = productionBaseUrl;
 
 $(document).ready(function () {
   $('#addbillcard').hide();
@@ -319,6 +320,11 @@ $(document).ready(function () {
     };
 
     createBill(billData);
+    $('#inputbill').val('');
+    $('#inputcompany').val('');
+    $('#inputprice').val('');
+    $('.paid:checked').val('');
+    $('#price-you-owe').val('');
   });
 
   // Handle search for user email
@@ -372,14 +378,14 @@ $(document).ready(function () {
   });
 
   // Repopulates all user bills in dashboard
-  $('#refresh-bills').click(function(event) {
+  $('#refresh-bills').click(function (event) {
     event.preventDefault();
     $('.bill-list-item').remove();
     const user = getAuthState();
     getBillsForUser(user.email);
   });
 
-  $('.closeBillDetails').click(function() {
+  $('.closeBillDetails').click(function () {
     $('#billDetailModal').hide();
   });
 
