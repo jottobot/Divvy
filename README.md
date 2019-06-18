@@ -18,6 +18,8 @@ _Divvy_ implements a MySQL database to store user profiles, bills, and user-bill
 ```
 npm install apidoc -g
 ```
+![image](https://user-images.githubusercontent.com/43662571/59654558-a2b73080-914b-11e9-8f89-d36b669035a6.png)
+
 ### Create docs files
 ```
 apidoc -i routes/ -o apidoc/ 
