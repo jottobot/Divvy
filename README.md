@@ -3,6 +3,11 @@
 ## Deployed Link
 https://vast-gorge-37663.herokuapp.com/
 
+<img width="1440" alt="Screen Shot 2019-06-17 at 6 56 44 PM" src="https://user-images.githubusercontent.com/43662571/59654425-f2e1c300-914a-11e9-9ed4-4177e5de8695.png">
+<img width="1440" alt="Screen Shot 2019-06-17 at 6 58 03 PM" src="https://user-images.githubusercontent.com/43662571/59654426-f2e1c300-914a-11e9-9415-63fcd8f28911.png">
+<img width="1440" alt="Screen Shot 2019-06-17 at 6 58 21 PM" src="https://user-images.githubusercontent.com/43662571/59654427-f2e1c300-914a-11e9-8a63-fb2cbb3bede8.png">
+
+
 # About
 _Divvy_ is a bill splitting application for those sharing a home space. Divvy makes it easy to split bills that are common to a household i.e. internet, water, power. 
 
@@ -18,6 +23,8 @@ _Divvy_ implements a MySQL database to store user profiles, bills, and user-bill
 ```
 npm install apidoc -g
 ```
+![image](https://user-images.githubusercontent.com/43662571/59654558-a2b73080-914b-11e9-8f89-d36b669035a6.png)
+
 ### Create docs files
 ```
 apidoc -i routes/ -o apidoc/ 

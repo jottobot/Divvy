@@ -2,20 +2,14 @@ body, html, h1 {
   height: 100%;
   font-family: 'Playfair Display', serif;
 } 
-.parallax { 
-  background-image: url("../images/DJI_0087-2_1024x1024.jpg");
-  height: 100%; 
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-/* .image-container {
-  width: 200px;
+.zoom {
+  padding: 0px;
+  font-family: 'Archivo Black', sans-serif;
+  background-image: white;
+  transition: transform 1.0s; /* Animation */
+  width: 400px;
   height: 200px;
-  overflow: hidden;
-} */
-.text {
+  margin: 0 auto;
   background-color: rgba(255, 255, 255, 0.847);
   color: black;
   font-family: 'Archivo Black', sans-serif;
@@ -29,8 +23,41 @@ body, html, h1 {
   left: 50%;
   transform: translate(-50%, -50%); /* Position text in the middle */
   mix-blend-mode: screen; /* This makes the cutout text possible */
-  /* transition: .2s; */
+
 }
+
+.zoom:hover {
+  transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+.parallax { 
+  background-image: url("../images/DJI_0087-2_1024x1024.jpg");
+  height: 100%; 
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+/* .image-container {
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+} */
+/* .text {
+  background-color: rgba(255, 255, 255, 0.847);
+  color: black;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 7vw;
+  letter-spacing: 5px;
+  margin: 0 auto; 
+  padding: 30px;
+  text-align: center; 
+  position: absolute; 
+  top: 50%; 
+  left: 50%;
+  transform: translate(-50%, -50%); /* Position text in the middle */
+  /* mix-blend-mode: screen; This makes the cutout text possible */
+  /* transition: .2s; */
+/* } */ 
 /* .zoom { */
   /* overflow: hidden; */
   /* padding: 50px; */
