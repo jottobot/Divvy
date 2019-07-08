@@ -115,7 +115,7 @@
         </div>
 
         <div class="col-md-6">
-          <img src="images/bill-image.png" alt="bills" width="300" height="300">
+          <img src="images/bill-image.png" id="billspic" alt="bills" width="300" height="300">
         </div>
 
         <div class="col-md-3">
@@ -189,34 +189,37 @@
 
       {{!-- dashboard --}}
       <div class="row">
-        <table id="current-bills" class="table table-hover table-dark">
-          <p class="dashboard" id="billdetails">Bill Details</p>
-          <thead>
-            <tr>
-              <th scope="col" class="viewtable">ID</th>
-              <th scope="col" class="viewtable">Bill</th>
-              <th scope="col" class="viewtable">Company</th>
-              <th scope="col" class="viewtable">Bill total</th>
-              <th scope="col" class="viewtable">You owe</th>
-              <th scope="col" class="viewtable">Paid</th>
-              {{!-- <th scope="col" id="addPayersHeader" class="viewtable">Add payers</th>
+        <p class="dashboard" id="billdetails">Bill Details</p>
+        <div class="table-responsive">
+          <table id="current-bills" class="table table-hover table-dark">
+            {{!-- <p class="dashboard" id="billdetails">Bill Details</p> --}}
+            <thead>
+              <tr>
+                <th scope="col" class="viewtable">ID</th>
+                <th scope="col" class="viewtable">Bill</th>
+                <th scope="col" class="viewtable">Company</th>
+                <th scope="col" class="viewtable">Bill total</th>
+                <th scope="col" class="viewtable">You owe</th>
+                <th scope="col" class="viewtable">Paid</th>
+                {{!-- <th scope="col" id="addPayersHeader" class="viewtable">Add payers</th>
               <th scope="col" id="viewDetailsHeader" class="viewtable">Details</th>
               <th scope="col" class="viewtable">Pay bill</th> --}}
-            </tr>
-          </thead>
-          <tbody>
-          </tbody>
-        </table>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
       </div>
 
       {{!-- bill details modal --}}
-       <div class="modal" tabindex="-1" role="dialog" id="billDetailModal">
+      <div class="modal" tabindex="-1" role="dialog" id="billDetailModal">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="w3-container w3-padding-32" id="contact">
-              <h5 class="w3-border-bottom w3-border-light-grey w3-padding-16" id="divvyfont">
+              {{!-- <h5 class="w3-border-bottom w3-border-light-grey w3-padding-16" id="divvyfont">
                 Bill Details
-              </h5>
+              </h5> --}}
               <center>
                 <div class="modal-body">
                   <div id="viewBill"></div>
@@ -233,11 +236,11 @@
       {{!-- add bill button --}}
       <div class="row">
         <div class="col-md-6">
-        <button id="addnewbill" class="btn btn-dark" type="submit">Add a new bill</button>
+          <button id="addnewbill" class="btn btn-dark" type="submit">Add a new bill</button>
         </div>
-      {{!-- Refresh Bills View --}}
+        {{!-- Refresh Bills View --}}
         <div class="col-md-6">
-        <button id="refresh-bills" class="btn btn-dark" type="submit">Refresh Bills</button>
+          <button id="refresh-bills" class="btn btn-dark" type="submit">Refresh Bills</button>
         </div>
       </div>
 

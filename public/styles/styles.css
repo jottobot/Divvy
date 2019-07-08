@@ -23,11 +23,9 @@ body, html, h1 {
   left: 50%;
   transform: translate(-50%, -50%); /* Position text in the middle */
   mix-blend-mode: screen; /* This makes the cutout text possible */
-
 }
-
 .zoom:hover {
-  transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  cursor: pointer;
 }
 .parallax { 
   background-image: url("../images/DJI_0087-2_1024x1024.jpg");
@@ -37,40 +35,6 @@ body, html, h1 {
   background-repeat: no-repeat;
   background-size: cover;
 }
-/* .image-container {
-  width: 200px;
-  height: 200px;
-  overflow: hidden;
-} */
-/* .text {
-  background-color: rgba(255, 255, 255, 0.847);
-  color: black;
-  font-family: 'Archivo Black', sans-serif;
-  font-size: 7vw;
-  letter-spacing: 5px;
-  margin: 0 auto; 
-  padding: 30px;
-  text-align: center; 
-  position: absolute; 
-  top: 50%; 
-  left: 50%;
-  transform: translate(-50%, -50%); /* Position text in the middle */
-  /* mix-blend-mode: screen; This makes the cutout text possible */
-  /* transition: .2s; */
-/* } */ 
-/* .zoom { */
-  /* overflow: hidden; */
-  /* padding: 50px; */
-  /* transition: transform .2s; */
-  /* width: 200px;
-  height: 200px; */
-  /* margin: 0 auto; */
-/* } */
-/* .text:hover {
-  -ms-transform: scale(1.1);   
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1); 
-} */
 
 /* OPENING MODAL */
 .modal {
@@ -255,3 +219,119 @@ body, html, h1 {
   font-family: 'Archivo Black', sans-serif;
  }
 
+ @media only screen and (max-width: 413px) {
+  .zoom {
+    padding: 0px;
+    font-family: 'Archivo Black', sans-serif;
+    background-image: white;
+    transition: transform 1.0s; /* Animation */
+    width: 200px;
+    height: 100px;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.847);
+    color: black;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 7vw;
+    letter-spacing: 5px;
+    margin: 0 auto; 
+    padding: 30px;
+    text-align: center; 
+    position: absolute; 
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%); /* Position text in the middle */
+    mix-blend-mode: screen; /* This makes the cutout text possible */
+  }
+  .zoom:hover {
+    transform: scale(0);
+  }
+
+  /* SIGN IN */
+  #signinemail {
+    margin-bottom: 30px;
+  }
+  #signinpassword {
+    margin-bottom: 30px;
+  }
+
+  /* SIGN UP */
+  #signupfirstname {
+    margin-bottom: 30px;
+  }
+  #signuplastname {
+    margin-bottom: 30px;
+  }
+  #signupemail {
+    margin-bottom: 30px;
+  }
+  /* #signupphone {
+    margin-left: 80px;
+    margin-bottom: 30px;
+  } */
+  #signuppassword {
+    margin-bottom: 30px;
+  }
+
+  /* ADD BILLS */
+  #billspic {
+    width: 250px;
+    height: auto;
+  }
+
+  /* VIEW BILLS */
+
+ }
+
+
+ @media only screen and (max-width: 720px) and (min-width: 414px)  {
+  .zoom {
+    padding: 0px;
+    font-family: 'Archivo Black', sans-serif;
+    background-image: white;
+    transition: transform 1.0s; /* Animation */
+    width: 200px;
+    height: 100px;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.847);
+    color: black;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 7vw;
+    letter-spacing: 5px;
+    margin: 0 auto; 
+    padding: 30px;
+    text-align: center; 
+    position: absolute; 
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%); /* Position text in the middle */
+    mix-blend-mode: screen; /* This makes the cutout text possible */
+  }
+  .zoom:hover {
+    transform: scale(0);
+  }
+
+  /* SIGN IN */
+  #signinemail {
+    margin-bottom: 30px;
+  }
+  #signinpassword {
+    margin-bottom: 30px;
+  }
+
+  /* SIGN UP */
+  #signupfirstname {
+    margin-bottom: 30px;
+  }
+  #signuplastname {
+    margin-bottom: 30px;
+  }
+  #signupemail {
+    margin-bottom: 30px;
+  }
+  #signupphone {
+    margin-bottom: 30px;
+  }
+  #signuppassword {
+    margin-bottom: 30px;
+  }
+}
