@@ -391,6 +391,7 @@ $(document).ready(function () {
   // On click function to exit out of #myModal
   $('#myModalExit').on('click', function() {
     $('#myModal').remove();
+    location.reload();
   });
 
   $('.closeBillDetails').click(function () {
