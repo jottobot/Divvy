@@ -1,5 +1,5 @@
 const developmentBaseUrl = 'http://localhost:3000/';
-// const productionBaseUrl = 'https://vast-gorge-37663.herokuapp.com/';
+// const productionBaseUrl = 'https://divvy-application.herokuapp.com/';
 
 const baseUrl = developmentBaseUrl;
 // const baseUrl = productionBaseUrl;
@@ -117,7 +117,6 @@ $(document).ready(function () {
       url: queryURL + userEmail,
       method: 'GET',
     }).then(function (response) {
-      console.log(response);
       response.forEach(bill => {
         buildBillViewRow(bill, $('#current-bills'));
       });
@@ -138,7 +137,6 @@ $(document).ready(function () {
       }
     }).then(response => {
       callback();
-      console.log(response);
     });
   }
 
@@ -195,7 +193,6 @@ $(document).ready(function () {
             buildAddUserToBillTableRow(billCreator, 'bill-creater');
 
             // Get all bills for user
-            console.log('show bills');
             $('.bill-list-item').remove();
             getBillsForUser(billCreator.email);
 
@@ -244,7 +241,6 @@ $(document).ready(function () {
       url: getUserapiUrl + userData.email,
       method: 'GET',
     }).then(response => {
-      console.log(response);
       if (response.length) { // Success. User found
         const user = response[0];
         user.amountOwed = userData.amountOwed;
@@ -259,7 +255,6 @@ $(document).ready(function () {
 
   // Saves user authentication and scrolls page down to create bill section
   function directUserAfterAuth(response) {
-    console.log(response);
     if (response.id) { // user found
       createAuthState(response.firstName, response.lastName, response.email);
       getBillsForUser(response.email);
@@ -369,7 +364,6 @@ $(document).ready(function () {
     var billId = $(this).parent().attr('data-id');
     $('#billDetailModal').show();
     billDetail(billId, function (response) {
-      console.log(response);
       buildRowsBillDetail(response);
     });
   });
@@ -385,7 +379,6 @@ $(document).ready(function () {
         amountOwed: amountOwed,
         billId: billId
       };
-      console.log(dataToSend);
       addBillToUser(dataToSend, function () {
         $('#modal2').hide();
       });
@@ -395,6 +388,7 @@ $(document).ready(function () {
   // On click function to exit out of #myModal
   $('#myModalExit').on('click', function() {
     $('#myModal').remove();
+    location.reload();
   });
 
   $('.closeBillDetails').click(function () {
