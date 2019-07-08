@@ -274,11 +274,16 @@ body, html, h1 {
 
   /* ADD BILLS */
   #billspic {
+    margin-top: 20px;
+    margin-bottom: 20px;
     width: 250px;
     height: auto;
   }
 
   /* VIEW BILLS */
+  #billdetails {
+    margin-left: 25%
+  }
 
  }
 
