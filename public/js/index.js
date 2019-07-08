@@ -1,8 +1,8 @@
-// const developmentBaseUrl = 'http://localhost:3000/';
-const productionBaseUrl = 'https://vast-gorge-37663.herokuapp.com/';
+const developmentBaseUrl = 'http://localhost:3000/';
+// const productionBaseUrl = 'https://vast-gorge-37663.herokuapp.com/';
 
-// const baseUrl = developmentBaseUrl;
-const baseUrl = productionBaseUrl;
+const baseUrl = developmentBaseUrl;
+// const baseUrl = productionBaseUrl;
 
 $(document).ready(function () {
   $('#addbillcard').hide();
