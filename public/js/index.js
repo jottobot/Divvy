@@ -36,6 +36,13 @@ $(document).ready(function () {
     localStorage.removeItem('authState');
   }
 
+  function alertModal(title, body) {
+    // Display error message to the user in a modal
+    $('#alert-modal-title').html(title);
+    $('#alert-modal-body').html(body);
+    $('#alert-modal').modal('show');
+  }
+  
   function createAuthState(firstName, lastName, email) {
     deleteAuthState();
     $('.username').text('');
@@ -328,6 +335,13 @@ $(document).ready(function () {
       amountYouOwe: $('#price-you-owe').val(),
     };
 
+    //if amount you owe > amount throw error
+    if (billData.amount > billData.amountYouOwe) {
+  alertModel("Error", "Amount owed must be less than bill total")
+    };
+  
+
+
     createBill(billData);
     $('#inputbill').val('');
     $('#inputcompany').val('');
@@ -389,7 +403,7 @@ $(document).ready(function () {
   });
 
   // On click function to exit out of #myModal
-  $('#myModalExit').on('click', function() {
+  $('#myModalExit').on('click', function () {
     $('#myModal').remove();
   });
 
