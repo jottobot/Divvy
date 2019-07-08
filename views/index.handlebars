@@ -21,7 +21,7 @@
     <!-- OPENING MODAL -->
     <div id="myModal" class="modal">
       <div class="modal-content">
-        <span class="close">&times;</span>
+        <span id="myModalExit" class="close">&times;</span>
         <div class="w3-container w3-padding-32" id="contact">
           <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16" id="divvyfont">
             Welcome to Divvy
@@ -56,7 +56,7 @@
                 <input type="text" id="signupphone" placeholder="Your phone number" name="phone" required>
 
                 <label for="password" class="signuppassword"><b>Password</b></label>
-                <input type="text" id="signuppassword" placeholder="Your password" name="password" required>
+                <input type="password" id="signuppassword" placeholder="Password" name="password" required>
 
                 <div class="clearfix">
                   <button type="submit" class="btn btn-dark" id="signupbutton">Sign up</button>
@@ -74,7 +74,7 @@
                 <label for="email" class="signinemail"><b>Email</b></label>
                 <input type="text" placeholder="Your email" name="email" id="signinemail" required>
                 <label for="name" class="signuppassword"><b>Password</b></label>
-                <input type="text" placeholder="Your password" name="name" id="signinpassword" required>
+                <input type="password" placeholder="Your password" name="name" id="signinpassword" required>
                 <div class="clearfix">
                   <div>
                     <button type="submit" class="btn btn-dark" id="signinbutton">Sign in</button>
