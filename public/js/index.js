@@ -377,6 +377,11 @@ $(document).ready(function () {
     });
   });
 
+  // On click function to exit out of #myModal 
+  $("#myModalExit").on("click", function() {
+    $("#myModal").remove();
+  });
+
   // Repopulates all user bills in dashboard
   $('#refresh-bills').click(function (event) {
     event.preventDefault();
