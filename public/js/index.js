@@ -1,8 +1,8 @@
-// const developmentBaseUrl = 'http://localhost:3000/';
-const productionBaseUrl = 'https://vast-gorge-37663.herokuapp.com/';
+const developmentBaseUrl = 'http://localhost:3000/';
+// const productionBaseUrl = 'https://vast-gorge-37663.herokuapp.com/';
 
-// const baseUrl = developmentBaseUrl;
-const baseUrl = productionBaseUrl;
+const baseUrl = developmentBaseUrl;
+// const baseUrl = productionBaseUrl;
 
 $(document).ready(function () {
   $('#addbillcard').hide();
@@ -93,6 +93,37 @@ $(document).ready(function () {
     });
   }
 
+  // Constructs a bill row in the dashboard bills table
+  function buildBillViewRow(bill, destination) {
+    const tableRow = $('<tr>').attr('data-id', bill.id).addClass('bill-list-item');
+    const tableHead = $('<th>').attr('scope', 'row').text(bill.id);
+    const titleCell = $('<td>').text(bill.title);
+    const companyCell = $('<td>').text(bill.Company);
+    const amountCell = $('<td>').text(bill.Amount);
+    const isPaidCell = $('<td>').text(bill.BillPaid);
+    const youOweCell = $('<td>').text(bill.UserBill.amountOwed);
+    const addPayersBtn = $('<button type="button" class="btn btn-outline-light addPayers">Add payers</button>');
+    const billDetailBtn = $('<button type="button" class="btn btn-outline-light viewBill">View Bill</button>');
+    const settle = $('<button type="button" class="btn btn-outline-light settle">Pay bill</button>');
+    tableRow
+      .append(tableHead, titleCell, companyCell, amountCell, youOweCell, isPaidCell, addPayersBtn, billDetailBtn, settle);
+    destination.append(tableRow);
+  }
+
+  //function get all users associated will bill
+  function getBillsForUser(userEmail) {
+    var queryURL = baseUrl + 'api/users/bills/';
+    $.ajax({
+      url: queryURL + userEmail,
+      method: 'GET',
+    }).then(function (response) {
+      console.log(response);
+      response.forEach(bill => {
+        buildBillViewRow(bill, $('#current-bills'));
+      });
+    });
+  }
+
   // Associate a bill with a user
   function addBillToUser(userAndBillData, callback) {
     const apiUrl = baseUrl + 'api/users/addbill/';
@@ -143,61 +174,39 @@ $(document).ready(function () {
         BillDue: billData.BillDue,
         BillPaid: billData.BillPaid,
       }
-    }).then(function (response) {
-      if (response.id) { // bill creation success
-        billId = response.id;
-        const amountYouOwe = billData.amountYouOwe;
-        const billCreator = getAuthState();
+    })
+      .then(function (response) {
+        if (response.id) { // bill creation success
+          billId = response.id;
+          const amountYouOwe = billData.amountYouOwe;
+          const billCreator = getAuthState();
 
-        const userData = {
-          email: billCreator.email,
-          billId: billId,
-          amountOwed: amountYouOwe,
-        };
+          const userData = {
+            email: billCreator.email,
+            billId: billId,
+            amountOwed: amountYouOwe,
+          };
 
-        addBillToUser(userData, function () { // add bill creator to bill
-          addUsersToBillElem.attr('data-id', billId);
-          $('.add-payer-user').remove();
-          $('.bill-creater').remove();
+          addBillToUser(userData, function () { // add bill creator to bill
+            addUsersToBillElem.attr('data-id', billId);
+            $('.add-payer-user').remove();
+            $('.bill-creater').remove();
 
-          buildAddUserToBillTableRow(billCreator, true, 'bill-creater');
+            buildAddUserToBillTableRow(billCreator, true, 'bill-creater');
 
-          $('#modal2').show();
-        });
-      }
-    });
-  }
+            // Get all bills for user
+            console.log('show bills');
+            $('.bill-list-item').remove();
+            getBillsForUser(billCreator.email);
 
-  // Constructs a bill row in the dashboard bills table
-  function buildBillViewRow(bill, destination) {
-    const tableRow = $('<tr>').attr('data-id', bill.id).addClass('bill-list-item');
-    const tableHead = $('<th>').attr('scope', 'row').text(bill.id);
-    const titleCell = $('<td>').text(bill.title);
-    const companyCell = $('<td>').text(bill.Company);
-    const amountCell = $('<td>').text(bill.Amount);
-    const isPaidCell = $('<td>').text(bill.BillPaid);
-    const youOweCell = $('<td>').text(bill.UserBill.amountOwed);
-    const addPayersBtn = $('<button type="button" class="btn btn-outline-light addPayers">Add payers</button>');
-    const billDetailBtn = $('<button type="button" class="btn btn-outline-light viewBill">View Bill</button>');
-    const settle = $('<button type="button" class="btn btn-outline-light settle">Pay bill</button>');
-    tableRow
-      .append(tableHead, titleCell, companyCell, amountCell, youOweCell, isPaidCell, addPayersBtn, billDetailBtn, settle);
-    destination.append(tableRow);
-  }
-
-  //function get all users associated will bill
-  function getBillsForUser(userEmail) {
-    var queryURL = baseUrl + 'api/users/bills/';
-    $.ajax({
-      url: queryURL + userEmail,
-      method: 'GET',
-    }).then(function (response) {
-      console.log(response);
-      response.forEach(bill => {
-        buildBillViewRow(bill, $('#current-bills'));
+            $('#modal2').show();
+          });
+        }
       });
-    });
   }
+
+
+
 
   // Constructs a user row in the bill detail view modal table
   function buildRowsBillDetail(payers) {
@@ -325,6 +334,8 @@ $(document).ready(function () {
     $('#inputprice').val('');
     $('.paid:checked').val('');
     $('#price-you-owe').val('');
+
+
   });
 
   // Handle search for user email
@@ -377,22 +388,13 @@ $(document).ready(function () {
     });
   });
 
-  // On click function to exit out of #myModal 
-  $("#myModalExit").on("click", function() {
-    $("#myModal").remove();
-  });
-
-  // Repopulates all user bills in dashboard
-  $('#refresh-bills').click(function (event) {
-    event.preventDefault();
-    $('.bill-list-item').remove();
-    const user = getAuthState();
-    getBillsForUser(user.email);
+  // On click function to exit out of #myModal
+  $('#myModalExit').on('click', function() {
+    $('#myModal').remove();
   });
 
   $('.closeBillDetails').click(function () {
     $('#billDetailModal').hide();
   });
-
 
 });
