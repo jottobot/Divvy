@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "Aliale608",
+    "password": "1234",
     "database": "divvy_db",
     "host": "localhost",
     "dialect": "mysql"
