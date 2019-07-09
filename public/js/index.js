@@ -1,8 +1,8 @@
-const developmentBaseUrl = 'http://localhost:3000/';
-// const productionBaseUrl = 'https://divvy-application.herokuapp.com/';
+// const developmentBaseUrl = 'http://localhost:3000/';
+const productionBaseUrl = 'https://divvy-application.herokuapp.com/';
 
-const baseUrl = developmentBaseUrl;
-// const baseUrl = productionBaseUrl;
+// const baseUrl = developmentBaseUrl;
+const baseUrl = productionBaseUrl;
 
 $(document).ready(function () {
   $('#addbillcard').hide();
