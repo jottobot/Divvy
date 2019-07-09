@@ -218,6 +218,9 @@ body, html, h1 {
   margin-left: 10px;
   text-transform: uppercase;
  }
+ .addbillbutton {
+   margin: auto;
+ }
 
  /* FOOTER */
  .page-footer {
@@ -271,21 +274,26 @@ body, html, h1 {
   #signupemail {
     margin-bottom: 30px;
   }
-  /* #signupphone {
-    margin-left: 80px;
+  #signupphone {
+    /* margin-left: 80px; */
     margin-bottom: 30px;
-  } */
+  }
   #signuppassword {
     margin-bottom: 30px;
   }
 
   /* ADD BILLS */
   #billspic {
+    margin-top: 20px;
+    margin-bottom: 20px;
     width: 250px;
     height: auto;
   }
 
   /* VIEW BILLS */
+  #billdetails {
+    margin-left: 25%
+  }
 
  }
 

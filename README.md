@@ -1,7 +1,7 @@
 # Divvy
 
 ## Deployed Link
-https://vast-gorge-37663.herokuapp.com/
+https://divvy-application.herokuapp.com
 
 <img width="1440" alt="Screen Shot 2019-06-17 at 6 56 44 PM" src="https://user-images.githubusercontent.com/43662571/59654425-f2e1c300-914a-11e9-9ed4-4177e5de8695.png">
 <img width="1440" alt="Screen Shot 2019-06-17 at 6 58 03 PM" src="https://user-images.githubusercontent.com/43662571/59654426-f2e1c300-914a-11e9-9415-63fcd8f28911.png">

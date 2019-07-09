@@ -27,7 +27,7 @@
             Welcome to Divvy
           </h3>
           <center>
-            <h4 id="divvyfont2">A household bill tracking app.</h4>
+            <h4 id="divvyfont2">A bill tracking app.</h4>
             <div class="signInsignUpBtns">
               <button id="signin" class="btn btn-dark" type="submit">
                 <i class="fa fa-paper-plane"></i>Sign in
@@ -156,7 +156,13 @@
                 <label for="formGroupExampleInput" class="formlabel">Enter each payer's email.</label>
                 <input type="text" class="form-control" id="inputemail" placeholder="Enter email" style="width: 50%">
               </div>
+              <div class="form-group">
+                <label for="formGroupExampleInput2" class="formlabel">Portion owed</label>
+                <input type="number" class="form-control" id="amount-user-owes" style="width: 50%" placeholder="Enter amount user owes"
+                  required>
+              </div>
             </form>
+            <button type="submit" class="btn btn-dark" id="addUserEmail">Add payer</button>
             <table id="emails">
               <tbody id="tbodyemails">
                 <thead>
@@ -171,8 +177,8 @@
               </tbody>
             </table>
             {{!-- buttons on add payers modal --}}
-            <button type="submit" class="btn btn-dark" id="addUserEmail">Add payer</button>
-            <button type="submit" class="btn btn-dark" id="addemails">Submit bill</button>
+            
+            <button type="submit" class="btn btn-dark" id="addemails">Confirm Bill Changes</button>
           </center>
         </div>
       </div>
@@ -235,19 +241,15 @@
 
       {{!-- add bill button --}}
       <div class="row">
-        <div class="col-md-6">
+        <div class="addbillbutton">
           <button id="addnewbill" class="btn btn-dark" type="submit">Add a new bill</button>
-        </div>
-        {{!-- Refresh Bills View --}}
-        <div class="col-md-6">
-          <button id="refresh-bills" class="btn btn-dark" type="submit">Refresh Bills</button>
         </div>
       </div>
 
-    </div>
-  </div>
 
-  <!-- END CONTAINER DIV  -->
+    </div>
+
+    <!-- END CONTAINER DIV  -->
   </div>
 
 </body>
