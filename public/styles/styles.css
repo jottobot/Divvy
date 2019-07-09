@@ -211,6 +211,9 @@ body, html, h1 {
   margin-left: 10px;
   text-transform: uppercase;
  }
+ .addbillbutton {
+   margin: auto;
+ }
 
  /* FOOTER */
  .page-footer {
