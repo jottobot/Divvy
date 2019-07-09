@@ -1,8 +1,8 @@
-// const developmentBaseUrl = 'http://localhost:3000/';
-const productionBaseUrl = 'https://vast-gorge-37663.herokuapp.com/';
+const developmentBaseUrl = 'http://localhost:3000/';
+// const productionBaseUrl = 'https://vast-gorge-37663.herokuapp.com/';
 
-// const baseUrl = developmentBaseUrl;
-const baseUrl = productionBaseUrl;
+const baseUrl = developmentBaseUrl;
+// const baseUrl = productionBaseUrl;
 
 $(document).ready(function () {
   $('#addbillcard').hide();
@@ -104,7 +104,7 @@ $(document).ready(function () {
     const youOweCell = $('<td>').text(bill.UserBill.amountOwed);
     const addPayersBtn = $('<button type="button" class="btn btn-outline-light addPayers">Add payers</button>');
     const billDetailBtn = $('<button type="button" class="btn btn-outline-light viewBill">View Bill</button>');
-    const settle = $('<button type="button" class="btn btn-outline-light settle">Pay bill</button>');
+    const settle = $('<button type="button" id="settleBill" class="btn btn-outline-light settle">Pay bill</button>');
     tableRow
       .append(tableHead, titleCell, companyCell, amountCell, youOweCell, isPaidCell, addPayersBtn, billDetailBtn, settle);
     destination.append(tableRow);
@@ -387,6 +387,11 @@ $(document).ready(function () {
       });
     });
   });
+
+// STILL WORKING ON THIS -RAMON //
+  // $("#settleBill").on("click", function(){
+  //   location.replace("https://venmo.com/");  
+  //  });
 
   // On click function to exit out of #myModal
   $('#myModalExit').on('click', function() {
