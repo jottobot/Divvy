@@ -154,6 +154,7 @@
             <form>
               <div class="form-group">
                 <label for="formGroupExampleInput" class="formlabel">Enter each payer's email.</label>
+                <p>Payer must have an account in order to be entered.</p>
                 <input type="text" class="form-control" id="inputemail" placeholder="Enter email" style="width: 50%">
               </div>
               <div class="form-group">
@@ -169,16 +170,15 @@
                   <tr>
                     <div class="row">
                       <div>
-                        <th id="addPayersEmail">Payer information:</th>
+                        <th id="addPayersEmail">Current payer's information:</th>
                       </div>
                     </div>
                   </tr>
                 </thead>
               </tbody>
             </table>
-            {{!-- buttons on add payers modal --}}
-            
-            <button type="submit" class="btn btn-dark" id="addemails">Confirm Bill Changes</button>
+            {{!-- button on add payers modal --}}
+            <button type="submit" class="btn btn-dark" id="addemails">Confirm bill changes</button>
           </center>
         </div>
       </div>
@@ -198,7 +198,6 @@
         <p class="dashboard" id="billdetails">Bill Details</p>
         <div class="table-responsive">
           <table id="current-bills" class="table table-hover table-dark">
-            {{!-- <p class="dashboard" id="billdetails">Bill Details</p> --}}
             <thead>
               <tr>
                 <th scope="col" class="viewtable">ID</th>
@@ -223,9 +222,11 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="w3-container w3-padding-32" id="contact">
-              {{!-- <h5 class="w3-border-bottom w3-border-light-grey w3-padding-16" id="divvyfont">
+              <h5 class="w3-border-bottom w3-border-light-grey w3-padding-16" id="divvyfont">
                 Bill Details
-              </h5> --}}
+              </h5>
+              <p>Names, emails, and amounts listed for those who owe this bill.</p>
+              <hr>
               <center>
                 <div class="modal-body">
                   <div id="viewBill"></div>
