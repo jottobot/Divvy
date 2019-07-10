@@ -12,7 +12,7 @@
   <div class="container">
 
     <!-- DIVVY TITLE -->
-    <div class="image-container">
+    <div id="imgContain" class="image-container">
       {{!-- <div class="zoom"> --}}
       <div id="myBtn" class="zoom" class="text">Divvy</div>
       {{!-- </div> --}}
@@ -27,7 +27,7 @@
             Welcome to Divvy
           </h3>
           <center>
-            <h4 id="divvyfont2">A household bill tracking app.</h4>
+            <h4 id="divvyfont2">A bill tracking app.</h4>
             <div class="signInsignUpBtns">
               <button id="signin" class="btn btn-dark" type="submit">
                 <i class="fa fa-paper-plane"></i>Sign in
@@ -115,7 +115,7 @@
         </div>
 
         <div class="col-md-6">
-          <img src="images/bill-image.png" alt="bills" width="300" height="300">
+          <img src="images/bill-image.png" id="billspic" alt="bills" width="300" height="300">
         </div>
 
         <div class="col-md-3">
@@ -156,7 +156,13 @@
                 <label for="formGroupExampleInput" class="formlabel">Enter each payer's email.</label>
                 <input type="text" class="form-control" id="inputemail" placeholder="Enter email" style="width: 50%">
               </div>
+              <div class="form-group">
+                <label for="formGroupExampleInput2" class="formlabel">Portion owed</label>
+                <input type="number" class="form-control" id="amount-user-owes" style="width: 50%" placeholder="Enter amount user owes"
+                  required>
+              </div>
             </form>
+            <button type="submit" class="btn btn-dark" id="addUserEmail">Add payer</button>
             <table id="emails">
               <tbody id="tbodyemails">
                 <thead>
@@ -171,8 +177,8 @@
               </tbody>
             </table>
             {{!-- buttons on add payers modal --}}
-            <button type="submit" class="btn btn-dark" id="addUserEmail">Add payer</button>
-            <button type="submit" class="btn btn-dark" id="addemails">Submit bill</button>
+            
+            <button type="submit" class="btn btn-dark" id="addemails">Confirm Bill Changes</button>
           </center>
         </div>
       </div>
@@ -189,34 +195,37 @@
 
       {{!-- dashboard --}}
       <div class="row">
-        <table id="current-bills" class="table table-hover table-dark">
-          <p class="dashboard" id="billdetails">Bill Details</p>
-          <thead>
-            <tr>
-              <th scope="col" class="viewtable">ID</th>
-              <th scope="col" class="viewtable">Bill</th>
-              <th scope="col" class="viewtable">Company</th>
-              <th scope="col" class="viewtable">Bill total</th>
-              <th scope="col" class="viewtable">You owe</th>
-              <th scope="col" class="viewtable">Paid</th>
-              {{!-- <th scope="col" id="addPayersHeader" class="viewtable">Add payers</th>
+        <p class="dashboard" id="billdetails">Bill Details</p>
+        <div class="table-responsive">
+          <table id="current-bills" class="table table-hover table-dark">
+            {{!-- <p class="dashboard" id="billdetails">Bill Details</p> --}}
+            <thead>
+              <tr>
+                <th scope="col" class="viewtable">ID</th>
+                <th scope="col" class="viewtable">Bill</th>
+                <th scope="col" class="viewtable">Company</th>
+                <th scope="col" class="viewtable">Bill total</th>
+                <th scope="col" class="viewtable">You owe</th>
+                <th scope="col" class="viewtable">Paid</th>
+                {{!-- <th scope="col" id="addPayersHeader" class="viewtable">Add payers</th>
               <th scope="col" id="viewDetailsHeader" class="viewtable">Details</th>
               <th scope="col" class="viewtable">Pay bill</th> --}}
-            </tr>
-          </thead>
-          <tbody>
-          </tbody>
-        </table>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
       </div>
 
       {{!-- bill details modal --}}
-       <div class="modal" tabindex="-1" role="dialog" id="billDetailModal">
+      <div class="modal" tabindex="-1" role="dialog" id="billDetailModal">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="w3-container w3-padding-32" id="contact">
-              <h5 class="w3-border-bottom w3-border-light-grey w3-padding-16" id="divvyfont">
+              {{!-- <h5 class="w3-border-bottom w3-border-light-grey w3-padding-16" id="divvyfont">
                 Bill Details
-              </h5>
+              </h5> --}}
               <center>
                 <div class="modal-body">
                   <div id="viewBill"></div>
@@ -232,19 +241,15 @@
 
       {{!-- add bill button --}}
       <div class="row">
-        <div class="col-md-6">
-        <button id="addnewbill" class="btn btn-dark" type="submit">Add a new bill</button>
-        </div>
-      {{!-- Refresh Bills View --}}
-        <div class="col-md-6">
-        <button id="refresh-bills" class="btn btn-dark" type="submit">Refresh Bills</button>
+        <div class="addbillbutton">
+          <button id="addnewbill" class="btn btn-dark" type="submit">Add a new bill</button>
         </div>
       </div>
 
-    </div>
-  </div>
 
-  <!-- END CONTAINER DIV  -->
+    </div>
+
+    <!-- END CONTAINER DIV  -->
   </div>
 
 </body>
