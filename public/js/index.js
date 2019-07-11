@@ -1,8 +1,8 @@
-const developmentBaseUrl = 'http://localhost:3000/';
-// const productionBaseUrl = 'https://divvy-application.herokuapp.com/';
+// const developmentBaseUrl = 'http://localhost:3000/';
+const productionBaseUrl = 'https://divvy-application.herokuapp.com/';
 
-const baseUrl = developmentBaseUrl;
-// const baseUrl = productionBaseUrl;
+// const baseUrl = developmentBaseUrl;
+const baseUrl = productionBaseUrl;
 
 $(document).ready(function () {
   $('#addbillcard').hide();
@@ -111,7 +111,7 @@ $(document).ready(function () {
     const youOweCell = $('<td>').text(bill.UserBill.amountOwed);
     const addPayersBtn = $('<button type="button" class="btn btn-outline-light addPayers">Add payers</button>');
     const billDetailBtn = $('<button type="button" class="btn btn-outline-light viewBill">View Bill</button>');
-    const settle = $('<button type="button" id="settleBill" class="btn btn-outline-light settle">Pay bill</button>');
+    const settle = $('<a class="btn btn-outline-light settle" role="button" href="https://venmo.com/" target="_blank">Pay bill</a>');
     tableRow
       .append(tableHead, titleCell, companyCell, amountCell, youOweCell, isPaidCell, addPayersBtn, billDetailBtn, settle);
     destination.append(tableRow);
