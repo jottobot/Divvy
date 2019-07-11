@@ -150,12 +150,12 @@ $(document).ready(function () {
   // Adds a table row in adding a user to a bill modal
   function buildAddUserToBillTableRow(user, payerClass) {
     const userDiv = $('<div>').addClass(payerClass);
-    const firstNameElem = $('<tr><td>' + user.firstName + '</tr></td>').attr('firstName', user.firstName);
-    const lastNameElem = $('<tr><td>' + user.lastName + '</tr></td>').attr('last-name', user.lastName);
-    const userEmailElem = $('<tr><td>' + user.email + '</tr></td>').attr('email', user.email);
+    const firstNameElem = $('<tr><td>' + 'First name: ' + user.firstName + '</tr></td>').attr('firstName', user.firstName);
+    const lastNameElem = $('<tr><td>' + 'Last name: ' + user.lastName + '</tr></td>').attr('last-name', user.lastName);
+    const userEmailElem = $('<tr><td>' + 'Email: ' + user.email + '</tr></td>').attr('email', user.email);
     let amountOwedElem;
     if (user.amountOwed) {
-      amountOwedElem = $('<tr><td>' + user.amountOwed + '</tr></td>').attr('amountOwed', user.amountOwed);
+      amountOwedElem = $('<tr><td>' + 'Amount owed: $' + user.amountOwed + '</tr></td>').attr('amountOwed', user.amountOwed);
     } else {
       amountOwedElem = $('');
     }
@@ -218,10 +218,10 @@ $(document).ready(function () {
 
     payers.forEach(payer => {
       const payerDiv = $('<div>').addClass('bill-payer-detail');
-      const firstNameElem = $('<tr><td>' + payer.firstName + '</tr></td>');
-      const lastNameElem = $('<tr><td>' + payer.lastName + '</tr></td>');
-      const userEmailElem = $('<tr><td>' + payer.email + '</tr></td>');
-      const amountPayerOwesElem = $('<tr><td>' + payer.UserBill.amountOwed + '</tr></td>');
+      const firstNameElem = $('<tr><td>' + 'First name: ' + payer.firstName + '</tr></td>');
+      const lastNameElem = $('<tr><td>' + 'Last name: ' + payer.lastName + '</tr></td>');
+      const userEmailElem = $('<tr><td>' + 'Email: ' + payer.email + '</tr></td>');
+      const amountPayerOwesElem = $('<tr><td>' + 'Amount owed: $' + payer.UserBill.amountOwed + '</tr></td>');
       var line = $('<div>').append('<hr>');
       payerDiv.append(firstNameElem, lastNameElem, userEmailElem, amountPayerOwesElem, line);
 
@@ -255,7 +255,7 @@ $(document).ready(function () {
         buildAddUserToBillTableRow(user, 'add-payer-user');
       } else {
         alert('Email address not found. Please have user make an account.');
-        console.log('user email does not exist');
+        console.log('User email does not exist');
       }
     });
   }

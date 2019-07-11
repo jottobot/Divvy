@@ -180,9 +180,9 @@ body, html, h1 {
   padding-bottom: 20px;
 }
 #billdetails {
+  margin: 0 auto;
   margin-bottom: 20px;
   font-family: 'Playfair Display', serif;
-  text-align: center;
   font-size: 30px;
   vertical-align: middle;
 }
@@ -207,9 +207,9 @@ body, html, h1 {
   text-align: center;
   margin: 0px;  
  }
- /* #viewDetailsHeader {
-
- } */
+ #addUserEmail {
+   margin-bottom: 20px;
+ }
  .viewBill {
    margin-left: 10px;
    text-transform: uppercase;
