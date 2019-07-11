@@ -1,8 +1,8 @@
-// const developmentBaseUrl = 'http://localhost:3000/';
-const productionBaseUrl = 'https://divvy-application.herokuapp.com/';
+const developmentBaseUrl = 'http://localhost:3000/';
+// const productionBaseUrl = 'https://divvy-application.herokuapp.com/';
 
-// const baseUrl = developmentBaseUrl;
-const baseUrl = productionBaseUrl;
+const baseUrl = developmentBaseUrl;
+// const baseUrl = productionBaseUrl;
 
 $(document).ready(function () {
   $('#addbillcard').hide();
@@ -36,13 +36,6 @@ $(document).ready(function () {
     localStorage.removeItem('authState');
   }
 
-  function alertModal(title, body) {
-    // Display error message to the user in a modal
-    $('#alert-modal-title').html(title);
-    $('#alert-modal-body').html(body);
-    $('#alert-modal').modal('show');
-  }
-
   function createAuthState(firstName, lastName, email) {
     deleteAuthState();
     $('.username').text('');
@@ -62,6 +55,13 @@ $(document).ready(function () {
   // ***************************************
   // Ajax functions
   // ***************************************
+
+  function alertModal(title, body) {
+    // Display error message to the user in a modal
+    $('#alert-modal-title').html(title);
+    $('#alert-modal-body').html(body);
+    $('#alert-modal').show();
+  }
 
   // Sign in
   function signIn(userData, callback) {
@@ -296,6 +296,12 @@ $(document).ready(function () {
     billDetailModal.style.display = 'none';
   };
 
+  // Close alert modal
+  $('#close-alert-modal').click(function(event) {
+    event.preventDefault();
+    $('#alert-modal').hide();
+  });
+
   // Handle sign in on click
   signInElem.click(function (event) {
     event.preventDefault();
@@ -332,11 +338,10 @@ $(document).ready(function () {
     };
 
     //if amount you owe > amount throw error
-    if (billData.amount > billData.amountYouOwe) {
-      alertModal('Error', 'Amount owed must be less than bill total');
+    if (billData.Amount < billData.amountYouOwe) {
+      alertModal('Error', 'Bill total must be less that amount owed');
+      return;
     }
-
-
 
     createBill(billData);
     $('#inputbill').val('');
@@ -366,7 +371,7 @@ $(document).ready(function () {
     addUsersToBillElem.attr('data-id', billId);
 
     const user = getAuthState();
-    buildAddUserToBillTableRow(user,'bill-creater');
+    buildAddUserToBillTableRow(user, 'bill-creater');
 
     $('#modal2').show();
   });
