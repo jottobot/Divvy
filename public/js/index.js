@@ -36,6 +36,13 @@ $(document).ready(function () {
     localStorage.removeItem('authState');
   }
 
+  function alertModal(title, body) {
+    // Display error message to the user in a modal
+    $('#alert-modal-title').html(title);
+    $('#alert-modal-body').html(body);
+    $('#alert-modal').modal('show');
+  }
+
   function createAuthState(firstName, lastName, email) {
     deleteAuthState();
     $('.username').text('');
@@ -324,6 +331,12 @@ $(document).ready(function () {
       amountYouOwe: $('#price-you-owe').val(),
     };
 
+    //if amount you owe > amount throw error
+    if (billData.amount > billData.amountYouOwe) {
+      alertModal('Error', 'Amount owed must be less than bill total');
+    }
+
+
 
     createBill(billData);
     $('#inputbill').val('');
@@ -385,13 +398,13 @@ $(document).ready(function () {
     });
   });
 
-// STILL WORKING ON THIS -RAMON //
+  // STILL WORKING ON THIS -RAMON //
   // $("#settleBill").on("click", function(){
-  //   location.replace("https://venmo.com/");  
+  //   location.replace("https://venmo.com/");
   //  });
 
   // On click function to exit out of #myModal
-  $('#myModalExit').on('click', function() {
+  $('#myModalExit').on('click', function () {
     $('#myModal').remove();
     location.reload();
   });
