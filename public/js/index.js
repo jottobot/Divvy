@@ -42,7 +42,7 @@ $(document).ready(function () {
     $('#alert-modal-body').html(body);
     $('#alert-modal').modal('show');
   }
-  
+
   function createAuthState(firstName, lastName, email) {
     deleteAuthState();
     $('.username').text('');
@@ -333,9 +333,9 @@ $(document).ready(function () {
 
     //if amount you owe > amount throw error
     if (billData.amount > billData.amountYouOwe) {
-  alertModel("Error", "Amount owed must be less than bill total")
-    };
-  
+      alertModal('Error', 'Amount owed must be less than bill total');
+    }
+
 
 
     createBill(billData);
@@ -398,9 +398,9 @@ $(document).ready(function () {
     });
   });
 
-// STILL WORKING ON THIS -RAMON //
+  // STILL WORKING ON THIS -RAMON //
   // $("#settleBill").on("click", function(){
-  //   location.replace("https://venmo.com/");  
+  //   location.replace("https://venmo.com/");
   //  });
 
   // On click function to exit out of #myModal
