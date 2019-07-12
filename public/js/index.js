@@ -209,9 +209,6 @@ $(document).ready(function () {
       });
   }
 
-
-
-
   // Constructs a user row in the bill detail view modal table
   function buildRowsBillDetail(payers) {
     $('.bill-payer-detail').remove();
@@ -278,7 +275,6 @@ $(document).ready(function () {
     }
   }
 
-
   // ***************************************
   // Onclick handler functions
   // ***************************************
@@ -339,7 +335,7 @@ $(document).ready(function () {
 
     //if amount you owe > amount throw error
     if (billData.Amount < billData.amountYouOwe) {
-      alertModal('Error', 'Bill total must be less that amount owed');
+      alertModal('Error.', 'Bill total must be less than amount owed.');
       return;
     }
 
@@ -407,6 +403,17 @@ $(document).ready(function () {
   // $("#settleBill").on("click", function(){
   //   location.replace("https://venmo.com/");
   //  });
+  // $('#settleBill').click(function(){
+  //   console.log('hi');
+  //   location.replace('https://venmo.com/');
+  // });
+  // $('#settleBill').on('click', '.link', function() {
+  //   $("#link").append('<a href="#" class="link"> Link </a>');
+  // });
+
+  // $('#settleBill').html('<a href="#" class="link">Link</a>');
+
+
 
   // On click function to exit out of #myModal
   $('#myModalExit').on('click', function () {
