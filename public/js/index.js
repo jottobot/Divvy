@@ -1,8 +1,8 @@
-const developmentBaseUrl = 'http://localhost:3000/';
-// const productionBaseUrl = 'https://divvy-application.herokuapp.com/';
+// const developmentBaseUrl = 'http://localhost:3000/';
+const productionBaseUrl = 'https://divvy-application.herokuapp.com/';
 
-const baseUrl = developmentBaseUrl;
-// const baseUrl = productionBaseUrl;
+// const baseUrl = developmentBaseUrl;
+const baseUrl = productionBaseUrl;
 
 $(document).ready(function () {
   $('#addbillcard').hide();
@@ -111,7 +111,7 @@ $(document).ready(function () {
     const youOweCell = $('<td>').text(bill.UserBill.amountOwed);
     const addPayersBtn = $('<button type="button" class="btn btn-outline-light addPayers">Add payers</button>');
     const billDetailBtn = $('<button type="button" class="btn btn-outline-light viewBill">View Bill</button>');
-    const settle = $('<button type="button" id="settleBill" class="btn btn-outline-light settle">Pay bill</button>');
+    const settle = $('<button type="button" id="settleBill" class="btn btn-outline-light settle" >Pay bill</button>');
     tableRow
       .append(tableHead, titleCell, companyCell, amountCell, youOweCell, isPaidCell, addPayersBtn, billDetailBtn, settle);
     destination.append(tableRow);
@@ -209,9 +209,6 @@ $(document).ready(function () {
       });
   }
 
-
-
-
   // Constructs a user row in the bill detail view modal table
   function buildRowsBillDetail(payers) {
     $('.bill-payer-detail').remove();
@@ -278,7 +275,6 @@ $(document).ready(function () {
     }
   }
 
-
   // ***************************************
   // Onclick handler functions
   // ***************************************
@@ -339,7 +335,7 @@ $(document).ready(function () {
 
     //if amount you owe > amount throw error
     if (billData.Amount < billData.amountYouOwe) {
-      alertModal('Error', 'Bill total must be less that amount owed');
+      alertModal('Error.', 'Bill total must be less that amount owed.');
       return;
     }
 
@@ -407,6 +403,17 @@ $(document).ready(function () {
   // $("#settleBill").on("click", function(){
   //   location.replace("https://venmo.com/");
   //  });
+  // $('#settleBill').click(function(){
+  //   console.log('hi');
+  //   location.replace('https://venmo.com/');
+  // });
+  // $('#settleBill').on('click', '.link', function() {
+  //   $("#link").append('<a href="#" class="link"> Link </a>');
+  // });
+
+  // $('#settleBill').html('<a href="#" class="link">Link</a>');
+
+
 
   // On click function to exit out of #myModal
   $('#myModalExit').on('click', function () {
