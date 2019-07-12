@@ -335,7 +335,7 @@ $(document).ready(function () {
 
     //if amount you owe > amount throw error
     if (billData.Amount < billData.amountYouOwe) {
-      alertModal('Error.', 'Bill total must be less that amount owed.');
+      alertModal('Error.', 'Bill total must be less than amount owed.');
       return;
     }
 
